@@ -28,20 +28,12 @@ export const chapters = [
   {
     id: 4,
     title: "Z-Scores",
-    description: "Master z-scores, standardization, and the normal distribution. Includes interactive calculator, visual explanations, and worked examples with the normal table.",
-    topics: ["Z-Score Concepts", "Calculator", "Normal Table", "Worked Examples"],
-    questionCount: 0, // This is a study chapter, not quiz
+    description: "Master z-scores, standardization, and the normal distribution. Includes interactive calculator, visual explanations, worked examples, and Exam 1 practice questions.",
+    topics: ["Z-Score Concepts", "Calculator", "Normal Table", "Exam 1 Practice"],
+    questionCount: 25, // Exam practice questions included
     isStudyChapter: true,
+    hasExamPractice: true,
     color: "from-cyan-600 to-cyan-400"
-  },
-  {
-    id: 5,
-    title: "Exam 1 Practice",
-    description: "Comprehensive practice exam covering Chapters 1-7 with 25 multiple choice questions. Test your knowledge before the real exam!",
-    topics: ["Z-Scores", "Normal Distribution", "Central Tendency", "Variability", "Sampling", "Measurement Scales", "Probability"],
-    questionCount: 25,
-    isExamPractice: true,
-    color: "from-green-600 to-green-400"
   }
 ];
 
