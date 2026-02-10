@@ -630,6 +630,9 @@ const ConceptsSection = () => {
     <div className="space-y-8">
       {/* Hero */}
       <div className="text-center py-8">
+        <div className="inline-block bg-blue-600/20 text-blue-400 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+          Chapter 4 • Z-Scores
+        </div>
         <h1 className="text-4xl font-bold text-white mb-4">
           Understanding <span className="text-blue-400">Z-Scores</span>
         </h1>
