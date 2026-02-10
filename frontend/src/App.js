@@ -541,40 +541,82 @@ const ZScoreCalculator = () => {
 };
 
 // Navigation Component
-const Navigation = ({ activeSection, setActiveSection }) => {
-  const sections = [
-    { id: 'concepts', label: 'Z-Score Concepts', icon: Brain },
-    { id: 'calculator', label: 'Calculator', icon: Calculator },
-    { id: 'table', label: 'Normal Table', icon: Table2 },
-    { id: 'exam', label: 'Exam 1 Practice', icon: ClipboardList },
+const Navigation = ({ activeChapter, setActiveChapter, activeTab, setActiveTab }) => {
+  const chapters = [
+    { 
+      id: 'chapter4', 
+      label: 'Chapter 4: Z-Scores', 
+      icon: TrendingUp,
+      tabs: [
+        { id: 'concepts', label: 'Concepts', icon: Brain },
+        { id: 'calculator', label: 'Calculator', icon: Calculator },
+        { id: 'table', label: 'Normal Table', icon: Table2 },
+      ]
+    },
+    { 
+      id: 'chapter5', 
+      label: 'Chapter 5: Exam 1 Practice', 
+      icon: ClipboardList,
+      tabs: []
+    },
   ];
+
+  const currentChapter = chapters.find(c => c.id === activeChapter);
 
   return (
     <nav className="bg-slate-900/80 backdrop-blur-sm border-b border-slate-800 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4">
+        {/* Main Nav */}
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <BookOpen className="w-6 h-6 text-blue-400" />
+            <GraduationCap className="w-6 h-6 text-blue-400" />
             <span className="font-bold text-lg text-white">PSYC 2001 Study Guide</span>
           </div>
-          <div className="flex gap-1">
-            {sections.map((section) => (
+          <div className="flex gap-2">
+            {chapters.map((chapter) => (
               <button
-                key={section.id}
-                onClick={() => setActiveSection(section.id)}
-                data-testid={`nav-${section.id}`}
+                key={chapter.id}
+                onClick={() => {
+                  setActiveChapter(chapter.id);
+                  if (chapter.tabs.length > 0) {
+                    setActiveTab(chapter.tabs[0].id);
+                  }
+                }}
+                data-testid={`nav-${chapter.id}`}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-                  activeSection === section.id
+                  activeChapter === chapter.id
                     ? 'bg-blue-600 text-white'
                     : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                 }`}
               >
-                <section.icon className="w-4 h-4" />
-                <span className="hidden sm:inline">{section.label}</span>
+                <chapter.icon className="w-4 h-4" />
+                <span className="hidden md:inline">{chapter.label}</span>
+                <span className="md:hidden">{chapter.id === 'chapter4' ? 'Ch.4' : 'Ch.5'}</span>
               </button>
             ))}
           </div>
         </div>
+
+        {/* Sub-tabs for Chapter 4 */}
+        {currentChapter && currentChapter.tabs.length > 0 && (
+          <div className="flex gap-1 pb-3 -mt-1">
+            {currentChapter.tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                data-testid={`tab-${tab.id}`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all ${
+                  activeTab === tab.id
+                    ? 'bg-slate-700 text-white border border-slate-600'
+                    : 'text-slate-500 hover:bg-slate-800/50 hover:text-slate-300'
+                }`}
+              >
+                <tab.icon className="w-4 h-4" />
+                <span>{tab.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </nav>
   );
