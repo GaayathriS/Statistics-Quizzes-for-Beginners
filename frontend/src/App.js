@@ -801,6 +801,9 @@ const TableSection = () => {
   return (
     <div className="space-y-8">
       <div className="text-center py-8">
+        <div className="inline-block bg-yellow-600/20 text-yellow-400 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+          Chapter 4 • Z-Scores
+        </div>
         <h1 className="text-4xl font-bold text-white mb-4">
           Using the <span className="text-yellow-400">Normal Table</span>
         </h1>
