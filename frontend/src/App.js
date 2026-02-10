@@ -780,6 +780,131 @@ const TableSection = () => {
         </div>
       </div>
 
+      {/* Worked Examples */}
+      <div className="space-y-6">
+        <h2 className="text-xl font-semibold text-white flex items-center gap-2">
+          <BookOpen className="w-5 h-5 text-cyan-400" />
+          Worked Examples
+        </h2>
+
+        {/* Example 1: Positive Z-Score */}
+        <div className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 rounded-xl p-6 border border-green-500/30">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="bg-green-600 text-white text-sm font-bold px-3 py-1 rounded-full">Example 1</span>
+            <span className="text-green-400 font-semibold">Positive Z-Score</span>
+          </div>
+          
+          <div className="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p className="text-white font-medium mb-2">Question:</p>
+            <p className="text-slate-300">On an IQ test with μ = 100 and σ = 15, what proportion of people score <strong className="text-green-400">below 115</strong>?</p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex items-start gap-3">
+              <span className="bg-slate-700 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+              <div>
+                <p className="text-slate-400 text-sm">First, convert to z-score:</p>
+                <p className="text-cyan-300 font-mono mt-1">z = (X - μ) / σ = (115 - 100) / 15 = <strong>+1.00</strong></p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <span className="bg-slate-700 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+              <div>
+                <p className="text-slate-400 text-sm">Look up z = 1.00 in Table B.1:</p>
+                <div className="flex gap-4 mt-2">
+                  <span className="bg-blue-900/50 text-blue-300 px-3 py-1 rounded font-mono text-sm">Column A: z = 1.00</span>
+                  <span className="bg-green-900/50 text-green-300 px-3 py-1 rounded font-mono text-sm">Column B (Body): .8413</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <span className="bg-slate-700 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">3</span>
+              <div>
+                <p className="text-slate-400 text-sm">Interpret:</p>
+                <p className="text-white mt-1">"Below 115" means we want everything to the LEFT of z = +1.00</p>
+                <p className="text-green-400 font-semibold mt-1">Answer: .8413 or <strong>84.13%</strong> of people score below 115</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 bg-slate-800/50 rounded-lg p-3 border-l-4 border-green-500">
+            <p className="text-slate-300 text-sm"><strong className="text-green-400">Key insight:</strong> For positive z-scores, "below" = use Column B (Body)</p>
+          </div>
+        </div>
+
+        {/* Example 2: Negative Z-Score */}
+        <div className="bg-gradient-to-br from-red-900/20 to-orange-900/20 rounded-xl p-6 border border-red-500/30">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full">Example 2</span>
+            <span className="text-red-400 font-semibold">Negative Z-Score</span>
+          </div>
+          
+          <div className="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p className="text-white font-medium mb-2">Question:</p>
+            <p className="text-slate-300">On the same IQ test (μ = 100, σ = 15), what proportion of people score <strong className="text-red-400">below 85</strong>?</p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex items-start gap-3">
+              <span className="bg-slate-700 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+              <div>
+                <p className="text-slate-400 text-sm">First, convert to z-score:</p>
+                <p className="text-cyan-300 font-mono mt-1">z = (X - μ) / σ = (85 - 100) / 15 = <strong>-1.00</strong></p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <span className="bg-slate-700 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+              <div>
+                <p className="text-slate-400 text-sm">The table only has POSITIVE z-scores! Use symmetry:</p>
+                <p className="text-yellow-300 mt-1">Look up z = <strong>1.00</strong> (ignore the negative sign for lookup)</p>
+                <div className="flex gap-4 mt-2">
+                  <span className="bg-blue-900/50 text-blue-300 px-3 py-1 rounded font-mono text-sm">Column A: z = 1.00</span>
+                  <span className="bg-red-900/50 text-red-300 px-3 py-1 rounded font-mono text-sm">Column C (Tail): .1587</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <span className="bg-slate-700 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">3</span>
+              <div>
+                <p className="text-slate-400 text-sm">Apply symmetry logic:</p>
+                <p className="text-white mt-1">"Below z = -1.00" is the LEFT tail</p>
+                <p className="text-white">By symmetry, the left tail of -1.00 = the right tail of +1.00</p>
+                <p className="text-red-400 font-semibold mt-1">Answer: .1587 or <strong>15.87%</strong> of people score below 85</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 bg-slate-800/50 rounded-lg p-3 border-l-4 border-red-500">
+            <p className="text-slate-300 text-sm"><strong className="text-red-400">Key insight:</strong> For negative z-scores, "below" = use Column C (Tail) from the positive z lookup!</p>
+          </div>
+        </div>
+
+        {/* Quick Reference Summary */}
+        <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+          <h3 className="text-lg font-semibold text-white mb-4">Quick Reference: Which Column to Use?</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-slate-900/50 rounded-lg p-4">
+              <p className="text-green-400 font-semibold mb-2">For POSITIVE z-scores (+)</p>
+              <ul className="space-y-2 text-sm text-slate-300">
+                <li>• "Below" or "less than" → <strong className="text-green-300">Column B (Body)</strong></li>
+                <li>• "Above" or "greater than" → <strong className="text-red-300">Column C (Tail)</strong></li>
+              </ul>
+            </div>
+            <div className="bg-slate-900/50 rounded-lg p-4">
+              <p className="text-red-400 font-semibold mb-2">For NEGATIVE z-scores (-)</p>
+              <ul className="space-y-2 text-sm text-slate-300">
+                <li>• "Below" or "less than" → <strong className="text-red-300">Column C (Tail)</strong></li>
+                <li>• "Above" or "greater than" → <strong className="text-green-300">Column B (Body)</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Common values */}
       <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 overflow-x-auto">
         <h2 className="text-xl font-semibold text-white mb-4">Common Z-Scores to Know</h2>
