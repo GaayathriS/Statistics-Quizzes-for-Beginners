@@ -1069,6 +1069,9 @@ const ExamSection = () => {
   return (
     <div className="space-y-8">
       <div className="text-center py-8">
+        <div className="inline-block bg-green-600/20 text-green-400 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+          Chapter 5 • Exam Prep
+        </div>
         <h1 className="text-4xl font-bold text-white mb-4">
           Exam 1 <span className="text-green-400">Practice</span>
         </h1>
