@@ -1218,21 +1218,25 @@ const ExamSection = () => {
 
 // Main App
 function App() {
-  const [activeSection, setActiveSection] = useState('concepts');
+  const [activeChapter, setActiveChapter] = useState('chapter4');
+  const [activeTab, setActiveTab] = useState('concepts');
 
-  const renderSection = () => {
-    switch (activeSection) {
-      case 'concepts':
-        return <ConceptsSection />;
-      case 'calculator':
-        return <CalculatorSection />;
-      case 'table':
-        return <TableSection />;
-      case 'exam':
-        return <ExamSection />;
-      default:
-        return <ConceptsSection />;
+  const renderContent = () => {
+    if (activeChapter === 'chapter4') {
+      switch (activeTab) {
+        case 'concepts':
+          return <ConceptsSection />;
+        case 'calculator':
+          return <CalculatorSection />;
+        case 'table':
+          return <TableSection />;
+        default:
+          return <ConceptsSection />;
+      }
+    } else if (activeChapter === 'chapter5') {
+      return <ExamSection />;
     }
+    return <ConceptsSection />;
   };
 
   return (
@@ -1243,9 +1247,14 @@ function App() {
             path="*"
             element={
               <>
-                <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
+                <Navigation 
+                  activeChapter={activeChapter} 
+                  setActiveChapter={setActiveChapter}
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                />
                 <main className="max-w-5xl mx-auto px-4 py-8">
-                  {renderSection()}
+                  {renderContent()}
                 </main>
                 <footer className="text-center py-6 text-slate-500 text-sm border-t border-slate-800">
                   PSYC 2001 - Statistical Methods for Psychology | Exam 1 Study Guide
