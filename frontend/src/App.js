@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { BookOpen, Calculator, Table2, ClipboardList, ChevronRight, ChevronLeft, Check, X, RotateCcw, Target, Brain, TrendingUp } from "lucide-react";
+import { BookOpen, Calculator, Table2, ClipboardList, ChevronRight, ChevronLeft, Check, X, RotateCcw, Target, Brain, TrendingUp, ChevronDown, GraduationCap } from "lucide-react";
 
 // Z-Score data and content
 const zScoreAnalogies = [
