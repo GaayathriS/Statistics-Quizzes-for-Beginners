@@ -849,6 +849,9 @@ export const Chapter4ZScores = ({ onBack }) => {
             </Card>
           </div>
         )}
+
+        {/* Exam Practice Tab */}
+        {activeTab === 'exam' && <ExamPractice />}
       </div>
     </div>
   );
