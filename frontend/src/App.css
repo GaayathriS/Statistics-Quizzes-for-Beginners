@@ -1,235 +1,34 @@
-/* PSYC 2001 Study App Styles */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
-
-* {
-  box-sizing: border-box;
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
 }
 
-body {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #020617;
-  color: #e2e8f0;
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
+.App-header {
+    background-color: #0f0f10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+.App-link {
+    color: #61dafb;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0f172a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #475569;
-}
-
-/* Selection color */
-::selection {
-  background-color: #3b82f6;
-  color: white;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-/* Apply animations */
-.App main > div {
-  animation: fadeIn 0.4s ease-out;
-}
-
-/* Button hover effects */
-button {
-  transition: all 0.2s ease;
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-/* Card hover effects */
-.bg-slate-800\/50:hover {
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
-}
-
-/* Input focus states */
-input:focus {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-}
-
-/* SVG transitions */
-svg {
-  transition: transform 0.3s ease;
-}
-
-/* Bell curve animation */
-svg path {
-  transition: stroke 0.3s ease, fill 0.3s ease;
-}
-
-/* Quiz option hover */
-.space-y-3 > button:not(:disabled):hover {
-  transform: translateX(4px);
-}
-
-/* Progress indicator animation */
-.w-8.h-8.rounded-lg {
-  transition: all 0.2s ease;
-}
-
-.w-8.h-8.rounded-lg:hover {
-  transform: scale(1.1);
-}
-
-/* Gradient text for headings */
-.text-blue-400 {
-  background: linear-gradient(135deg, #60a5fa, #38bdf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-cyan-400 {
-  background: linear-gradient(135deg, #22d3ee, #38bdf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-green-400 {
-  background: linear-gradient(135deg, #4ade80, #22d3ee);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-yellow-400 {
-  background: linear-gradient(135deg, #facc15, #fb923c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Nav link active indicator */
-nav button {
-  position: relative;
-}
-
-nav button::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #3b82f6, #22d3ee);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-nav button:hover::after {
-  width: 80%;
-}
-
-nav button.bg-blue-600::after {
-  width: 80%;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 640px) {
-  .text-4xl {
-    font-size: 1.875rem;
-  }
-  
-  .max-w-5xl {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  nav .flex.gap-1 {
-    gap: 0.25rem;
-  }
-
-  nav button {
-    padding: 0.5rem;
-  }
-}
-
-/* Print styles for cheat sheet creation */
-@media print {
-  body {
-    background: white;
-    color: black;
-  }
-
-  .bg-slate-800\/50,
-  .bg-slate-900\/50,
-  .bg-slate-900 {
-    background: #f1f5f9 !important;
-    border-color: #cbd5e1 !important;
-  }
-
-  nav, footer {
-    display: none;
-  }
-}
-
-/* Ensure accessibility */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* Focus visible for keyboard navigation */
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
