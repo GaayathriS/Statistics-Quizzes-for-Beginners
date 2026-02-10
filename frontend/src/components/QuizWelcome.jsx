@@ -56,20 +56,14 @@ export const QuizWelcome = ({ onSelectChapter }) => {
 
                       {/* Chapter Info */}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
                           <h3 className="text-lg font-semibold text-foreground">
                             Chapter {chapter.id}: {chapter.title}
                           </h3>
                           {chapter.isStudyChapter && (
                             <Badge variant="outline" className="text-xs bg-cyan-500/10 text-cyan-500 border-cyan-500/30">
                               <Brain className="w-3 h-3 mr-1" />
-                              Study
-                            </Badge>
-                          )}
-                          {chapter.isExamPractice && (
-                            <Badge variant="outline" className="text-xs bg-green-500/10 text-green-500 border-green-500/30">
-                              <ClipboardList className="w-3 h-3 mr-1" />
-                              Exam Prep
+                              Study + Practice
                             </Badge>
                           )}
                         </div>
