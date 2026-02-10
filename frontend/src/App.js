@@ -754,6 +754,9 @@ const CalculatorSection = () => {
   return (
     <div className="space-y-8">
       <div className="text-center py-8">
+        <div className="inline-block bg-cyan-600/20 text-cyan-400 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+          Chapter 4 • Z-Scores
+        </div>
         <h1 className="text-4xl font-bold text-white mb-4">
           Z-Score <span className="text-cyan-400">Calculator</span>
         </h1>
