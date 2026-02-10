@@ -1,103 +1,120 @@
 import React from 'react';
 import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { BookOpen, Target, Trophy, Clock, Award } from 'lucide-react';
+import { BookOpen, Target, ChevronRight, Brain, TrendingUp, ClipboardList } from 'lucide-react';
+import { chapters } from '../data/chaptersData';
 
-export const QuizWelcome = ({ onStart, totalQuestions }) => {
+export const QuizWelcome = ({ onSelectChapter }) => {
+  const getChapterIcon = (chapterId) => {
+    switch(chapterId) {
+      case 4: return TrendingUp;
+      case 5: return ClipboardList;
+      default: return BookOpen;
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-background to-muted">
-      <Card className="w-full max-w-3xl card-elevated bounce-in border-2 border-primary/10">
-        <CardHeader className="text-center space-y-4 pb-8">
+    <div className="min-h-screen p-4 bg-gradient-to-br from-background via-background to-muted">
+      <div className="max-w-4xl mx-auto space-y-8 py-8">
+        {/* Header */}
+        <div className="text-center space-y-4">
           <div className="mx-auto w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
             <BookOpen className="w-10 h-10 text-primary-foreground" />
           </div>
-          <div>
-            <CardTitle className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Statistics Quiz
-            </CardTitle>
-            <CardDescription className="text-lg mt-3 text-muted-foreground">
-              Chapter 1: Introduction to Statistics
-            </CardDescription>
-          </div>
-        </CardHeader>
-        
-        <CardContent className="space-y-6">
-          <div className="bg-muted/50 rounded-xl p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-              <Target className="w-5 h-5 text-primary" />
-              What You'll Learn
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Test your knowledge of fundamental statistical concepts including populations and samples, 
-              variables and measurement scales, research methods, and statistical notation from the textbook 
-              "Essentials of Statistics for the Behavioral Sciences."
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                <Award className="w-6 h-6 text-primary" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">{totalQuestions} Questions</p>
-                <p className="text-sm text-muted-foreground">Multiple choice</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-secondary/50 transition-colors">
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
-                <Clock className="w-6 h-6 text-secondary" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">No Time Limit</p>
-                <p className="text-sm text-muted-foreground">Take your time</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-accent/50 transition-colors">
-              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                <Trophy className="w-6 h-6 text-accent" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">Earn Badges</p>
-                <p className="text-sm text-muted-foreground">Unlock achievements</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-success/50 transition-colors">
-              <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
-                <Target className="w-6 h-6 text-success" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">Instant Feedback</p>
-                <p className="text-sm text-muted-foreground">Learn as you go</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="flex flex-wrap gap-2 justify-center">
-            <Badge variant="outline" className="text-xs">Basic Definitions</Badge>
-            <Badge variant="outline" className="text-xs">Research Methods</Badge>
-            <Badge variant="outline" className="text-xs">Measurement Scales</Badge>
-            <Badge variant="outline" className="text-xs">Statistical Notation</Badge>
-          </div>
-        </CardContent>
-        
-        <CardFooter className="flex flex-col gap-3 pt-6">
-          <Button 
-            onClick={onStart}
-            size="lg"
-            className="w-full text-lg h-14 btn-glow bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
-          >
-            Start Quiz
-          </Button>
-          <p className="text-xs text-center text-muted-foreground">
-            Good luck! Remember, this quiz is designed to help you learn.
+          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            Statistics Quiz
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Essentials of Statistics for the Behavioral Sciences
           </p>
-        </CardFooter>
-      </Card>
+        </div>
+
+        {/* Chapter Selection */}
+        <div className="space-y-4">
+          <h2 className="text-xl font-semibold flex items-center gap-2 text-foreground">
+            <Target className="w-5 h-5 text-primary" />
+            Select a Chapter
+          </h2>
+
+          <div className="grid gap-4">
+            {chapters.map((chapter) => {
+              const IconComponent = getChapterIcon(chapter.id);
+              
+              return (
+                <Card 
+                  key={chapter.id}
+                  className="cursor-pointer hover:border-primary/50 transition-all hover:shadow-lg group border-2"
+                  onClick={() => onSelectChapter(chapter)}
+                  data-testid={`chapter-${chapter.id}`}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      {/* Chapter Number */}
+                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${chapter.color} text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform`}>
+                        {chapter.id}
+                      </div>
+
+                      {/* Chapter Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-lg font-semibold text-foreground">
+                            Chapter {chapter.id}: {chapter.title}
+                          </h3>
+                          {chapter.isStudyChapter && (
+                            <Badge variant="outline" className="text-xs bg-cyan-500/10 text-cyan-500 border-cyan-500/30">
+                              <Brain className="w-3 h-3 mr-1" />
+                              Study
+                            </Badge>
+                          )}
+                          {chapter.isExamPractice && (
+                            <Badge variant="outline" className="text-xs bg-green-500/10 text-green-500 border-green-500/30">
+                              <ClipboardList className="w-3 h-3 mr-1" />
+                              Exam Prep
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                          {chapter.description}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex flex-wrap gap-2">
+                            {chapter.topics.slice(0, 3).map((topic, idx) => (
+                              <Badge key={idx} variant="secondary" className="text-xs">
+                                {topic}
+                              </Badge>
+                            ))}
+                            {chapter.topics.length > 3 && (
+                              <Badge variant="secondary" className="text-xs">
+                                +{chapter.topics.length - 3}
+                              </Badge>
+                            )}
+                          </div>
+                          {chapter.questionCount > 0 && (
+                            <Badge variant="outline" className="ml-2">
+                              {chapter.questionCount} Questions
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Arrow */}
+                      <ChevronRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-muted-foreground">
+          Select a chapter to begin your quiz journey
+        </p>
+      </div>
     </div>
   );
 };
+
+export default QuizWelcome;
