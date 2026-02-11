@@ -72,9 +72,72 @@ export const chapterGlossaries = {
     { term: "Quasi-independent variable", definition: "A grouping variable used in nonexperimental research." },
     { term: "Dependent variable", definition: "The variable measured to assess the effect of the independent variable." }
   ],
-  2: [], // To be added
-  3: [], // To be added
-  4: []  // To be added
+  2: [
+    { term: "Frequency distribution", definition: "An organized summary of how often each score or category occurs in a data set." },
+    { term: "Proportion", definition: "The fraction of the total represented by a specific part of the data." },
+    { term: "Percentage", definition: "A proportion multiplied by 100." },
+    { term: "Percentile", definition: "A score or value below which a certain percentage of scores fall." },
+    { term: "Percentile rank", definition: "The percentage of scores in a distribution that are at or below a given score." },
+    { term: "Range", definition: "The difference between the highest and lowest scores in a distribution." },
+    { term: "Cumulative percentage", definition: "The percentage of scores at or below a given value when data are accumulated across categories." },
+    { term: "Histogram", definition: "A graph for continuous data using adjacent bars to show frequency distribution." },
+    { term: "Bar graph", definition: "A graph that compares discrete categories using separated bars." },
+    { term: "Normal distribution", definition: "A symmetrical, bell-shaped theoretical distribution where most scores cluster around the mean." },
+    { term: "Symmetrical distribution", definition: "A distribution where the left and right sides are mirror images and mean = median = mode." },
+    { term: "Skewed distribution", definition: "A distribution with a long tail on one side due to extreme scores." },
+    { term: "Positively skewed distribution", definition: "The tail extends to the right (a few unusually high scores)." },
+    { term: "Negatively skewed distribution", definition: "The tail extends to the left (a few unusually low scores)." },
+    { term: "Tail(s) of a distribution", definition: "The extreme ends of a distribution where very high or very low scores occur." }
+  ],
+  3: [
+    { term: "Central tendency", definition: "A statistical measure used to identify a single score that best represents an entire distribution." },
+    { term: "Mean", definition: "The arithmetic average of a set of scores, found by summing the scores and dividing by the number of scores." },
+    { term: "Population mean (μ)", definition: "The mean calculated using all scores in a population." },
+    { term: "Sample mean (M)", definition: "The mean calculated using scores in a sample." },
+    { term: "Median", definition: "The score that divides a distribution into two equal halves; 50% of scores fall above and 50% fall below." },
+    { term: "Mode", definition: "The score or category that occurs most frequently in a distribution." },
+    { term: "Symmetrical distribution (central tendency)", definition: "A distribution in which mean, median, and mode are equal and located at the center." },
+    { term: "Skewed distribution (central tendency)", definition: "A distribution in which extreme scores pull the mean toward the tail, causing mean, median, and mode to differ. Positive skew → mean pulled right. Negative skew → mean pulled left." }
+  ],
+  4: [
+    { term: "Variability", definition: "A measure of how much scores in a distribution spread out or differ from one another." },
+    { term: "Range", definition: "The difference between the highest and lowest scores in a distribution." },
+    { term: "Deviation (deviation score)", definition: "The distance between a score and the mean, calculated as X − μ (or X − M)." },
+    { term: "Sum of squares (SS)", definition: "The sum of the squared deviation scores; a measure of total variability in a set of scores." },
+    { term: "Variance (σ² or s²)", definition: "The average of the squared deviations from the mean." },
+    { term: "Population variance (σ²)", definition: "Variance computed by dividing SS by N." },
+    { term: "Sample variance (s²)", definition: "Variance computed by dividing SS by n − 1." },
+    { term: "Standard deviation (σ or s)", definition: "The square root of the variance; measures the average distance of scores from the mean." },
+    { term: "Population standard deviation (σ)", definition: "Square root of population variance." },
+    { term: "Sample standard deviation (s)", definition: "Square root of sample variance." },
+    { term: "Degrees of freedom (df)", definition: "The number of scores free to vary when calculating a statistic; for a sample, df = n − 1." },
+    { term: "Raw score", definition: "An original, untransformed data value." }
+  ],
+  5: [
+    { term: "z-score (standard score)", definition: "A value that describes the exact location of a score within a distribution by indicating how many standard deviations the score is above or below the mean. Formula: z = (X − μ) / σ (population) or z = (X − M) / s (sample)." },
+    { term: "Standardized distribution", definition: "A distribution that has been transformed so it has a mean of 0 and a standard deviation of 1." },
+    { term: "z-score transformation (standardization)", definition: "The process of converting raw scores into z-scores to create a standardized distribution." },
+    { term: "Unit normal distribution", definition: "A specific standardized normal distribution with mean = 0 and standard deviation = 1." },
+    { term: "Unit normal table (z table)", definition: "A table that shows the proportion or percentage of scores corresponding to specific z-scores in the normal distribution." },
+    { term: "Relationship between X and z", definition: "A z-score can be converted back to a raw score using: X = μ + zσ" }
+  ],
+  6: [
+    { term: "Probability", definition: "A numerical value that describes the likelihood of an event occurring, ranging from 0 (impossible) to 1 (certain)." },
+    { term: "Probability as a proportion", definition: "Probability is calculated as the proportion of times an outcome is expected to occur relative to all possible outcomes." },
+    { term: "Normal distribution (probability context)", definition: "A theoretical, bell-shaped distribution used to determine probabilities and proportions of scores." },
+    { term: "Probability and the normal distribution", definition: "The area under the normal curve corresponds to proportions and probabilities of scores." },
+    { term: "Percentile", definition: "A score that marks a specified percentage of scores at or below it in a distribution." },
+    { term: "Percentile rank", definition: "The percentage of scores at or below a particular value." },
+    { term: "Using z-scores to find probability", definition: "z-scores are used with the unit normal table to determine the probability or proportion of scores in a normal distribution." }
+  ],
+  7: [
+    { term: "Distribution of sample means", definition: "The distribution formed by all possible sample means for samples of a specific size drawn from a population." },
+    { term: "Sampling distribution", definition: "A distribution of statistics obtained from all possible samples of a fixed size from a population." },
+    { term: "Mean of the distribution of sample means (expected value of M)", definition: "The mean of the sampling distribution equals the population mean (μ)." },
+    { term: "Standard error (σₘ)", definition: "The standard deviation of the distribution of sample means; measures the average distance between a sample mean and the population mean. Formula: σₘ = σ / √n" },
+    { term: "Central limit theorem", definition: "For any population with mean μ and standard deviation σ, the distribution of sample means approaches a normal distribution as sample size increases, with mean μ and standard error σ/√n." },
+    { term: "z-score for sample means", definition: "A z-score can be used to locate a sample mean within the distribution of sample means: z = (M − μ) / σₘ" }
+  ]
 };
 
 // Get glossary by chapter ID
