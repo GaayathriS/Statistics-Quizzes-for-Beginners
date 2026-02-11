@@ -3,10 +3,9 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { 
-  Brain, Calculator, Table2, TrendingUp, Target, Check, X,
-  ChevronLeft, ChevronRight, BookOpen, ArrowLeft, ClipboardList, RotateCcw
+  Brain, Calculator, Table2, TrendingUp, Target, Check,
+  BookOpen, ArrowLeft, ClipboardList
 } from 'lucide-react';
-import { chapter5Questions } from '../data/chaptersData';
 
 // Z-Score Analogies Data
 const zScoreAnalogies = [
