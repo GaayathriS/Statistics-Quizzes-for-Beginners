@@ -76,7 +76,7 @@ export const chapterGlossaries = {
     { term: "Frequency distribution", definition: "An organized summary of how often each score or category occurs in a data set." },
     { term: "Proportion", definition: "The fraction of the total represented by a specific part of the data." },
     { term: "Percentage", definition: "A proportion multiplied by 100." },
-    { term: "Percentile", definition: "A score or value below which a certain percentage of scores fall." },
+    { term: "Percentile", definition: "A score or value below which a given percentage of scores in a dataset falls, used to determine relative position." },
     { term: "Percentile rank", definition: "The percentage of scores in a distribution that are at or below a given score." },
     { term: "Range", definition: "The difference between the highest and lowest scores in a distribution." },
     { term: "Cumulative percentage", definition: "The percentage of scores at or below a given value when data are accumulated across categories." },
@@ -126,7 +126,7 @@ export const chapterGlossaries = {
     { term: "Probability as a proportion", definition: "Probability is calculated as the proportion of times an outcome is expected to occur relative to all possible outcomes." },
     { term: "Normal distribution (probability context)", definition: "A theoretical, bell-shaped distribution used to determine probabilities and proportions of scores." },
     { term: "Probability and the normal distribution", definition: "The area under the normal curve corresponds to proportions and probabilities of scores." },
-    { term: "Percentile", definition: "A score that marks a specified percentage of scores at or below it in a distribution." },
+    { term: "Percentile", definition: "A score or value below which a given percentage of scores in a dataset falls, used to determine relative position." },
     { term: "Percentile rank", definition: "The percentage of scores at or below a particular value." },
     { term: "Using z-scores to find probability", definition: "z-scores are used with the unit normal table to determine the probability or proportion of scores in a normal distribution." }
   ],
