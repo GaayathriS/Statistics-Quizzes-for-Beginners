@@ -250,6 +250,47 @@ export const QuizResults = ({
             </div>
           </CardContent>
         </Card>
+
+        {/* Glossary Section */}
+        {glossary && glossary.length > 0 && (
+          <Card className="border-2 border-primary/10">
+            <CardHeader 
+              className="cursor-pointer hover:bg-muted/50 transition-colors"
+              onClick={() => setShowGlossary(!showGlossary)}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-xl">Chapter {chapterId} Glossary</CardTitle>
+                    <CardDescription>{glossary.length} key terms to review</CardDescription>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon">
+                  {showGlossary ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                </Button>
+              </div>
+            </CardHeader>
+            
+            {showGlossary && (
+              <CardContent className="pt-0">
+                <div className="grid gap-3 max-h-[500px] overflow-y-auto pr-2">
+                  {glossary.map((item, index) => (
+                    <div 
+                      key={index}
+                      className="p-4 bg-muted/30 rounded-lg border border-border/50 hover:border-primary/30 transition-colors"
+                    >
+                      <h4 className="font-semibold text-foreground mb-1">{item.term}</h4>
+                      <p className="text-sm text-muted-foreground">{item.definition}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            )}
+          </Card>
+        )}
       </div>
     </div>
   );
