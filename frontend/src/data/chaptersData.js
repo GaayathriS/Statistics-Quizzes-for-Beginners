@@ -28,12 +28,22 @@ export const chapters = [
   {
     id: 4,
     title: "Z-Scores",
-    description: "Master z-scores, standardization, and the normal distribution. Includes interactive calculator, visual explanations, worked examples, and Exam 1 practice questions.",
-    topics: ["Z-Score Concepts", "Calculator", "Normal Table", "Exam 1 Practice"],
-    questionCount: 25, // Exam practice questions included
+    description: "Master z-scores, standardization, and the normal distribution. Includes interactive calculator, visual explanations, worked examples, and practice quiz.",
+    topics: ["Z-Score Concepts", "Calculator", "Normal Table", "Quiz"],
+    questionCount: 25,
     isStudyChapter: true,
-    hasExamPractice: true,
+    hasQuiz: true,
     color: "from-cyan-600 to-cyan-400"
+  },
+  {
+    id: 5,
+    title: "Glossary",
+    subtitle: "Chapters 1-7",
+    description: "Review key terms and definitions from all chapters. Select a chapter to view its glossary of important statistical concepts.",
+    topics: ["Key Terms", "Definitions", "Quick Reference"],
+    questionCount: 0,
+    isGlossaryChapter: true,
+    color: "from-amber-600 to-amber-400"
   }
 ];
 
