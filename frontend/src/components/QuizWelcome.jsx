@@ -2,13 +2,14 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { BookOpen, Target, ChevronRight, Brain, TrendingUp, ClipboardList } from 'lucide-react';
+import { BookOpen, Target, ChevronRight, Brain, TrendingUp, BookMarked } from 'lucide-react';
 import { chapters } from '../data/chaptersData';
 
 export const QuizWelcome = ({ onSelectChapter }) => {
   const getChapterIcon = (chapterId) => {
     switch(chapterId) {
       case 4: return TrendingUp;
+      case 5: return BookMarked;
       default: return BookOpen;
     }
   };
@@ -59,11 +60,18 @@ export const QuizWelcome = ({ onSelectChapter }) => {
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
                           <h3 className="text-lg font-semibold text-foreground">
                             Chapter {chapter.id}: {chapter.title}
+                            {chapter.subtitle && <span className="text-muted-foreground font-normal"> ({chapter.subtitle})</span>}
                           </h3>
                           {chapter.isStudyChapter && (
                             <Badge variant="outline" className="text-xs bg-cyan-500/10 text-cyan-500 border-cyan-500/30">
                               <Brain className="w-3 h-3 mr-1" />
-                              Study + Practice
+                              Study + Quiz
+                            </Badge>
+                          )}
+                          {chapter.isGlossaryChapter && (
+                            <Badge variant="outline" className="text-xs bg-amber-500/10 text-amber-500 border-amber-500/30">
+                              <BookMarked className="w-3 h-3 mr-1" />
+                              Reference
                             </Badge>
                           )}
                         </div>
@@ -83,7 +91,7 @@ export const QuizWelcome = ({ onSelectChapter }) => {
                               </Badge>
                             )}
                           </div>
-                          {chapter.questionCount > 0 && (
+                          {chapter.questionCount > 0 && !chapter.isGlossaryChapter && (
                             <Badge variant="outline" className="ml-2">
                               {chapter.questionCount} Questions
                             </Badge>
