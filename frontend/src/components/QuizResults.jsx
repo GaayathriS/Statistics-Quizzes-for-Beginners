@@ -3,8 +3,9 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
-import { Trophy, RotateCcw, CheckCircle2, XCircle, Award, TrendingUp } from 'lucide-react';
+import { Trophy, RotateCcw, CheckCircle2, XCircle, Award, TrendingUp, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
 import { getPerformanceMessage, badges } from '../data/quizData';
+import { getChapterGlossary } from '../data/chaptersData';
 
 export const QuizResults = ({ 
   score, 
@@ -13,12 +14,16 @@ export const QuizResults = ({
   earnedPoints,
   answers,
   timeSpent,
-  onRestart 
+  onRestart,
+  chapterTitle,
+  chapterId
 }) => {
   const [displayScore, setDisplayScore] = useState(0);
   const [earnedBadges, setEarnedBadges] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [showGlossary, setShowGlossary] = useState(false);
   
+  const glossary = getChapterGlossary(chapterId);
   const percentage = Math.round((score / totalQuestions) * 100);
   const performanceData = getPerformanceMessage(percentage);
   
