@@ -126,6 +126,7 @@ function App() {
           timeSpent={timeSpent}
           onRestart={handleRestart}
           chapterTitle={selectedChapter?.title}
+          chapterId={selectedChapter?.id}
         />
       )}
       
