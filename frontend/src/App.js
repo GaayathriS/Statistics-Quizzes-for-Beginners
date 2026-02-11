@@ -4,11 +4,12 @@ import { QuizWelcome } from './components/QuizWelcome';
 import { QuizQuestion } from './components/QuizQuestion';
 import { QuizResults } from './components/QuizResults';
 import { Chapter4ZScores } from './components/Chapter4ZScores';
-import { getChapterQuestions, chapters } from './data/chaptersData';
+import { Chapter5Glossary } from './components/Chapter5Glossary';
+import { getChapterQuestions, chapter5Questions, chapters } from './data/chaptersData';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
-  const [appState, setAppState] = useState('welcome'); // welcome, chapter4, quiz, results
+  const [appState, setAppState] = useState('welcome'); // welcome, chapter4, chapter5, quiz, results
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -33,17 +34,35 @@ function App() {
   const handleSelectChapter = (chapter) => {
     setSelectedChapter(chapter);
     
-    // Chapter 4 is a study chapter (no quiz)
+    // Chapter 4 is a study chapter
     if (chapter.isStudyChapter) {
       setAppState('chapter4');
       return;
     }
     
-    // Load questions for this chapter
+    // Chapter 5 is the glossary
+    if (chapter.isGlossaryChapter) {
+      setAppState('chapter5');
+      return;
+    }
+    
+    // Load questions for this chapter (Chapters 1-3)
     const questions = getChapterQuestions(chapter.id);
     setQuizQuestions(questions);
     
     // Start the quiz
+    setAppState('quiz');
+    setStartTime(Date.now());
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setEarnedPoints(0);
+    setAnswers([]);
+  };
+
+  // Start Chapter 4 quiz (from within the Chapter 4 study component)
+  const handleStartChapter4Quiz = () => {
+    // Use chapter5Questions which contains the z-score/exam questions
+    setQuizQuestions(chapter5Questions);
     setAppState('quiz');
     setStartTime(Date.now());
     setCurrentQuestionIndex(0);
@@ -62,7 +81,7 @@ function App() {
     
     setAnswers(prev => [...prev, {
       question: currentQuestion.question,
-      topic: currentQuestion.topic,
+      topic: currentQuestion.topic || currentQuestion.category,
       correct: isCorrect,
       points: isCorrect ? currentQuestion.points : 0,
       selectedAnswer: selectedAnswer,
@@ -102,7 +121,11 @@ function App() {
       )}
       
       {appState === 'chapter4' && (
-        <Chapter4ZScores onBack={handleBackToChapters} />
+        <Chapter4ZScores onBack={handleBackToChapters} onStartQuiz={handleStartChapter4Quiz} />
+      )}
+
+      {appState === 'chapter5' && (
+        <Chapter5Glossary onBack={handleBackToChapters} />
       )}
       
       {appState === 'quiz' && quizQuestions.length > 0 && (
