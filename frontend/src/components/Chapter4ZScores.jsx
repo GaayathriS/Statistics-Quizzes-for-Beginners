@@ -646,9 +646,6 @@ export const Chapter4ZScores = ({ onBack, onStartQuiz }) => {
             </Card>
           </div>
         )}
-
-        {/* Exam Practice Tab */}
-        {activeTab === 'exam' && <ExamPractice />}
       </div>
     </div>
   );
