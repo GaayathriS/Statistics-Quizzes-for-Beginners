@@ -37,6 +37,41 @@ export const chapters = [
   }
 ];
 
+// Chapter Glossaries
+export const chapterGlossaries = {
+  1: [
+    { term: "Population", definition: "The set of all individuals of interest in a particular study." },
+    { term: "Sample", definition: "A set of individuals selected from a population, usually to represent the population in a study." },
+    { term: "Random sample", definition: "A sample in which every individual in the population has an equal chance of being selected." },
+    { term: "Variable", definition: "A characteristic or condition that can change or take different values for different individuals." },
+    { term: "Data", definition: "Measurements or observations collected in a study." },
+    { term: "Data set", definition: "A collection of measurements or observations." },
+    { term: "Datum / Score (raw score)", definition: "A single measurement or observation." },
+    { term: "Parameter", definition: "A numerical value that describes a population." },
+    { term: "Statistic", definition: "A numerical value that describes a sample." },
+    { term: "Descriptive statistics", definition: "Procedures used to organize and summarize data." },
+    { term: "Inferential statistics", definition: "Techniques that use sample data to draw conclusions about a population." },
+    { term: "Sampling error", definition: "The natural discrepancy between a sample statistic and its population parameter." },
+    { term: "Construct", definition: "An internal characteristic that cannot be directly observed but helps explain behavior." },
+    { term: "Operational definition", definition: "Defines a construct in terms of observable and measurable behaviors." },
+    { term: "Nominal scale", definition: "Categories that differ only by name (no order or magnitude)." },
+    { term: "Ordinal scale", definition: "Categories arranged in an ordered sequence." },
+    { term: "Interval scale", definition: "Ordered categories with equal intervals; zero is arbitrary." },
+    { term: "Ratio scale", definition: "An interval scale with an absolute zero point." },
+    { term: "Independent variable", definition: "The variable manipulated by the researcher." },
+    { term: "Quasi-independent variable", definition: "A grouping variable used in nonexperimental research." },
+    { term: "Dependent variable", definition: "The variable measured to assess the effect of the independent variable." }
+  ],
+  2: [], // To be added
+  3: [], // To be added
+  4: []  // To be added
+};
+
+// Get glossary by chapter ID
+export const getChapterGlossary = (chapterId) => {
+  return chapterGlossaries[chapterId] || [];
+};
+
 // Chapter 1 Questions (existing)
 export const chapter1Questions = [
   {
