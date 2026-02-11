@@ -267,12 +267,11 @@ const commonZScores = [
 ];
 
 // Tabs for Chapter 4
-const Chapter4Tabs = ({ activeTab, setActiveTab }) => {
+const Chapter4Tabs = ({ activeTab, setActiveTab, onStartQuiz }) => {
   const tabs = [
     { id: 'concepts', label: 'Concepts', icon: Brain },
     { id: 'calculator', label: 'Calculator', icon: Calculator },
     { id: 'table', label: 'Normal Table', icon: Table2 },
-    { id: 'exam', label: 'Exam 1 Practice', icon: ClipboardList },
   ];
 
   return (
@@ -282,229 +281,28 @@ const Chapter4Tabs = ({ activeTab, setActiveTab }) => {
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           variant={activeTab === tab.id ? 'default' : 'outline'}
-          className={`flex items-center gap-2 ${tab.id === 'exam' ? 'border-green-500/50' : ''}`}
+          className="flex items-center gap-2"
           data-testid={`tab-${tab.id}`}
         >
           <tab.icon className="w-4 h-4" />
           {tab.label}
         </Button>
       ))}
-    </div>
-  );
-};
-
-// Exam Practice Component
-const ExamPractice = () => {
-  const [currentQ, setCurrentQ] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [showExplanation, setShowExplanation] = useState(false);
-  const [score, setScore] = useState({ correct: 0, attempted: 0 });
-  const [answeredQuestions, setAnsweredQuestions] = useState(new Set());
-  const [filterCategory, setFilterCategory] = useState('All');
-
-  const categories = ['All', ...new Set(chapter5Questions.map(q => q.category))];
-  
-  const filteredQuestions = filterCategory === 'All' 
-    ? chapter5Questions 
-    : chapter5Questions.filter(q => q.category === filterCategory);
-
-  const currentQuestion = filteredQuestions[currentQ] || filteredQuestions[0];
-
-  const handleAnswer = (optionIndex) => {
-    if (showExplanation) return;
-    
-    setSelectedAnswer(optionIndex);
-    setShowExplanation(true);
-    
-    if (!answeredQuestions.has(currentQuestion.id)) {
-      setAnsweredQuestions(new Set([...answeredQuestions, currentQuestion.id]));
-      setScore(prev => ({
-        correct: prev.correct + (optionIndex === currentQuestion.correctAnswer ? 1 : 0),
-        attempted: prev.attempted + 1
-      }));
-    }
-  };
-
-  const nextQuestion = () => {
-    setSelectedAnswer(null);
-    setShowExplanation(false);
-    setCurrentQ((prev) => (prev + 1) % filteredQuestions.length);
-  };
-
-  const prevQuestion = () => {
-    setSelectedAnswer(null);
-    setShowExplanation(false);
-    setCurrentQ((prev) => (prev - 1 + filteredQuestions.length) % filteredQuestions.length);
-  };
-
-  const resetQuiz = () => {
-    setCurrentQ(0);
-    setSelectedAnswer(null);
-    setShowExplanation(false);
-    setScore({ correct: 0, attempted: 0 });
-    setAnsweredQuestions(new Set());
-  };
-
-  return (
-    <div className="space-y-6 fade-in">
-      {/* Score & Filter */}
-      <div className="flex flex-wrap justify-between items-center gap-4">
-        <Card className="border-2 border-primary/20">
-          <CardContent className="py-3 px-6">
-            <span className="text-muted-foreground">Score: </span>
-            <span className="text-2xl font-bold text-success">{score.correct}</span>
-            <span className="text-muted-foreground"> / {score.attempted}</span>
-            {score.attempted > 0 && (
-              <span className="ml-2 text-muted-foreground">
-                ({Math.round((score.correct / score.attempted) * 100)}%)
-              </span>
-            )}
-          </CardContent>
-        </Card>
-
-        <div className="flex items-center gap-2">
-          <span className="text-muted-foreground text-sm">Filter:</span>
-          <select
-            value={filterCategory}
-            onChange={(e) => { setFilterCategory(e.target.value); setCurrentQ(0); setSelectedAnswer(null); setShowExplanation(false); }}
-            className="bg-background border border-input rounded-lg px-3 py-2 focus:border-primary focus:outline-none"
-            data-testid="category-filter"
-          >
-            {categories.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-          <Button
-            onClick={resetQuiz}
-            variant="outline"
-            size="icon"
-            title="Reset Quiz"
-            data-testid="reset-quiz-btn"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </Button>
-        </div>
-      </div>
-
-      {/* Question Card */}
-      <Card className="border-2 border-primary/10">
-        <CardHeader className="border-b border-border flex flex-row items-center justify-between">
-          <span className="text-muted-foreground">
-            Question {currentQ + 1} of {filteredQuestions.length}
-          </span>
-          <Badge variant="outline" className="bg-primary/10">
-            {currentQuestion.category}
-          </Badge>
-        </CardHeader>
-
-        <CardContent className="pt-6">
-          <h3 className="text-xl mb-6" data-testid="question-text">
-            {currentQuestion.question}
-          </h3>
-
-          <div className="space-y-3">
-            {currentQuestion.options.map((option, index) => {
-              let buttonClass = "w-full text-left px-4 py-3 rounded-lg border transition-all ";
-              
-              if (showExplanation) {
-                if (index === currentQuestion.correctAnswer) {
-                  buttonClass += "bg-success/20 border-success text-success";
-                } else if (index === selectedAnswer && index !== currentQuestion.correctAnswer) {
-                  buttonClass += "bg-destructive/20 border-destructive text-destructive";
-                } else {
-                  buttonClass += "bg-muted/50 border-border text-muted-foreground";
-                }
-              } else {
-                buttonClass += selectedAnswer === index 
-                  ? "bg-primary/20 border-primary text-primary"
-                  : "bg-muted/50 border-border hover:border-primary/50";
-              }
-
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleAnswer(index)}
-                  className={buttonClass}
-                  data-testid={`option-${index}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="w-6 h-6 rounded-full border flex items-center justify-center text-sm">
-                      {String.fromCharCode(65 + index)}
-                    </span>
-                    <span>{option}</span>
-                    {showExplanation && index === currentQuestion.correctAnswer && (
-                      <Check className="w-5 h-5 ml-auto text-success" />
-                    )}
-                    {showExplanation && index === selectedAnswer && index !== currentQuestion.correctAnswer && (
-                      <X className="w-5 h-5 ml-auto text-destructive" />
-                    )}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {showExplanation && (
-            <div className="mt-6 bg-muted/50 rounded-lg p-4 border border-border" data-testid="explanation">
-              <h4 className="text-sm font-semibold text-muted-foreground mb-2">Explanation:</h4>
-              <p>{currentQuestion.explanation}</p>
-            </div>
-          )}
-        </CardContent>
-
-        {/* Navigation */}
-        <div className="border-t border-border px-6 py-4 flex justify-between">
-          <Button
-            onClick={prevQuestion}
-            variant="outline"
-            className="flex items-center gap-2"
-            data-testid="prev-question-btn"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            Previous
-          </Button>
-          <Button
-            onClick={nextQuestion}
-            className="flex items-center gap-2"
-            data-testid="next-question-btn"
-          >
-            Next
-            <ChevronRight className="w-4 h-4" />
-          </Button>
-        </div>
-      </Card>
-
-      {/* Progress */}
-      <Card className="border-2 border-primary/10">
-        <CardHeader>
-          <CardTitle className="text-lg">Progress</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-2">
-            {filteredQuestions.map((q, i) => (
-              <button
-                key={q.id}
-                onClick={() => { setCurrentQ(i); setSelectedAnswer(null); setShowExplanation(false); }}
-                className={`w-8 h-8 rounded-lg text-sm font-medium transition-all ${
-                  answeredQuestions.has(q.id)
-                    ? 'bg-success/20 text-success border border-success/50'
-                    : i === currentQ
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                }`}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <Button
+        onClick={onStartQuiz}
+        variant="outline"
+        className="flex items-center gap-2 border-green-500/50 hover:bg-green-500/10"
+        data-testid="tab-quiz"
+      >
+        <ClipboardList className="w-4 h-4" />
+        Quiz
+      </Button>
     </div>
   );
 };
 
 // Main Chapter 4 Component
-export const Chapter4ZScores = ({ onBack }) => {
+export const Chapter4ZScores = ({ onBack, onStartQuiz }) => {
   const [activeTab, setActiveTab] = useState('concepts');
   const [activeAnalogy, setActiveAnalogy] = useState(0);
 
