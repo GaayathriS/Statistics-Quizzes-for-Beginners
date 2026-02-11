@@ -329,7 +329,7 @@ export const Chapter4ZScores = ({ onBack, onStartQuiz }) => {
           </p>
         </div>
 
-        <Chapter4Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Chapter4Tabs activeTab={activeTab} setActiveTab={setActiveTab} onStartQuiz={onStartQuiz} />
 
         {/* Concepts Tab */}
         {activeTab === 'concepts' && (
