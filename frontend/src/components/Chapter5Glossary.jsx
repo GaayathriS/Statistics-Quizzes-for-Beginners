@@ -14,6 +14,8 @@ const glossaryChapters = [
   { id: 5, title: "Z-Scores", color: "from-cyan-600 to-cyan-400" },
   { id: 6, title: "Probability", color: "from-pink-600 to-pink-400" },
   { id: 7, title: "Distribution of Sample Means", color: "from-indigo-600 to-indigo-400" },
+  { id: 8, title: "Introduction to Hypothesis Testing", color: "from-rose-600 to-rose-400" },
+  { id: 9, title: "Introduction to the t Statistic", color: "from-violet-600 to-violet-400" },
 ];
 
 export const Chapter5Glossary = ({ onBack }) => {
