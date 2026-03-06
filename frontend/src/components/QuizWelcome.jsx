@@ -51,15 +51,15 @@ export const QuizWelcome = ({ onSelectChapter }) => {
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       {/* Chapter Number */}
-                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${chapter.color} text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform`}>
-                        {chapter.id}
+                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${chapter.color} text-white font-bold ${chapter.isGlossaryChapter ? 'text-xs' : 'text-xl'} shadow-md group-hover:scale-105 transition-transform`}>
+                        {chapter.isGlossaryChapter ? '📚' : chapter.id}
                       </div>
 
                       {/* Chapter Info */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
                           <h3 className="text-lg font-semibold text-foreground">
-                            Chapter {chapter.id}: {chapter.title}
+                            {chapter.isGlossaryChapter ? chapter.title : `Chapter ${chapter.id}: ${chapter.title}`}
                             {chapter.subtitle && <span className="text-muted-foreground font-normal"> ({chapter.subtitle})</span>}
                           </h3>
                           {chapter.isStudyChapter && (
