@@ -154,33 +154,8 @@ export const chapterGlossaries = {
     { term: "Central limit theorem", definition: "For any population with mean μ and standard deviation σ, the distribution of sample means approaches a normal distribution as sample size increases, with mean μ and standard error σ/√n." },
     { term: "z-score for sample means", definition: "A z-score can be used to locate a sample mean within the distribution of sample means: z = (M − μ) / σₘ" }
   ],
-  8: [
-    { term: "Hypothesis testing", definition: "A statistical procedure used to evaluate a hypothesis about a population by using sample data." },
-    { term: "Null hypothesis (H₀)", definition: "States that the treatment has no effect; there is no change, difference, or relationship in the population." },
-    { term: "Alternative hypothesis (H₁)", definition: "States that the treatment does have an effect; there is a change, difference, or relationship in the population." },
-    { term: "Alpha level (α)", definition: "The probability value used to define 'very unlikely' outcomes in a hypothesis test. It sets the risk of committing a Type I error. Common values are .05, .01, and .001." },
-    { term: "Critical region", definition: "The extreme sample values that are very unlikely to occur if the null hypothesis is true. Defines the boundaries for rejecting H₀." },
-    { term: "Test statistic", definition: "A statistic computed from sample data used to test hypotheses. For z-tests, the z-score serves as the test statistic." },
-    { term: "Type I error", definition: "Occurs when a researcher rejects a null hypothesis that is actually true (false positive). Probability equals alpha (α)." },
-    { term: "Type II error", definition: "Occurs when a researcher fails to reject a null hypothesis that is actually false (false negative). Probability represented by beta (β)." },
-    { term: "Directional (one-tailed) test", definition: "A hypothesis test that specifies a direction (increase or decrease) for the expected treatment effect." },
-    { term: "Nondirectional (two-tailed) test", definition: "A hypothesis test that does not specify a direction; looks for any difference from the null hypothesis." },
-    { term: "Effect size", definition: "A measure of the absolute magnitude of a treatment effect, independent of sample size." },
-    { term: "Cohen's d", definition: "Measures the size of a treatment effect by standardizing the mean difference: d = (M - μ) / σ" },
-    { term: "Statistical power", definition: "The probability that the test will correctly reject a false null hypothesis. Power = 1 - β." }
-  ],
-  9: [
-    { term: "t statistic", definition: "A test statistic used for hypothesis tests when the population standard deviation (σ) is unknown. Uses estimated standard error from the sample." },
-    { term: "Estimated standard error (sₘ)", definition: "Used to estimate the standard error when σ is unknown. Computed from sample variance: sₘ = s / √n" },
-    { term: "Degrees of freedom (df)", definition: "For a single-sample t-test, df = n - 1. Describes the number of scores free to vary when calculating a statistic." },
-    { term: "t distribution", definition: "A family of distributions that approximates the normal distribution. Shape changes with degrees of freedom; approaches normal as df increases." },
-    { term: "Single-sample t-test", definition: "Uses t = (M - μ) / sₘ to test hypotheses about a population mean when σ is unknown." },
-    { term: "Independent-measures t-test", definition: "Compares two separate groups using t = (M₁ - M₂) / s(M₁-M₂) with pooled variance." },
-    { term: "Repeated-measures t-test", definition: "Compares two conditions using the same participants; analyzes difference scores: t = Mᴅ / sₘᴅ" },
-    { term: "Pooled variance (s²ₚ)", definition: "A weighted average of sample variances from two groups: s²ₚ = (SS₁ + SS₂) / (df₁ + df₂)" },
-    { term: "Confidence interval", definition: "An interval of values centered around a sample statistic that provides a likely range for the unknown population parameter." },
-    { term: "r² (coefficient of determination)", definition: "Measures the percentage of variance accounted for by the treatment: r² = t² / (t² + df)" }
-  ]
+  8: [], // To be added later
+  9: []  // To be added later
 };
 
 // Get glossary by chapter ID
