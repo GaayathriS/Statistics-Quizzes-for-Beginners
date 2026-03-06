@@ -9,7 +9,7 @@ export const QuizWelcome = ({ onSelectChapter }) => {
   const getChapterIcon = (chapterId) => {
     switch(chapterId) {
       case 4: return TrendingUp;
-      case 5: return BookMarked;
+      case 100: return BookMarked;
       default: return BookOpen;
     }
   };
