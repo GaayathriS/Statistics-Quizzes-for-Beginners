@@ -36,9 +36,25 @@ export const chapters = [
     color: "from-cyan-600 to-cyan-400"
   },
   {
-    id: 5,
+    id: 8,
+    title: "Introduction to Hypothesis Testing",
+    description: "Learn the logic of hypothesis testing, null and alternative hypotheses, Type I and Type II errors, alpha levels, critical regions, effect size (Cohen's d), and statistical power.",
+    topics: ["Hypothesis Testing Logic", "Null & Alternative Hypotheses", "Type I & II Errors", "Effect Size", "Statistical Power"],
+    questionCount: 15,
+    color: "from-rose-600 to-rose-400"
+  },
+  {
+    id: 9,
+    title: "Introduction to the t Statistic",
+    description: "Master the t statistic for hypothesis testing when population standard deviation is unknown. Covers t distribution, degrees of freedom, confidence intervals, and effect size measures.",
+    topics: ["t Statistic", "Estimated Standard Error", "Degrees of Freedom", "t Distribution", "Confidence Intervals"],
+    questionCount: 15,
+    color: "from-violet-600 to-violet-400"
+  },
+  {
+    id: 100,
     title: "Glossary",
-    subtitle: "Chapters 1-7",
+    subtitle: "Chapters 1-9",
     description: "Review key terms and definitions from all chapters. Select a chapter to view its glossary of important statistical concepts.",
     topics: ["Key Terms", "Definitions", "Quick Reference"],
     questionCount: 0,
