@@ -1219,6 +1219,464 @@ export const chapter5Questions = [
   }
 ];
 
+// Chapter 8 Questions - Introduction to Hypothesis Testing
+export const chapter8Questions = [
+  {
+    id: 1,
+    question: "What is the purpose of hypothesis testing?",
+    options: [
+      "To prove that a hypothesis is absolutely true",
+      "To use sample data to evaluate a hypothesis about a population",
+      "To calculate the mean of a sample",
+      "To create frequency distributions"
+    ],
+    correctAnswer: 1,
+    explanation: "Hypothesis testing is a statistical procedure used to evaluate a hypothesis about a population by using sample data. It doesn't prove anything absolutely, but helps make decisions based on probability.",
+    difficulty: "easy",
+    topic: "Hypothesis Testing Basics",
+    points: 10
+  },
+  {
+    id: 2,
+    question: "The null hypothesis (H₀) typically states that:",
+    options: [
+      "The treatment has a significant effect",
+      "The treatment has no effect or there is no difference",
+      "The sample mean equals the sample standard deviation",
+      "The researcher's prediction is correct"
+    ],
+    correctAnswer: 1,
+    explanation: "The null hypothesis states that the treatment has no effect, meaning there is no change, difference, or relationship in the population. It represents the status quo.",
+    difficulty: "easy",
+    topic: "Null & Alternative Hypotheses",
+    points: 10
+  },
+  {
+    id: 3,
+    question: "The alpha level (α) in hypothesis testing represents:",
+    options: [
+      "The probability of making a Type II error",
+      "The probability of making a Type I error",
+      "The effect size of the treatment",
+      "The power of the statistical test"
+    ],
+    correctAnswer: 1,
+    explanation: "The alpha level (α) defines the probability of rejecting a true null hypothesis (Type I error). Common alpha levels are .05, .01, and .001.",
+    difficulty: "medium",
+    topic: "Alpha Level",
+    points: 15
+  },
+  {
+    id: 4,
+    question: "A Type I error occurs when:",
+    options: [
+      "You fail to reject a false null hypothesis",
+      "You reject a true null hypothesis",
+      "You accept a true alternative hypothesis",
+      "You calculate the wrong test statistic"
+    ],
+    correctAnswer: 1,
+    explanation: "A Type I error (false positive) occurs when a researcher rejects a null hypothesis that is actually true—concluding there is an effect when there isn't one.",
+    difficulty: "medium",
+    topic: "Type I & II Errors",
+    points: 15
+  },
+  {
+    id: 5,
+    question: "A Type II error occurs when:",
+    options: [
+      "You reject a true null hypothesis",
+      "You fail to reject a false null hypothesis",
+      "You use the wrong alpha level",
+      "You have too large a sample size"
+    ],
+    correctAnswer: 1,
+    explanation: "A Type II error (false negative) occurs when a researcher fails to reject a null hypothesis that is actually false—missing a real treatment effect.",
+    difficulty: "medium",
+    topic: "Type I & II Errors",
+    points: 15
+  },
+  {
+    id: 6,
+    question: "The critical region of a hypothesis test contains:",
+    options: [
+      "All possible sample means",
+      "Only sample means equal to the population mean",
+      "Extreme sample values unlikely to occur if H₀ is true",
+      "The most common sample outcomes"
+    ],
+    correctAnswer: 2,
+    explanation: "The critical region consists of extreme sample values that are very unlikely to occur if the null hypothesis is true. If the test statistic falls in this region, we reject H₀.",
+    difficulty: "medium",
+    topic: "Critical Region",
+    points: 15
+  },
+  {
+    id: 7,
+    question: "If α = .05 in a two-tailed test, the critical region is located:",
+    options: [
+      "Entirely in the right tail",
+      "Entirely in the left tail",
+      "Split between both tails (2.5% in each)",
+      "In the center of the distribution"
+    ],
+    correctAnswer: 2,
+    explanation: "In a two-tailed test with α = .05, the critical region is split between both tails—2.5% in the upper tail and 2.5% in the lower tail.",
+    difficulty: "medium",
+    topic: "Critical Region",
+    points: 15
+  },
+  {
+    id: 8,
+    question: "A one-tailed (directional) hypothesis test is used when:",
+    options: [
+      "You don't know which direction the effect will go",
+      "You predict a specific direction for the treatment effect",
+      "You want to reduce Type I errors",
+      "The sample size is very small"
+    ],
+    correctAnswer: 1,
+    explanation: "A one-tailed test is used when the researcher predicts a specific direction (increase or decrease) for the treatment effect, placing all of α in one tail.",
+    difficulty: "easy",
+    topic: "Directional Tests",
+    points: 10
+  },
+  {
+    id: 9,
+    question: "Cohen's d is a measure of:",
+    options: [
+      "Statistical significance",
+      "Effect size",
+      "Type II error probability",
+      "Sample size adequacy"
+    ],
+    correctAnswer: 1,
+    explanation: "Cohen's d measures effect size—the magnitude of the treatment effect expressed in standard deviation units. It is independent of sample size.",
+    difficulty: "easy",
+    topic: "Effect Size",
+    points: 10
+  },
+  {
+    id: 10,
+    question: "A Cohen's d value of 0.8 is generally considered:",
+    options: [
+      "A small effect",
+      "A medium effect",
+      "A large effect",
+      "No effect"
+    ],
+    correctAnswer: 2,
+    explanation: "Cohen's guidelines: d = 0.2 is small, d = 0.5 is medium, and d = 0.8 is large. So 0.8 represents a large effect size.",
+    difficulty: "medium",
+    topic: "Effect Size",
+    points: 15
+  },
+  {
+    id: 11,
+    question: "Statistical power is defined as:",
+    options: [
+      "The probability of making a Type I error",
+      "The probability of correctly rejecting a false null hypothesis",
+      "The probability of failing to reject a true null hypothesis",
+      "The size of the treatment effect"
+    ],
+    correctAnswer: 1,
+    explanation: "Statistical power is the probability that a test will correctly reject a false null hypothesis (detecting a real effect). Power = 1 - β.",
+    difficulty: "medium",
+    topic: "Statistical Power",
+    points: 15
+  },
+  {
+    id: 12,
+    question: "Which of the following increases statistical power?",
+    options: [
+      "Decreasing sample size",
+      "Increasing sample size",
+      "Increasing variability in the data",
+      "Using a smaller alpha level"
+    ],
+    correctAnswer: 1,
+    explanation: "Increasing sample size increases power because it reduces standard error, making it easier to detect a real effect.",
+    difficulty: "medium",
+    topic: "Statistical Power",
+    points: 15
+  },
+  {
+    id: 13,
+    question: "If a researcher obtains a z-score of 2.50 with α = .05 (two-tailed), the decision should be to:",
+    options: [
+      "Fail to reject H₀",
+      "Reject H₀",
+      "Accept H₀",
+      "Increase the sample size"
+    ],
+    correctAnswer: 1,
+    explanation: "With α = .05 (two-tailed), the critical z-values are ±1.96. Since 2.50 > 1.96, it falls in the critical region, so we reject H₀.",
+    difficulty: "hard",
+    topic: "Making Decisions",
+    points: 20
+  },
+  {
+    id: 14,
+    question: "The relationship between α and Type I error is:",
+    options: [
+      "α equals the probability of Type I error",
+      "α equals the probability of Type II error",
+      "α is unrelated to errors",
+      "α reduces both types of errors equally"
+    ],
+    correctAnswer: 0,
+    explanation: "The alpha level directly sets the probability of making a Type I error. If α = .05, there is a 5% chance of rejecting a true null hypothesis.",
+    difficulty: "easy",
+    topic: "Alpha Level",
+    points: 10
+  },
+  {
+    id: 15,
+    question: "Which assumption is NOT required for hypothesis testing with z-scores?",
+    options: [
+      "Random sampling from the population",
+      "Independent observations",
+      "The population standard deviation (σ) must be known",
+      "The sample size must be exactly 30"
+    ],
+    correctAnswer: 3,
+    explanation: "Hypothesis testing with z-scores requires random sampling, independent observations, and known σ, but there is no requirement that n must equal exactly 30.",
+    difficulty: "hard",
+    topic: "Assumptions",
+    points: 20
+  }
+];
+
+// Chapter 9 Questions - Introduction to the t Statistic
+export const chapter9Questions = [
+  {
+    id: 1,
+    question: "When is the t statistic used instead of a z-score?",
+    options: [
+      "When the sample size is greater than 100",
+      "When the population standard deviation (σ) is unknown",
+      "When the data are nominal scale",
+      "When you want a one-tailed test"
+    ],
+    correctAnswer: 1,
+    explanation: "The t statistic is used when the population standard deviation (σ) is unknown and must be estimated from the sample data.",
+    difficulty: "easy",
+    topic: "t Statistic Basics",
+    points: 10
+  },
+  {
+    id: 2,
+    question: "The estimated standard error (sₘ) is calculated as:",
+    options: [
+      "σ / √n",
+      "s / √n",
+      "s × √n",
+      "σ × √n"
+    ],
+    correctAnswer: 1,
+    explanation: "The estimated standard error uses the sample standard deviation: sₘ = s / √n (or equivalently √(s²/n)).",
+    difficulty: "easy",
+    topic: "Estimated Standard Error",
+    points: 10
+  },
+  {
+    id: 3,
+    question: "For a single-sample t-test with n = 25, the degrees of freedom (df) equals:",
+    options: [
+      "25",
+      "24",
+      "26",
+      "12.5"
+    ],
+    correctAnswer: 1,
+    explanation: "For a single-sample t-test, df = n - 1. With n = 25, df = 25 - 1 = 24.",
+    difficulty: "easy",
+    topic: "Degrees of Freedom",
+    points: 10
+  },
+  {
+    id: 4,
+    question: "As degrees of freedom increase, the t distribution:",
+    options: [
+      "Becomes more spread out",
+      "Approaches the shape of a normal distribution",
+      "Becomes more skewed",
+      "Has larger critical values"
+    ],
+    correctAnswer: 1,
+    explanation: "As df increases, the t distribution becomes more similar to the standard normal distribution. With very large df, they are nearly identical.",
+    difficulty: "medium",
+    topic: "t Distribution",
+    points: 15
+  },
+  {
+    id: 5,
+    question: "Compared to the normal distribution, the t distribution has:",
+    options: [
+      "Less variability and thinner tails",
+      "More variability and thicker (heavier) tails",
+      "The same shape regardless of sample size",
+      "No relationship to degrees of freedom"
+    ],
+    correctAnswer: 1,
+    explanation: "The t distribution has more variability and heavier tails than the normal distribution, especially with small sample sizes. This accounts for the additional uncertainty from estimating σ.",
+    difficulty: "medium",
+    topic: "t Distribution",
+    points: 15
+  },
+  {
+    id: 6,
+    question: "The formula for a single-sample t statistic is:",
+    options: [
+      "t = (M - μ) / σ",
+      "t = (M - μ) / sₘ",
+      "t = (X - M) / s",
+      "t = (σ - μ) / n"
+    ],
+    correctAnswer: 1,
+    explanation: "The single-sample t statistic is t = (M - μ) / sₘ, where sₘ is the estimated standard error (s/√n).",
+    difficulty: "medium",
+    topic: "t Statistic Formula",
+    points: 15
+  },
+  {
+    id: 7,
+    question: "A repeated-measures t-test (paired-samples) is used when:",
+    options: [
+      "Comparing two completely separate groups",
+      "The same participants are measured in two different conditions",
+      "The population standard deviation is known",
+      "You have more than two groups to compare"
+    ],
+    correctAnswer: 1,
+    explanation: "A repeated-measures (or paired-samples) t-test is used when the same participants are measured twice, such as before and after a treatment.",
+    difficulty: "medium",
+    topic: "Types of t-tests",
+    points: 15
+  },
+  {
+    id: 8,
+    question: "In an independent-measures t-test, pooled variance is used to:",
+    options: [
+      "Increase the sample size",
+      "Estimate a common population variance from two samples",
+      "Calculate degrees of freedom",
+      "Determine the direction of the effect"
+    ],
+    correctAnswer: 1,
+    explanation: "Pooled variance (s²ₚ) combines the variance estimates from two samples to get a single, better estimate of the common population variance.",
+    difficulty: "medium",
+    topic: "Pooled Variance",
+    points: 15
+  },
+  {
+    id: 9,
+    question: "The formula for pooled variance is:",
+    options: [
+      "s²ₚ = (SS₁ + SS₂) / (df₁ + df₂)",
+      "s²ₚ = (SS₁ - SS₂) / (n₁ + n₂)",
+      "s²ₚ = SS₁ × SS₂",
+      "s²ₚ = (n₁ + n₂) / (SS₁ + SS₂)"
+    ],
+    correctAnswer: 0,
+    explanation: "Pooled variance is calculated as s²ₚ = (SS₁ + SS₂) / (df₁ + df₂), which is a weighted average of the two sample variances.",
+    difficulty: "hard",
+    topic: "Pooled Variance",
+    points: 20
+  },
+  {
+    id: 10,
+    question: "A 95% confidence interval for μ means:",
+    options: [
+      "95% of sample means fall in this interval",
+      "We are 95% confident the interval contains the true population mean",
+      "The population mean equals 95",
+      "There is a 95% chance our sample mean is correct"
+    ],
+    correctAnswer: 1,
+    explanation: "A 95% confidence interval means we are 95% confident that the interval we constructed contains the true population mean μ.",
+    difficulty: "medium",
+    topic: "Confidence Intervals",
+    points: 15
+  },
+  {
+    id: 11,
+    question: "What happens to the width of a confidence interval as sample size increases?",
+    options: [
+      "It gets wider",
+      "It gets narrower",
+      "It stays the same",
+      "It becomes negative"
+    ],
+    correctAnswer: 1,
+    explanation: "Larger samples produce smaller standard errors, which results in narrower (more precise) confidence intervals.",
+    difficulty: "medium",
+    topic: "Confidence Intervals",
+    points: 15
+  },
+  {
+    id: 12,
+    question: "The r² statistic (coefficient of determination) measures:",
+    options: [
+      "The probability of Type I error",
+      "The percentage of variance accounted for by the treatment",
+      "The degrees of freedom",
+      "The sample size needed for significance"
+    ],
+    correctAnswer: 1,
+    explanation: "r² measures effect size as the proportion (percentage) of total variance in the dependent variable that is explained by the treatment. Formula: r² = t²/(t² + df).",
+    difficulty: "medium",
+    topic: "Effect Size",
+    points: 15
+  },
+  {
+    id: 13,
+    question: "If t = 3.00 and df = 15, what is r²?",
+    options: [
+      "r² = 0.20",
+      "r² = 0.38",
+      "r² = 0.60",
+      "r² = 0.75"
+    ],
+    correctAnswer: 1,
+    explanation: "r² = t²/(t² + df) = 9/(9 + 15) = 9/24 = 0.375, which rounds to 0.38 or 38%.",
+    difficulty: "hard",
+    topic: "Effect Size",
+    points: 20
+  },
+  {
+    id: 14,
+    question: "For an independent-measures t-test with n₁ = 10 and n₂ = 12, the degrees of freedom equals:",
+    options: [
+      "22",
+      "20",
+      "21",
+      "10"
+    ],
+    correctAnswer: 1,
+    explanation: "For an independent-measures t-test, df = (n₁ - 1) + (n₂ - 1) = n₁ + n₂ - 2 = 10 + 12 - 2 = 20.",
+    difficulty: "medium",
+    topic: "Degrees of Freedom",
+    points: 15
+  },
+  {
+    id: 15,
+    question: "Which of the following is an assumption of the t-test?",
+    options: [
+      "The population must be exactly normal",
+      "The observations within each sample must be independent",
+      "The two samples must have identical variances",
+      "The sample size must be at least 100"
+    ],
+    correctAnswer: 1,
+    explanation: "A key assumption is that observations must be independent. While normality and homogeneity of variance are also assumptions, the t-test is robust to violations with adequate sample sizes.",
+    difficulty: "medium",
+    topic: "Assumptions",
+    points: 15
+  }
+];
+
 // Get questions by chapter
 export const getChapterQuestions = (chapterId) => {
   switch(chapterId) {
@@ -1226,6 +1684,8 @@ export const getChapterQuestions = (chapterId) => {
     case 2: return chapter2Questions;
     case 3: return chapter3Questions;
     case 5: return chapter5Questions;
+    case 8: return chapter8Questions;
+    case 9: return chapter9Questions;
     default: return [];
   }
 };
