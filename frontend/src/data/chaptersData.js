@@ -1662,6 +1662,235 @@ export const chapter9Questions = [
   }
 ];
 
+// Chapter 10 Questions - The t Test for Two Independent Samples
+export const chapter10Questions = [
+  {
+    id: 1,
+    question: "An independent-measures design is also known as:",
+    options: [
+      "A within-subjects design",
+      "A between-subjects design",
+      "A repeated-measures design",
+      "A matched-pairs design"
+    ],
+    correctAnswer: 1,
+    explanation: "An independent-measures design uses two separate groups of participants and is also called a between-subjects design because comparisons are made between different groups of subjects.",
+    difficulty: "easy",
+    topic: "Independent-Measures Design",
+    points: 10
+  },
+  {
+    id: 2,
+    question: "What is the primary purpose of an independent-measures t-test?",
+    options: [
+      "To compare a sample mean to a known population mean",
+      "To evaluate the mean difference between two separate groups",
+      "To measure the correlation between two variables",
+      "To test three or more group means simultaneously"
+    ],
+    correctAnswer: 1,
+    explanation: "The independent-measures t-test is used to evaluate whether there is a significant mean difference between two separate groups or populations.",
+    difficulty: "easy",
+    topic: "Independent-Measures Design",
+    points: 10
+  },
+  {
+    id: 3,
+    question: "The null hypothesis for an independent-measures t-test states that:",
+    options: [
+      "μ₁ > μ₂",
+      "μ₁ < μ₂",
+      "μ₁ - μ₂ = 0 (or μ₁ = μ₂)",
+      "μ₁ - μ₂ ≠ 0"
+    ],
+    correctAnswer: 2,
+    explanation: "The null hypothesis states there is no difference between the two population means: μ₁ - μ₂ = 0, which is equivalent to saying μ₁ = μ₂.",
+    difficulty: "easy",
+    topic: "Hypotheses",
+    points: 10
+  },
+  {
+    id: 4,
+    question: "What does Levene's test evaluate?",
+    options: [
+      "Whether sample means are equal",
+      "Whether population variances are equal (homogeneity of variance)",
+      "Whether the data are normally distributed",
+      "Whether the samples are independent"
+    ],
+    correctAnswer: 1,
+    explanation: "Levene's test evaluates the homogeneity of variance assumption—whether the population variances of the two groups are approximately equal.",
+    difficulty: "medium",
+    topic: "Levene's Test",
+    points: 15
+  },
+  {
+    id: 5,
+    question: "If Levene's test has a p-value of 0.03 (α = .05), you should:",
+    options: [
+      "Proceed with the standard independent t-test",
+      "Use Welch's adjusted t-test (equal variances not assumed)",
+      "Conclude the groups have equal means",
+      "Increase your sample size"
+    ],
+    correctAnswer: 1,
+    explanation: "When Levene's test is significant (p < .05), the homogeneity of variance assumption is violated. Use Welch's adjusted t-test which does not assume equal variances.",
+    difficulty: "medium",
+    topic: "Levene's Test",
+    points: 15
+  },
+  {
+    id: 6,
+    question: "If Levene's test has a p-value of 0.42 (α = .05), this means:",
+    options: [
+      "The variances are significantly different",
+      "You should use Welch's t-test",
+      "The homogeneity of variance assumption is met",
+      "The null hypothesis of the main t-test should be rejected"
+    ],
+    correctAnswer: 2,
+    explanation: "When Levene's test is not significant (p > .05), we retain the assumption that variances are equal. Proceed with the standard independent-measures t-test.",
+    difficulty: "medium",
+    topic: "Levene's Test",
+    points: 15
+  },
+  {
+    id: 7,
+    question: "Pooled variance (s²p) is calculated as:",
+    options: [
+      "(SS₁ × SS₂) / (df₁ × df₂)",
+      "(SS₁ + SS₂) / (df₁ + df₂)",
+      "(SS₁ - SS₂) / (n₁ + n₂)",
+      "(n₁ + n₂) / (SS₁ + SS₂)"
+    ],
+    correctAnswer: 1,
+    explanation: "Pooled variance combines the sum of squares from both samples divided by the combined degrees of freedom: s²p = (SS₁ + SS₂) / (df₁ + df₂).",
+    difficulty: "medium",
+    topic: "Pooled Variance",
+    points: 15
+  },
+  {
+    id: 8,
+    question: "Why is pooled variance used in the independent-measures t-test?",
+    options: [
+      "To increase the sample size",
+      "To provide a better estimate of the common population variance",
+      "To eliminate the need for degrees of freedom",
+      "To test for normality"
+    ],
+    correctAnswer: 1,
+    explanation: "Pooled variance combines information from both samples to get a single, more accurate estimate of the population variance, assuming both populations have equal variance.",
+    difficulty: "medium",
+    topic: "Pooled Variance",
+    points: 15
+  },
+  {
+    id: 9,
+    question: "For an independent-measures t-test with n₁ = 15 and n₂ = 20, the degrees of freedom equals:",
+    options: [
+      "35",
+      "33",
+      "34",
+      "17"
+    ],
+    correctAnswer: 1,
+    explanation: "df = (n₁ - 1) + (n₂ - 1) = n₁ + n₂ - 2 = 15 + 20 - 2 = 33.",
+    difficulty: "easy",
+    topic: "Degrees of Freedom",
+    points: 10
+  },
+  {
+    id: 10,
+    question: "The formula for the estimated standard error of the mean difference is:",
+    options: [
+      "s(M₁-M₂) = s²p / (n₁ + n₂)",
+      "s(M₁-M₂) = √(s²p/n₁ + s²p/n₂)",
+      "s(M₁-M₂) = (s₁ + s₂) / 2",
+      "s(M₁-M₂) = √(n₁ + n₂)"
+    ],
+    correctAnswer: 1,
+    explanation: "The estimated standard error of the mean difference uses pooled variance: s(M₁-M₂) = √(s²p/n₁ + s²p/n₂).",
+    difficulty: "hard",
+    topic: "Standard Error",
+    points: 20
+  },
+  {
+    id: 11,
+    question: "The independent-measures t statistic formula is:",
+    options: [
+      "t = (M₁ - M₂) / s(M₁-M₂)",
+      "t = (M₁ + M₂) / s(M₁-M₂)",
+      "t = (M₁ - M₂) × s(M₁-M₂)",
+      "t = s(M₁-M₂) / (M₁ - M₂)"
+    ],
+    correctAnswer: 0,
+    explanation: "The t statistic measures how many standard errors the sample mean difference is from zero: t = (M₁ - M₂) / s(M₁-M₂).",
+    difficulty: "medium",
+    topic: "t Statistic Formula",
+    points: 15
+  },
+  {
+    id: 12,
+    question: "Which assumption is NOT required for the independent-measures t-test?",
+    options: [
+      "The observations within each sample are independent",
+      "The two populations must have exactly equal variances",
+      "The populations from which the samples are drawn should be normal",
+      "The two samples are independent of each other"
+    ],
+    correctAnswer: 1,
+    explanation: "The t-test assumes approximately equal variances, not exactly equal. The test is robust to moderate violations, especially with equal sample sizes. Levene's test checks this assumption.",
+    difficulty: "hard",
+    topic: "Assumptions",
+    points: 20
+  },
+  {
+    id: 13,
+    question: "When sample sizes are unequal and variances are unequal, you should:",
+    options: [
+      "Always use the standard independent t-test",
+      "Use Welch's t-test (equal variances not assumed)",
+      "Combine the two samples into one",
+      "Double the larger sample size"
+    ],
+    correctAnswer: 1,
+    explanation: "Welch's t-test adjusts for unequal variances and is recommended when Levene's test indicates heterogeneity of variance, especially with unequal sample sizes.",
+    difficulty: "medium",
+    topic: "Levene's Test",
+    points: 15
+  },
+  {
+    id: 14,
+    question: "A 95% confidence interval for (μ₁ - μ₂) that does NOT include zero suggests:",
+    options: [
+      "The means are not significantly different",
+      "The means are significantly different",
+      "The variances are unequal",
+      "The test has low power"
+    ],
+    correctAnswer: 1,
+    explanation: "If the 95% CI for the mean difference does not include zero, this indicates the difference is statistically significant at α = .05.",
+    difficulty: "medium",
+    topic: "Confidence Intervals",
+    points: 15
+  },
+  {
+    id: 15,
+    question: "An advantage of the independent-measures design is:",
+    options: [
+      "It requires fewer participants than repeated-measures",
+      "Each participant serves as their own control",
+      "No risk of order effects or carryover effects",
+      "It always has more statistical power"
+    ],
+    correctAnswer: 2,
+    explanation: "Because different participants are in each group, there are no order effects, practice effects, or carryover effects that can occur in repeated-measures designs.",
+    difficulty: "medium",
+    topic: "Independent-Measures Design",
+    points: 15
+  }
+];
+
 // Get questions by chapter
 export const getChapterQuestions = (chapterId) => {
   switch(chapterId) {
@@ -1671,6 +1900,7 @@ export const getChapterQuestions = (chapterId) => {
     case 5: return chapter5Questions;
     case 8: return chapter8Questions;
     case 9: return chapter9Questions;
+    case 10: return chapter10Questions;
     default: return [];
   }
 };
