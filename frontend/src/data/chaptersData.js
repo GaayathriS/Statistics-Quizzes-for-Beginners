@@ -52,6 +52,16 @@ export const chapters = [
     color: "from-violet-600 to-violet-400"
   },
   {
+    id: 10,
+    title: "The t Test for Two Independent Samples",
+    description: "Master the independent-measures t-test for comparing two separate groups. Includes Levene's test explanation, pooled variance calculator, and practice quiz.",
+    topics: ["Independent-Measures Design", "Levene's Test", "Pooled Variance", "Quiz"],
+    questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
+    color: "from-pink-600 to-pink-400"
+  },
+  {
     id: 100,
     title: "Glossary",
     subtitle: "Chapters 1-9",
