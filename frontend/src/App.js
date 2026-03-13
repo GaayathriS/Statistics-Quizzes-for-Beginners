@@ -4,12 +4,13 @@ import { QuizWelcome } from './components/QuizWelcome';
 import { QuizQuestion } from './components/QuizQuestion';
 import { QuizResults } from './components/QuizResults';
 import { Chapter4ZScores } from './components/Chapter4ZScores';
+import { Chapter10IndependentT } from './components/Chapter10IndependentT';
 import { Chapter5Glossary } from './components/Chapter5Glossary';
-import { getChapterQuestions, chapter5Questions, chapters } from './data/chaptersData';
+import { getChapterQuestions, chapter5Questions, chapter10Questions, chapters } from './data/chaptersData';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
-  const [appState, setAppState] = useState('welcome'); // welcome, chapter4, chapter5, quiz, results
+  const [appState, setAppState] = useState('welcome'); // welcome, chapter4, chapter10, chapter5, quiz, results
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -35,8 +36,14 @@ function App() {
     setSelectedChapter(chapter);
     
     // Chapter 4 is a study chapter
-    if (chapter.isStudyChapter) {
+    if (chapter.isStudyChapter && chapter.id === 4) {
       setAppState('chapter4');
+      return;
+    }
+
+    // Chapter 10 is a study + quiz chapter
+    if (chapter.isStudyChapter && chapter.id === 10) {
+      setAppState('chapter10');
       return;
     }
     
@@ -61,8 +68,18 @@ function App() {
 
   // Start Chapter 4 quiz (from within the Chapter 4 study component)
   const handleStartChapter4Quiz = () => {
-    // Use chapter5Questions which contains the z-score/exam questions
     setQuizQuestions(chapter5Questions);
+    setAppState('quiz');
+    setStartTime(Date.now());
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setEarnedPoints(0);
+    setAnswers([]);
+  };
+
+  // Start Chapter 10 quiz (from within the Chapter 10 study component)
+  const handleStartChapter10Quiz = () => {
+    setQuizQuestions(chapter10Questions);
     setAppState('quiz');
     setStartTime(Date.now());
     setCurrentQuestionIndex(0);
@@ -122,6 +139,10 @@ function App() {
       
       {appState === 'chapter4' && (
         <Chapter4ZScores onBack={handleBackToChapters} onStartQuiz={handleStartChapter4Quiz} />
+      )}
+
+      {appState === 'chapter10' && (
+        <Chapter10IndependentT onBack={handleBackToChapters} onStartQuiz={handleStartChapter10Quiz} />
       )}
 
       {appState === 'chapter5' && (
