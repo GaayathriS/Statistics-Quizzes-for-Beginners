@@ -41,6 +41,8 @@ export const chapters = [
     description: "Learn the logic of hypothesis testing, null and alternative hypotheses, Type I and Type II errors, alpha levels, critical regions, effect size (Cohen's d), and statistical power.",
     topics: ["Hypothesis Testing Logic", "Null & Alternative Hypotheses", "Type I & II Errors", "Effect Size", "Statistical Power"],
     questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
     color: "from-rose-600 to-rose-400"
   },
   {
@@ -49,6 +51,8 @@ export const chapters = [
     description: "Master the t statistic for hypothesis testing when population standard deviation is unknown. Covers t distribution, degrees of freedom, confidence intervals, and effect size measures.",
     topics: ["t Statistic", "Estimated Standard Error", "Degrees of Freedom", "t Distribution", "Confidence Intervals"],
     questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
     color: "from-violet-600 to-violet-400"
   },
   {
@@ -62,7 +66,17 @@ export const chapters = [
     color: "from-pink-600 to-pink-400"
   },
   {
-    id: 100,
+    id: 11,
+    title: "The t Test for Two Related Samples",
+    description: "Repeated-measures design, difference scores, and within-subjects t-test. Includes calculator and practice quiz.",
+    topics: ["Repeated-Measures Design", "Difference Scores", "Within-Subjects t", "Calculator", "Quiz"],
+    questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
+    color: "from-teal-600 to-cyan-500"
+  },
+  {
+    id: "glossary",
     title: "Glossary",
     subtitle: "Chapters 1-11",
     description: "Review key terms and definitions from all chapters. Select a chapter to view its glossary of important statistical concepts.",
@@ -1927,6 +1941,236 @@ export const chapter10Questions = [
   }
 ];
 
+
+// Chapter 11 Questions - The t Test for Two Related Samples
+export const chapter11Questions = [
+  {
+    id: 1,
+    question: "A repeated-measures design is also known as:",
+    options: [
+      "A between-subjects design",
+      "An independent-measures design",
+      "A within-subjects design",
+      "A random-groups design"
+    ],
+    correctAnswer: 2,
+    explanation: "A repeated-measures design is also called a within-subjects design because the same participants are measured in all treatment conditions.",
+    difficulty: "easy",
+    topic: "Repeated-Measures Design",
+    points: 10
+  },
+  {
+    id: 2,
+    question: "In a repeated-measures study, difference scores (D) are computed as:",
+    options: [
+      "D = X\u2081 \u00d7 X\u2082",
+      "D = X\u2082 \u2212 X\u2081",
+      "D = (X\u2081 + X\u2082) / 2",
+      "D = X\u2081 / X\u2082"
+    ],
+    correctAnswer: 1,
+    explanation: "Difference scores are computed by subtracting the first measurement from the second for each participant: D = X\u2082 \u2212 X\u2081.",
+    difficulty: "easy",
+    topic: "Difference Scores",
+    points: 10
+  },
+  {
+    id: 3,
+    question: "The null hypothesis for a repeated-measures t-test states:",
+    options: [
+      "\u03bc_D = 0 (no systematic change)",
+      "\u03bc\u2081 \u2212 \u03bc\u2082 = 0",
+      "\u03bc_D = M_D",
+      "s\u00b2 = 0"
+    ],
+    correctAnswer: 0,
+    explanation: "The null hypothesis states that the mean of the population difference scores equals zero: \u03bc_D = 0, meaning there is no systematic change between conditions.",
+    difficulty: "easy",
+    topic: "Hypotheses",
+    points: 10
+  },
+  {
+    id: 4,
+    question: "For a repeated-measures t-test with n = 12 participants, the degrees of freedom equals:",
+    options: [
+      "12",
+      "10",
+      "22",
+      "11"
+    ],
+    correctAnswer: 3,
+    explanation: "For a repeated-measures t-test, df = n \u2212 1 where n is the number of difference scores (participants). df = 12 \u2212 1 = 11.",
+    difficulty: "easy",
+    topic: "Degrees of Freedom",
+    points: 10
+  },
+  {
+    id: 5,
+    question: "The repeated-measures t statistic is structurally identical to:",
+    options: [
+      "The z-score test from Chapter 8",
+      "The independent-measures t from Chapter 10",
+      "The single-sample t-test from Chapter 9",
+      "The F-ratio from ANOVA"
+    ],
+    correctAnswer: 2,
+    explanation: "The repeated-measures t has the same structure as the single-sample t: t = (M_D \u2212 \u03bc_D) / s_MD. The only difference is that it uses D values instead of raw X values.",
+    difficulty: "medium",
+    topic: "t Statistic Structure",
+    points: 15
+  },
+  {
+    id: 6,
+    question: "The estimated standard error for the repeated-measures t-test (s_MD) measures:",
+    options: [
+      "How accurately M_D represents \u03bc_D",
+      "The average difference score",
+      "The total variance in the population",
+      "The correlation between the two conditions"
+    ],
+    correctAnswer: 0,
+    explanation: "s_MD = \u221a(s\u00b2/n) measures how much distance is expected between the sample mean difference (M_D) and the population mean difference (\u03bc_D) due to sampling error.",
+    difficulty: "medium",
+    topic: "Standard Error",
+    points: 15
+  },
+  {
+    id: 7,
+    question: "A major advantage of the repeated-measures design over independent-measures is:",
+    options: [
+      "It eliminates individual differences as a source of variability",
+      "It requires more participants",
+      "It is not affected by sample size",
+      "It always yields significant results"
+    ],
+    correctAnswer: 0,
+    explanation: "Because the same participants are measured twice, individual differences are removed when computing D scores. This typically reduces variability and increases statistical power.",
+    difficulty: "medium",
+    topic: "Advantages",
+    points: 15
+  },
+  {
+    id: 8,
+    question: "A potential disadvantage of a repeated-measures design is:",
+    options: [
+      "It uses too many participants",
+      "It cannot detect small effects",
+      "It cannot be used with interval data",
+      "Order effects and carryover effects"
+    ],
+    correctAnswer: 3,
+    explanation: "In repeated-measures designs, participants experience all conditions, so practice, fatigue, or carryover from one condition can affect performance in the other.",
+    difficulty: "medium",
+    topic: "Disadvantages",
+    points: 15
+  },
+  {
+    id: 9,
+    question: "Given n = 9, M_D = 4, SS = 162, and \u03bc_D = 0, what is the sample variance of the D scores?",
+    options: [
+      "s\u00b2 = 162 / 9 = 18.00",
+      "s\u00b2 = 162 / 8 = 20.25",
+      "s\u00b2 = 4 / 9 = 0.44",
+      "s\u00b2 = 162 / 4 = 40.50"
+    ],
+    correctAnswer: 1,
+    explanation: "s\u00b2 = SS / (n \u2212 1) = 162 / 8 = 20.25. We divide by n \u2212 1 (degrees of freedom) for an unbiased estimate.",
+    difficulty: "medium",
+    topic: "Calculations",
+    points: 15
+  },
+  {
+    id: 10,
+    question: "Using the data above (s\u00b2 = 20.25, n = 9), what is the estimated standard error s_MD?",
+    options: [
+      "s_MD = \u221a(20.25 / 9) = 1.50",
+      "s_MD = 20.25 / 9 = 2.25",
+      "s_MD = \u221a(9 / 20.25) = 0.67",
+      "s_MD = 20.25 \u00d7 9 = 182.25"
+    ],
+    correctAnswer: 0,
+    explanation: "s_MD = \u221a(s\u00b2/n) = \u221a(20.25/9) = \u221a2.25 = 1.50. This tells us how far M_D is expected to deviate from \u03bc_D by chance.",
+    difficulty: "medium",
+    topic: "Calculations",
+    points: 15
+  },
+  {
+    id: 11,
+    question: "Continuing with M_D = 4, s_MD = 1.50, and \u03bc_D = 0, what is the t statistic?",
+    options: [
+      "t = 4 / 0 = undefined",
+      "t = 1.50 / 4 = 0.375",
+      "t = (4 \u2212 0) / 1.50 = 2.67",
+      "t = (0 \u2212 4) / 1.50 = \u22122.67"
+    ],
+    correctAnswer: 2,
+    explanation: "t = (M_D \u2212 \u03bc_D) / s_MD = (4 \u2212 0) / 1.50 = 4 / 1.50 = +2.67.",
+    difficulty: "hard",
+    topic: "Calculations",
+    points: 20
+  },
+  {
+    id: 12,
+    question: "With t = 2.67 and df = 8, and critical t = \u00b12.306 (\u03b1 = .05, two-tailed), the decision is:",
+    options: [
+      "Fail to reject H\u2080",
+      "Reject H\u2080",
+      "Accept H\u2080",
+      "Increase \u03b1 and retest"
+    ],
+    correctAnswer: 1,
+    explanation: "The obtained t = 2.67 exceeds the critical boundary of +2.306, placing it in the critical region. We reject H\u2080 and conclude the treatment had a significant effect.",
+    difficulty: "medium",
+    topic: "Decision Making",
+    points: 15
+  },
+  {
+    id: 13,
+    question: "For the repeated-measures design, r\u00b2 as an effect size is calculated as:",
+    options: [
+      "r\u00b2 = t\u00b2 / (t\u00b2 + df)",
+      "r\u00b2 = t / (t + df)",
+      "r\u00b2 = df / (t\u00b2 + df)",
+      "r\u00b2 = t\u00b2 / df"
+    ],
+    correctAnswer: 0,
+    explanation: "r\u00b2 = t\u00b2 / (t\u00b2 + df) gives the proportion of variance in the D scores that is accounted for by the treatment. Same formula as the single-sample t-test.",
+    difficulty: "medium",
+    topic: "Effect Size",
+    points: 15
+  },
+  {
+    id: 14,
+    question: "Which study design would be most appropriate to test whether the SAME students score differently on a test before vs. after a tutoring program?",
+    options: [
+      "Independent-measures t-test",
+      "z-test",
+      "Levene's test",
+      "Repeated-measures t-test"
+    ],
+    correctAnswer: 3,
+    explanation: "Because the same students are measured at two time points (before and after), this is a repeated-measures (within-subjects) design requiring a repeated-measures t-test.",
+    difficulty: "hard",
+    topic: "Design Selection",
+    points: 20
+  },
+  {
+    id: 15,
+    question: "Compared to an independent-measures design, a repeated-measures design typically:",
+    options: [
+      "Has more degrees of freedom",
+      "Has less statistical power",
+      "Requires twice as many participants",
+      "Has more statistical power (less error variability)"
+    ],
+    correctAnswer: 3,
+    explanation: "By removing individual differences, the repeated-measures design reduces the error variability (the denominator of the t ratio), which increases statistical power\u2014making it easier to detect a real effect.",
+    difficulty: "hard",
+    topic: "Statistical Power",
+    points: 20
+  }
+];
+
 // Get questions by chapter
 export const getChapterQuestions = (chapterId) => {
   switch(chapterId) {
@@ -1937,6 +2181,7 @@ export const getChapterQuestions = (chapterId) => {
     case 8: return chapter8Questions;
     case 9: return chapter9Questions;
     case 10: return chapter10Questions;
+    case 11: return chapter11Questions;
     default: return [];
   }
 };

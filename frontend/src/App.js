@@ -4,9 +4,12 @@ import { QuizWelcome } from './components/QuizWelcome';
 import { QuizQuestion } from './components/QuizQuestion';
 import { QuizResults } from './components/QuizResults';
 import { Chapter4ZScores } from './components/Chapter4ZScores';
+import { Chapter8HypothesisTesting } from './components/Chapter8HypothesisTesting';
+import { Chapter9TStatistic } from './components/Chapter9TStatistic';
 import { Chapter10IndependentT } from './components/Chapter10IndependentT';
+import { Chapter11RepeatedMeasures } from './components/Chapter11RepeatedMeasures';
 import { Chapter5Glossary } from './components/Chapter5Glossary';
-import { getChapterQuestions, chapter5Questions, chapter10Questions, chapters } from './data/chaptersData';
+import { getChapterQuestions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapters } from './data/chaptersData';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
@@ -19,7 +22,6 @@ function App() {
   const [startTime, setStartTime] = useState(null);
   const [timeSpent, setTimeSpent] = useState(0);
   const [quizQuestions, setQuizQuestions] = useState([]);
-  // Track answered questions for Previous navigation
   const [answeredQuestions, setAnsweredQuestions] = useState({});
   
   const totalQuestions = quizQuestions.length;
@@ -48,14 +50,16 @@ function App() {
   const handleSelectChapter = (chapter) => {
     setSelectedChapter(chapter);
     
-    if (chapter.isStudyChapter && chapter.id === 4) {
-      setAppState('chapter4');
-      return;
-    }
-
-    if (chapter.isStudyChapter && chapter.id === 10) {
-      setAppState('chapter10');
-      return;
+    // Study chapters route to their study components
+    if (chapter.isStudyChapter) {
+      switch (chapter.id) {
+        case 4: setAppState('chapter4'); return;
+        case 8: setAppState('chapter8'); return;
+        case 9: setAppState('chapter9'); return;
+        case 10: setAppState('chapter10'); return;
+        case 11: setAppState('chapter11'); return;
+        default: break;
+      }
     }
     
     if (chapter.isGlossaryChapter) {
@@ -68,9 +72,11 @@ function App() {
   };
 
   const handleStartChapter4Quiz = () => startQuiz(chapter5Questions);
+  const handleStartChapter8Quiz = () => startQuiz(chapter8Questions);
+  const handleStartChapter9Quiz = () => startQuiz(chapter9Questions);
   const handleStartChapter10Quiz = () => startQuiz(chapter10Questions);
+  const handleStartChapter11Quiz = () => startQuiz(chapter11Questions);
 
-  // Called when user clicks "Submit Answer"
   const handleSubmitAnswer = (selectedAnswer, isCorrect) => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
     
@@ -94,7 +100,6 @@ function App() {
     }));
   };
 
-  // Called when user clicks "Next Question"
   const handleNextQuestion = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
@@ -105,7 +110,6 @@ function App() {
     }
   };
 
-  // Called when user clicks "Previous"
   const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(prev => prev - 1);
@@ -140,8 +144,20 @@ function App() {
         <Chapter4ZScores onBack={handleBackToChapters} onStartQuiz={handleStartChapter4Quiz} />
       )}
 
+      {appState === 'chapter8' && (
+        <Chapter8HypothesisTesting onBack={handleBackToChapters} onStartQuiz={handleStartChapter8Quiz} />
+      )}
+
+      {appState === 'chapter9' && (
+        <Chapter9TStatistic onBack={handleBackToChapters} onStartQuiz={handleStartChapter9Quiz} />
+      )}
+
       {appState === 'chapter10' && (
         <Chapter10IndependentT onBack={handleBackToChapters} onStartQuiz={handleStartChapter10Quiz} />
+      )}
+
+      {appState === 'chapter11' && (
+        <Chapter11RepeatedMeasures onBack={handleBackToChapters} onStartQuiz={handleStartChapter11Quiz} />
       )}
 
       {appState === 'chapter5' && (

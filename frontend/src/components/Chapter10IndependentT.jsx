@@ -4,8 +4,24 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { 
   Brain, Calculator, TrendingUp, Target, Check, AlertTriangle,
-  BookOpen, ArrowLeft, ClipboardList, Users, Scale
+  BookOpen, ArrowLeft, ClipboardList, Users, Scale, FlaskConical, ChevronDown, ChevronUp
 } from 'lucide-react';
+
+const NHTStep = ({ step, title, children, color }) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div className={`border-2 rounded-xl overflow-hidden ${color}`}>
+      <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between p-4 font-semibold text-left">
+        <span className="flex items-center gap-3">
+          <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold">{step}</span>
+          {title}
+        </span>
+        {open ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+      </button>
+      {open && <div className="px-4 pb-4 space-y-3">{children}</div>}
+    </div>
+  );
+};
 
 // Key Concept Cards
 const keyConceptCards = [
@@ -212,6 +228,7 @@ const PooledVarianceCalculator = () => {
 const Chapter10Tabs = ({ activeTab, setActiveTab, onStartQuiz }) => {
   const tabs = [
     { id: 'concepts', label: 'Concepts', icon: Brain },
+    { id: 'example', label: 'Example 10.2', icon: FlaskConical },
     { id: 'levenes', label: "Levene's Test", icon: Scale },
     { id: 'calculator', label: 'Calculator', icon: Calculator },
   ];
@@ -370,6 +387,93 @@ export const Chapter10IndependentT = ({ onBack, onStartQuiz }) => {
             </Card>
           </div>
         )}
+
+
+        {/* Example 10.2 Tab */}
+        {activeTab === 'example' && (
+          <div className="space-y-5 fade-in">
+            <Card className="border-2 border-pink-500/20 bg-pink-500/5">
+              <CardHeader>
+                <CardTitle className="text-xl flex items-center gap-2">
+                  <FlaskConical className="w-5 h-5 text-pink-400" />
+                  Example 10.2: Lighting and Dishonesty
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground leading-relaxed">
+                  A researcher investigates whether <strong>dimly lit environments</strong> lead to more dishonest behavior compared to well-lit rooms. Participants are randomly assigned to one of two rooms and given tasks where they can cheat for a higher score.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  <strong>Well-lit group:</strong> n&#8321; = 8, M&#8321; = 8, SS&#8321; = 60<br/>
+                  <strong>Dimly lit group:</strong> n&#8322; = 8, M&#8322; = 12, SS&#8322; = 66
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Badge className="bg-pink-500/20 text-pink-300 border-pink-500/30">n&#8321; = 8, M&#8321; = 8</Badge>
+                  <Badge className="bg-pink-500/20 text-pink-300 border-pink-500/30">n&#8322; = 8, M&#8322; = 12</Badge>
+                  <Badge className="bg-pink-500/20 text-pink-300 border-pink-500/30">SS&#8321; = 60</Badge>
+                  <Badge className="bg-pink-500/20 text-pink-300 border-pink-500/30">SS&#8322; = 66</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <NHTStep step="1" title="State the Hypotheses & Select Alpha" color="border-blue-500/30 bg-blue-500/5">
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="p-3 rounded bg-muted/50">
+                  <p><strong className="text-foreground">H&#8320;:</strong> Lighting has no effect on dishonesty. &#956;&#8321; &#8722; &#956;&#8322; = 0</p>
+                  <p><strong className="text-foreground">H&#8321;:</strong> Lighting does affect dishonesty. &#956;&#8321; &#8722; &#956;&#8322; &#8800; 0</p>
+                  <p><strong className="text-foreground">&#945; = .05</strong> (two-tailed test)</p>
+                </div>
+                <p>Two separate groups &#8594; <strong className="text-foreground">independent-measures t-test</strong>.</p>
+              </div>
+            </NHTStep>
+
+            <NHTStep step="2" title="Locate the Critical Region" color="border-emerald-500/30 bg-emerald-500/5">
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="p-3 rounded bg-muted/50 space-y-1">
+                  <p><strong className="text-foreground">df</strong> = n&#8321; + n&#8322; &#8722; 2 = 8 + 8 &#8722; 2 = <strong className="text-foreground">14</strong></p>
+                  <p>For &#945; = .05 (two-tailed) with df = 14:</p>
+                </div>
+                <div className="p-3 rounded bg-muted/50 text-center">
+                  <p className="text-lg font-mono font-semibold text-foreground">Critical t = &#177;2.145</p>
+                </div>
+              </div>
+            </NHTStep>
+
+            <NHTStep step="3" title="Compute the Test Statistic" color="border-amber-500/30 bg-amber-500/5">
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <p className="font-semibold text-foreground">Step A: Pooled variance</p>
+                <div className="p-3 rounded bg-muted/50 font-mono text-center">
+                  <p>s&#178;p = (SS&#8321; + SS&#8322;) / (df&#8321; + df&#8322;) = (60 + 66) / (7 + 7) = 126 / 14 = <strong className="text-foreground">9</strong></p>
+                </div>
+                <p className="font-semibold text-foreground">Step B: Estimated standard error of the mean difference</p>
+                <div className="p-3 rounded bg-muted/50 font-mono text-center">
+                  <p>s(M&#8321;-M&#8322;) = &#8730;(s&#178;p/n&#8321; + s&#178;p/n&#8322;) = &#8730;(9/8 + 9/8) = &#8730;(1.125 + 1.125) = &#8730;2.25 = <strong className="text-foreground">1.50</strong></p>
+                </div>
+                <p className="font-semibold text-foreground">Step C: The independent-measures t statistic</p>
+                <div className="p-3 rounded bg-muted/50 font-mono text-center space-y-1">
+                  <p>t = (M&#8321; &#8722; M&#8322;) / s(M&#8321;-M&#8322;)</p>
+                  <p>t = (8 &#8722; 12) / 1.50</p>
+                  <p>t = &#8722;4 / 1.50 = <strong className="text-primary text-lg">&#8722;2.67</strong></p>
+                </div>
+              </div>
+            </NHTStep>
+
+            <NHTStep step="4" title="Make a Decision" color="border-violet-500/30 bg-violet-500/5">
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="p-3 rounded bg-emerald-500/10 border border-emerald-500/20">
+                  <p className="font-semibold text-emerald-400">REJECT H&#8320;</p>
+                  <p className="mt-1">The t-value of <strong>&#8722;2.67</strong> is beyond the critical boundary of <strong>&#8722;2.145</strong>, placing it in the critical region.</p>
+                </div>
+                <p><strong className="text-foreground">Conclusion:</strong> There is a significant difference in cheating behavior between well-lit and dimly lit rooms. Participants in the dimly lit room scored significantly higher (more dishonest), t(14) = &#8722;2.67, p &lt; .05.</p>
+                <div className="p-3 rounded bg-muted/50 space-y-1">
+                  <p className="font-mono text-foreground">r&#178; = (&#8722;2.67)&#178; / ((&#8722;2.67)&#178; + 14) = 7.13 / 21.13 &#8776; 0.34</p>
+                  <p className="text-foreground">34% of the variance in dishonesty is accounted for by lighting condition &#8212; a <strong>large</strong> effect.</p>
+                </div>
+              </div>
+            </NHTStep>
+          </div>
+        )}
+
 
         {/* Levene's Test Tab */}
         {activeTab === 'levenes' && (
