@@ -1,25 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { CheckCircle2, XCircle, ChevronRight, Lightbulb } from 'lucide-react';
+import { CheckCircle2, XCircle, ChevronRight, ChevronLeft, Lightbulb } from 'lucide-react';
 import { Progress } from './ui/progress';
 
 export const QuizQuestion = ({ 
   question, 
   questionNumber, 
   totalQuestions, 
-  onAnswer, 
-  currentScore 
+  onSubmitAnswer,
+  onNext,
+  onPrevious,
+  canGoPrevious,
+  savedState,
+  currentScore,
+  chapterTitle
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   
   const progressPercentage = ((questionNumber - 1) / totalQuestions) * 100;
+
+  // Restore state when navigating to a previously answered question
+  useEffect(() => {
+    if (savedState) {
+      setSelectedAnswer(savedState.selectedAnswer);
+      setIsCorrect(savedState.isCorrect);
+      setShowFeedback(true);
+    } else {
+      setSelectedAnswer(null);
+      setShowFeedback(false);
+      setIsCorrect(false);
+    }
+  }, [savedState, questionNumber]);
   
   const handleAnswerSelect = (answerIndex) => {
-    if (showFeedback) return; // Prevent changing answer after submission
+    if (showFeedback) return;
     setSelectedAnswer(answerIndex);
   };
   
@@ -29,14 +47,15 @@ export const QuizQuestion = ({
     const correct = selectedAnswer === question.correctAnswer;
     setIsCorrect(correct);
     setShowFeedback(true);
+    onSubmitAnswer(selectedAnswer, correct);
   };
   
   const handleNext = () => {
-    onAnswer(selectedAnswer, isCorrect);
-    // Reset state for next question
-    setSelectedAnswer(null);
-    setShowFeedback(false);
-    setIsCorrect(false);
+    onNext();
+  };
+
+  const handlePrevious = () => {
+    onPrevious();
   };
   
   const getOptionClassName = (index) => {
@@ -72,7 +91,7 @@ export const QuizQuestion = ({
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-background to-muted">
       <div className="w-full max-w-4xl space-y-6">
         {/* Progress Bar */}
-        <div className="space-y-3 fade-in">
+        <div className="space-y-3 fade-in" data-testid="quiz-progress-section">
           <div className="flex justify-between items-center">
             <p className="text-sm font-medium text-muted-foreground">
               Question {questionNumber} of {totalQuestions}
@@ -81,14 +100,14 @@ export const QuizQuestion = ({
               Score: {currentScore} pts
             </Badge>
           </div>
-          <Progress value={progressPercentage} className="h-3" />
+          <Progress value={progressPercentage} className="h-3" data-testid="quiz-progress-bar" />
         </div>
         
         {/* Question Card */}
         <Card className="card-elevated border-2 border-primary/10 fade-in">
           <CardHeader className="space-y-4">
             <div className="flex items-start justify-between gap-4">
-              <CardTitle className="text-2xl sm:text-3xl leading-tight text-foreground">
+              <CardTitle className="text-2xl sm:text-3xl leading-tight text-foreground" data-testid="quiz-question-text">
                 {question.question}
               </CardTitle>
               <div className="flex flex-col gap-2">
@@ -101,7 +120,7 @@ export const QuizQuestion = ({
               </div>
             </div>
             <Badge variant="secondary" className="w-fit">
-              {question.topic}
+              {question.topic || question.category}
             </Badge>
           </CardHeader>
           
@@ -114,6 +133,7 @@ export const QuizQuestion = ({
                   onClick={() => handleAnswerSelect(index)}
                   disabled={showFeedback}
                   className={getOptionClassName(index)}
+                  data-testid={`quiz-option-${index}`}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm ${
@@ -145,7 +165,7 @@ export const QuizQuestion = ({
                 isCorrect 
                   ? 'bg-success/10 border-success/30' 
                   : 'bg-destructive/10 border-destructive/30'
-              }`}>
+              }`} data-testid="quiz-feedback">
                 <div className="flex items-start gap-3">
                   <Lightbulb className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
                     isCorrect ? 'text-success' : 'text-destructive'
@@ -154,7 +174,7 @@ export const QuizQuestion = ({
                     <p className={`font-semibold mb-2 ${
                       isCorrect ? 'text-success' : 'text-destructive'
                     }`}>
-                      {isCorrect ? 'Correct! 🎉' : 'Not quite right'}
+                      {isCorrect ? 'Correct!' : 'Not quite right'}
                     </p>
                     <p className="text-sm text-foreground leading-relaxed">
                       {question.explanation}
@@ -164,27 +184,47 @@ export const QuizQuestion = ({
               </div>
             )}
             
-            {/* Action Button */}
-            <div className="pt-4">
-              {!showFeedback ? (
-                <Button 
-                  onClick={handleSubmit}
-                  disabled={selectedAnswer === null}
-                  size="lg"
-                  className="w-full sm:w-auto btn-glow"
-                >
-                  Submit Answer
-                </Button>
-              ) : (
-                <Button 
-                  onClick={handleNext}
-                  size="lg"
-                  className="w-full sm:w-auto btn-glow bg-gradient-to-r from-primary to-secondary hover:opacity-90"
-                >
-                  {questionNumber === totalQuestions ? 'View Results' : 'Next Question'}
-                  <ChevronRight className="w-5 h-5 ml-2" />
-                </Button>
-              )}
+            {/* Action Buttons - Previous (left) and Submit/Next (right) */}
+            <div className="flex justify-between items-center pt-4">
+              {/* Previous Button */}
+              <div>
+                {canGoPrevious && (
+                  <Button 
+                    onClick={handlePrevious}
+                    variant="outline"
+                    size="lg"
+                    data-testid="quiz-previous-btn"
+                  >
+                    <ChevronLeft className="w-5 h-5 mr-2" />
+                    Previous
+                  </Button>
+                )}
+              </div>
+
+              {/* Submit / Next Button */}
+              <div>
+                {!showFeedback ? (
+                  <Button 
+                    onClick={handleSubmit}
+                    disabled={selectedAnswer === null}
+                    size="lg"
+                    className="btn-glow"
+                    data-testid="quiz-submit-btn"
+                  >
+                    Submit Answer
+                  </Button>
+                ) : (
+                  <Button 
+                    onClick={handleNext}
+                    size="lg"
+                    className="btn-glow bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                    data-testid="quiz-next-btn"
+                  >
+                    {questionNumber === totalQuestions ? 'View Results' : 'Next Question'}
+                    <ChevronRight className="w-5 h-5 ml-2" />
+                  </Button>
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>

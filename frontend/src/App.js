@@ -10,7 +10,7 @@ import { getChapterQuestions, chapter5Questions, chapter10Questions, chapters } 
 import { Toaster } from './components/ui/sonner';
 
 function App() {
-  const [appState, setAppState] = useState('welcome'); // welcome, chapter4, chapter10, chapter5, quiz, results
+  const [appState, setAppState] = useState('welcome');
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -19,6 +19,8 @@ function App() {
   const [startTime, setStartTime] = useState(null);
   const [timeSpent, setTimeSpent] = useState(0);
   const [quizQuestions, setQuizQuestions] = useState([]);
+  // Track answered questions for Previous navigation
+  const [answeredQuestions, setAnsweredQuestions] = useState({});
   
   const totalQuestions = quizQuestions.length;
   const totalPoints = quizQuestions.reduce((sum, q) => sum + q.points, 0);
@@ -31,64 +33,45 @@ function App() {
       return () => clearInterval(interval);
     }
   }, [appState, startTime]);
+
+  const startQuiz = (questions) => {
+    setQuizQuestions(questions);
+    setAppState('quiz');
+    setStartTime(Date.now());
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setEarnedPoints(0);
+    setAnswers([]);
+    setAnsweredQuestions({});
+  };
   
   const handleSelectChapter = (chapter) => {
     setSelectedChapter(chapter);
     
-    // Chapter 4 is a study chapter
     if (chapter.isStudyChapter && chapter.id === 4) {
       setAppState('chapter4');
       return;
     }
 
-    // Chapter 10 is a study + quiz chapter
     if (chapter.isStudyChapter && chapter.id === 10) {
       setAppState('chapter10');
       return;
     }
     
-    // Chapter 5 is the glossary
     if (chapter.isGlossaryChapter) {
       setAppState('chapter5');
       return;
     }
     
-    // Load questions for this chapter (Chapters 1-3)
     const questions = getChapterQuestions(chapter.id);
-    setQuizQuestions(questions);
-    
-    // Start the quiz
-    setAppState('quiz');
-    setStartTime(Date.now());
-    setCurrentQuestionIndex(0);
-    setScore(0);
-    setEarnedPoints(0);
-    setAnswers([]);
+    startQuiz(questions);
   };
 
-  // Start Chapter 4 quiz (from within the Chapter 4 study component)
-  const handleStartChapter4Quiz = () => {
-    setQuizQuestions(chapter5Questions);
-    setAppState('quiz');
-    setStartTime(Date.now());
-    setCurrentQuestionIndex(0);
-    setScore(0);
-    setEarnedPoints(0);
-    setAnswers([]);
-  };
+  const handleStartChapter4Quiz = () => startQuiz(chapter5Questions);
+  const handleStartChapter10Quiz = () => startQuiz(chapter10Questions);
 
-  // Start Chapter 10 quiz (from within the Chapter 10 study component)
-  const handleStartChapter10Quiz = () => {
-    setQuizQuestions(chapter10Questions);
-    setAppState('quiz');
-    setStartTime(Date.now());
-    setCurrentQuestionIndex(0);
-    setScore(0);
-    setEarnedPoints(0);
-    setAnswers([]);
-  };
-  
-  const handleAnswer = (selectedAnswer, isCorrect) => {
+  // Called when user clicks "Submit Answer"
+  const handleSubmitAnswer = (selectedAnswer, isCorrect) => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
     
     if (isCorrect) {
@@ -104,13 +87,28 @@ function App() {
       selectedAnswer: selectedAnswer,
       correctAnswer: currentQuestion.correctAnswer
     }]);
-    
+
+    setAnsweredQuestions(prev => ({
+      ...prev,
+      [currentQuestionIndex]: { selectedAnswer, isCorrect }
+    }));
+  };
+
+  // Called when user clicks "Next Question"
+  const handleNextQuestion = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       const finalTimeSpent = Math.floor((Date.now() - startTime) / 1000);
       setTimeSpent(finalTimeSpent);
       setAppState('results');
+    }
+  };
+
+  // Called when user clicks "Previous"
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(prev => prev - 1);
     }
   };
   
@@ -124,6 +122,7 @@ function App() {
     setStartTime(null);
     setTimeSpent(0);
     setQuizQuestions([]);
+    setAnsweredQuestions({});
   };
 
   const handleBackToChapters = () => {
@@ -154,7 +153,11 @@ function App() {
           question={quizQuestions[currentQuestionIndex]}
           questionNumber={currentQuestionIndex + 1}
           totalQuestions={totalQuestions}
-          onAnswer={handleAnswer}
+          onSubmitAnswer={handleSubmitAnswer}
+          onNext={handleNextQuestion}
+          onPrevious={handlePreviousQuestion}
+          canGoPrevious={currentQuestionIndex > 0}
+          savedState={answeredQuestions[currentQuestionIndex] || null}
           currentScore={earnedPoints}
           chapterTitle={selectedChapter?.title}
         />

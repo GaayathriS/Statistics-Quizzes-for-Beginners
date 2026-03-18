@@ -16,6 +16,8 @@ const glossaryChapters = [
   { id: 7, title: "Distribution of Sample Means", color: "from-indigo-600 to-indigo-400" },
   { id: 8, title: "Introduction to Hypothesis Testing", color: "from-rose-600 to-rose-400" },
   { id: 9, title: "Introduction to the t Statistic", color: "from-violet-600 to-violet-400" },
+  { id: 10, title: "The t Test for Two Independent Samples", color: "from-pink-600 to-pink-400" },
+  { id: 11, title: "The t Test for Two Related Samples", color: "from-teal-600 to-teal-400" },
 ];
 
 export const Chapter5Glossary = ({ onBack }) => {
@@ -60,7 +62,7 @@ export const Chapter5Glossary = ({ onBack }) => {
           <p className="text-muted-foreground mt-2">
             {selectedChapter 
               ? `Chapter ${selectedChapter.id}: ${selectedChapter.title}`
-              : 'Key terms and definitions from Chapters 1-7'
+              : 'Key terms and definitions from Chapters 1-11'
             }
           </p>
         </div>

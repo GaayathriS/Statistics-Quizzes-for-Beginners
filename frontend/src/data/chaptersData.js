@@ -64,7 +64,7 @@ export const chapters = [
   {
     id: 100,
     title: "Glossary",
-    subtitle: "Chapters 1-9",
+    subtitle: "Chapters 1-11",
     description: "Review key terms and definitions from all chapters. Select a chapter to view its glossary of important statistical concepts.",
     topics: ["Key Terms", "Definitions", "Quick Reference"],
     questionCount: 0,
@@ -164,8 +164,44 @@ export const chapterGlossaries = {
     { term: "Central limit theorem", definition: "For any population with mean μ and standard deviation σ, the distribution of sample means approaches a normal distribution as sample size increases, with mean μ and standard error σ/√n." },
     { term: "z-score for sample means", definition: "A z-score can be used to locate a sample mean within the distribution of sample means: z = (M − μ) / σₘ" }
   ],
-  8: [], // To be added later
-  9: []  // To be added later
+  8: [
+    { term: "Hypothesis testing", definition: "A statistical procedure that uses sample data to evaluate a hypothesis about a population. It follows a series of logical steps to determine whether the data provide enough evidence to reject the null hypothesis." },
+    { term: "Null hypothesis (H₀)", definition: "States that the treatment has no effect—there is no change, no difference, or no relationship in the population. For example, H₀: μ = value." },
+    { term: "Alternative hypothesis (H₁)", definition: "States that the treatment does have an effect—there is a change, a difference, or a relationship in the population. Also called the scientific hypothesis. For example, H₁: μ ≠ value." },
+    { term: "Alpha level (level of significance)", definition: "A probability value (commonly .05, .01, or .001) that defines the criterion for 'very unlikely' outcomes. It sets the risk of a Type I error—the probability of rejecting a true null hypothesis." },
+    { term: "Critical region", definition: "The set of extreme sample outcomes in the tails of the distribution that are very unlikely to occur if the null hypothesis is true. If the test statistic falls in this region, H₀ is rejected." },
+    { term: "Test statistic", definition: "A statistic calculated from the sample data and used to test the null hypothesis. It measures how far the sample result is from what is expected under H₀. Examples include z-scores and t statistics." },
+    { term: "Type I error", definition: "Occurs when a true null hypothesis is rejected—concluding there is an effect when none exists (a false positive). The probability of a Type I error equals alpha (α)." },
+    { term: "Type II error", definition: "Occurs when a false null hypothesis is not rejected—failing to detect a real treatment effect (a false negative). The probability of a Type II error is represented by beta (β)." },
+    { term: "Statistically significant", definition: "A result is statistically significant when the sample data are very unlikely under the null hypothesis—unlikely enough to fall in the critical region—leading to rejection of H₀." },
+    { term: "Nondirectional (two-tailed) test", definition: "A hypothesis test in which the critical region is divided between both tails of the distribution. The alternative hypothesis does not specify the direction of the effect (H₁: μ ≠ value)." },
+    { term: "Power", definition: "The probability that a hypothesis test will correctly reject a false null hypothesis—that is, the probability of detecting a real treatment effect. Power = 1 − β. It increases with larger sample sizes, larger effects, and larger alpha levels." }
+  ],
+  9: [
+    { term: "Estimated standard error (sₘ)", definition: "An estimate of the standard error of M used when the population standard deviation (σ) is unknown. It is computed from the sample variance: sₘ = √(s²/n). It measures the typical distance between a sample mean and the population mean." },
+    { term: "t statistic", definition: "A test statistic used when the population standard deviation is unknown. It has the same structure as a z-score but uses the estimated standard error: t = (M − μ) / sₘ." },
+    { term: "Degrees of freedom (df)", definition: "For a single-sample t-test, df = n − 1. Degrees of freedom determine the shape of the t distribution and are used to find critical t values. As df increases, the t distribution approaches a normal distribution." },
+    { term: "t distribution", definition: "The complete set of t values computed for every possible random sample of a given size. It is similar to a normal distribution but has heavier tails (more variability), especially with small sample sizes." },
+    { term: "Effect size: r² (percentage of variance)", definition: "A measure of effect size that indicates the proportion of variability in scores accounted for by the treatment. Calculated as r² = t² / (t² + df). It tells how much of the total variance is explained by the treatment effect." },
+    { term: "Null hypothesis (H₀) for t-test", definition: "States that the treatment has no effect on the population mean. For a single-sample t-test: H₀: μ = hypothesized value." },
+    { term: "Alternative hypothesis (H₁) for t-test", definition: "States that the treatment does affect the population mean. For a nondirectional test: H₁: μ ≠ hypothesized value." }
+  ],
+  10: [
+    { term: "Independent-measures design (between-subjects)", definition: "A research design that uses two separate groups of participants—one for each treatment condition or population. Comparisons are made between different groups of subjects." },
+    { term: "Independent-measures t statistic", definition: "The test statistic used to evaluate the mean difference between two independent samples: t = (M₁ − M₂) − (μ₁ − μ₂) / s(M₁−M₂). It measures how many standard errors the sample mean difference is from the hypothesized population mean difference." },
+    { term: "Estimated standard error of the mean difference", definition: "Measures how much difference is expected by chance between two sample means: s(M₁−M₂) = √(s²p/n₁ + s²p/n₂). It uses the pooled variance to estimate the standard distance between a sample mean difference and the population mean difference." },
+    { term: "Pooled variance (s²p)", definition: "A weighted average of the two sample variances that provides a single estimate of the common population variance: s²p = (SS₁ + SS₂) / (df₁ + df₂). The larger sample carries more weight in determining the final value." },
+    { term: "Null hypothesis for independent-measures", definition: "States there is no difference between the two population means: H₀: μ₁ − μ₂ = 0." },
+    { term: "Alternative hypothesis for independent-measures", definition: "States there is a difference between the two population means: H₁: μ₁ − μ₂ ≠ 0 (two-tailed)." }
+  ],
+  11: [
+    { term: "Repeated-measures design (within-subjects)", definition: "A research design that uses the same group of individuals in all treatment conditions. Each participant is measured twice, providing two scores per person." },
+    { term: "Difference scores (D)", definition: "Obtained by subtracting the first measurement from the second for each individual: D = X₂ − X₁. These scores measure the amount of change for each participant." },
+    { term: "Estimated standard error for mean difference (s_MD)", definition: "Measures how accurately the sample mean difference represents the population mean difference: s_MD = √(s²/n), where s² is the variance of the difference scores." },
+    { term: "Repeated-measures t statistic", definition: "The test statistic for comparing two related samples, based on difference scores: t = (M_D − μ_D) / s_MD. It is structurally identical to the single-sample t statistic but uses D values instead of raw X values." },
+    { term: "Null hypothesis for repeated-measures", definition: "States there is no systematic change in scores: H₀: μ_D = 0 (the mean difference for the population is zero)." },
+    { term: "Alternative hypothesis for repeated-measures", definition: "States there is a systematic change: H₁: μ_D ≠ 0 (the mean difference for the population is not zero)." }
+  ]
 };
 
 // Get glossary by chapter ID
@@ -1210,12 +1246,12 @@ export const chapter8Questions = [
     id: 1,
     question: "What is the purpose of hypothesis testing?",
     options: [
-      "To prove that a hypothesis is absolutely true",
       "To use sample data to evaluate a hypothesis about a population",
+      "To prove that a hypothesis is absolutely true",
       "To calculate the mean of a sample",
       "To create frequency distributions"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Hypothesis testing is a statistical procedure used to evaluate a hypothesis about a population by using sample data. It doesn't prove anything absolutely, but helps make decisions based on probability.",
     difficulty: "easy",
     topic: "Hypothesis Testing Basics",
@@ -1225,12 +1261,12 @@ export const chapter8Questions = [
     id: 2,
     question: "The null hypothesis (H₀) typically states that:",
     options: [
-      "The treatment has a significant effect",
-      "The treatment has no effect or there is no difference",
+      "The researcher's prediction is correct",
       "The sample mean equals the sample standard deviation",
-      "The researcher's prediction is correct"
+      "The treatment has a significant effect",
+      "The treatment has no effect or there is no difference"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "The null hypothesis states that the treatment has no effect, meaning there is no change, difference, or relationship in the population. It represents the status quo.",
     difficulty: "easy",
     topic: "Null & Alternative Hypotheses",
@@ -1240,10 +1276,10 @@ export const chapter8Questions = [
     id: 3,
     question: "The alpha level (α) in hypothesis testing represents:",
     options: [
-      "The probability of making a Type II error",
-      "The probability of making a Type I error",
       "The effect size of the treatment",
-      "The power of the statistical test"
+      "The probability of making a Type I error",
+      "The power of the statistical test",
+      "The probability of making a Type II error"
     ],
     correctAnswer: 1,
     explanation: "The alpha level (α) defines the probability of rejecting a true null hypothesis (Type I error). Common alpha levels are .05, .01, and .001.",
@@ -1255,13 +1291,13 @@ export const chapter8Questions = [
     id: 4,
     question: "A Type I error occurs when:",
     options: [
+      "You calculate the wrong test statistic",
       "You fail to reject a false null hypothesis",
       "You reject a true null hypothesis",
-      "You accept a true alternative hypothesis",
-      "You calculate the wrong test statistic"
+      "You accept a true alternative hypothesis"
     ],
-    correctAnswer: 1,
-    explanation: "A Type I error (false positive) occurs when a researcher rejects a null hypothesis that is actually true—concluding there is an effect when there isn't one.",
+    correctAnswer: 2,
+    explanation: "A Type I error (false positive) occurs when a researcher rejects a null hypothesis that is actually true—concluding there is an effect when there isn't one. Its probability equals alpha (α).",
     difficulty: "medium",
     topic: "Type I & II Errors",
     points: 15
@@ -1270,13 +1306,13 @@ export const chapter8Questions = [
     id: 5,
     question: "A Type II error occurs when:",
     options: [
-      "You reject a true null hypothesis",
       "You fail to reject a false null hypothesis",
+      "You reject a true null hypothesis",
       "You use the wrong alpha level",
       "You have too large a sample size"
     ],
-    correctAnswer: 1,
-    explanation: "A Type II error (false negative) occurs when a researcher fails to reject a null hypothesis that is actually false—missing a real treatment effect.",
+    correctAnswer: 0,
+    explanation: "A Type II error (false negative) occurs when a researcher fails to reject a null hypothesis that is actually false—missing a real treatment effect. Its probability is represented by β (beta).",
     difficulty: "medium",
     topic: "Type I & II Errors",
     points: 15
@@ -1285,12 +1321,12 @@ export const chapter8Questions = [
     id: 6,
     question: "The critical region of a hypothesis test contains:",
     options: [
-      "All possible sample means",
       "Only sample means equal to the population mean",
-      "Extreme sample values unlikely to occur if H₀ is true",
-      "The most common sample outcomes"
+      "The most common sample outcomes",
+      "All possible sample means",
+      "Extreme sample values unlikely to occur if H₀ is true"
     ],
-    correctAnswer: 2,
+    correctAnswer: 3,
     explanation: "The critical region consists of extreme sample values that are very unlikely to occur if the null hypothesis is true. If the test statistic falls in this region, we reject H₀.",
     difficulty: "medium",
     topic: "Critical Region",
@@ -1300,10 +1336,10 @@ export const chapter8Questions = [
     id: 7,
     question: "If α = .05 in a two-tailed test, the critical region is located:",
     options: [
+      "In the center of the distribution",
       "Entirely in the right tail",
-      "Entirely in the left tail",
       "Split between both tails (2.5% in each)",
-      "In the center of the distribution"
+      "Entirely in the left tail"
     ],
     correctAnswer: 2,
     explanation: "In a two-tailed test with α = .05, the critical region is split between both tails—2.5% in the upper tail and 2.5% in the lower tail.",
@@ -1315,12 +1351,12 @@ export const chapter8Questions = [
     id: 8,
     question: "A one-tailed (directional) hypothesis test is used when:",
     options: [
-      "You don't know which direction the effect will go",
-      "You predict a specific direction for the treatment effect",
       "You want to reduce Type I errors",
-      "The sample size is very small"
+      "The sample size is very small",
+      "You don't know which direction the effect will go",
+      "You predict a specific direction for the treatment effect"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "A one-tailed test is used when the researcher predicts a specific direction (increase or decrease) for the treatment effect, placing all of α in one tail.",
     difficulty: "easy",
     topic: "Directional Tests",
@@ -1330,13 +1366,13 @@ export const chapter8Questions = [
     id: 9,
     question: "Cohen's d is a measure of:",
     options: [
+      "Sample size adequacy",
       "Statistical significance",
       "Effect size",
-      "Type II error probability",
-      "Sample size adequacy"
+      "Type II error probability"
     ],
-    correctAnswer: 1,
-    explanation: "Cohen's d measures effect size—the magnitude of the treatment effect expressed in standard deviation units. It is independent of sample size.",
+    correctAnswer: 2,
+    explanation: "Cohen's d measures effect size—the magnitude of the treatment effect expressed in standard deviation units: d = mean difference / standard deviation. It is independent of sample size.",
     difficulty: "easy",
     topic: "Effect Size",
     points: 10
@@ -1345,12 +1381,12 @@ export const chapter8Questions = [
     id: 10,
     question: "A Cohen's d value of 0.8 is generally considered:",
     options: [
+      "No effect",
       "A small effect",
       "A medium effect",
-      "A large effect",
-      "No effect"
+      "A large effect"
     ],
-    correctAnswer: 2,
+    correctAnswer: 3,
     explanation: "Cohen's guidelines: d = 0.2 is small, d = 0.5 is medium, and d = 0.8 is large. So 0.8 represents a large effect size.",
     difficulty: "medium",
     topic: "Effect Size",
@@ -1360,13 +1396,13 @@ export const chapter8Questions = [
     id: 11,
     question: "Statistical power is defined as:",
     options: [
-      "The probability of making a Type I error",
       "The probability of correctly rejecting a false null hypothesis",
-      "The probability of failing to reject a true null hypothesis",
-      "The size of the treatment effect"
+      "The probability of making a Type I error",
+      "The size of the treatment effect",
+      "The probability of failing to reject a true null hypothesis"
     ],
-    correctAnswer: 1,
-    explanation: "Statistical power is the probability that a test will correctly reject a false null hypothesis (detecting a real effect). Power = 1 - β.",
+    correctAnswer: 0,
+    explanation: "Statistical power is the probability that a test will correctly reject a false null hypothesis (detecting a real effect). Power = 1 − β.",
     difficulty: "medium",
     topic: "Statistical Power",
     points: 15
@@ -1375,13 +1411,13 @@ export const chapter8Questions = [
     id: 12,
     question: "Which of the following increases statistical power?",
     options: [
-      "Decreasing sample size",
-      "Increasing sample size",
       "Increasing variability in the data",
-      "Using a smaller alpha level"
+      "Decreasing sample size",
+      "Using a smaller alpha level",
+      "Increasing sample size"
     ],
-    correctAnswer: 1,
-    explanation: "Increasing sample size increases power because it reduces standard error, making it easier to detect a real effect.",
+    correctAnswer: 3,
+    explanation: "Increasing sample size increases power because it reduces standard error, making it easier to detect a real effect. A larger effect size and a larger alpha level also increase power.",
     difficulty: "medium",
     topic: "Statistical Power",
     points: 15
@@ -1390,10 +1426,10 @@ export const chapter8Questions = [
     id: 13,
     question: "If a researcher obtains a z-score of 2.50 with α = .05 (two-tailed), the decision should be to:",
     options: [
-      "Fail to reject H₀",
+      "Increase the sample size",
       "Reject H₀",
-      "Accept H₀",
-      "Increase the sample size"
+      "Fail to reject H₀",
+      "Accept H₀"
     ],
     correctAnswer: 1,
     explanation: "With α = .05 (two-tailed), the critical z-values are ±1.96. Since 2.50 > 1.96, it falls in the critical region, so we reject H₀.",
@@ -1406,9 +1442,9 @@ export const chapter8Questions = [
     question: "The relationship between α and Type I error is:",
     options: [
       "α equals the probability of Type I error",
-      "α equals the probability of Type II error",
       "α is unrelated to errors",
-      "α reduces both types of errors equally"
+      "α reduces both types of errors equally",
+      "α equals the probability of Type II error"
     ],
     correctAnswer: 0,
     explanation: "The alpha level directly sets the probability of making a Type I error. If α = .05, there is a 5% chance of rejecting a true null hypothesis.",
@@ -1421,11 +1457,11 @@ export const chapter8Questions = [
     question: "Which assumption is NOT required for hypothesis testing with z-scores?",
     options: [
       "Random sampling from the population",
+      "The sample size must be exactly 30",
       "Independent observations",
-      "The population standard deviation (σ) must be known",
-      "The sample size must be exactly 30"
+      "The population standard deviation (σ) must be known"
     ],
-    correctAnswer: 3,
+    correctAnswer: 1,
     explanation: "Hypothesis testing with z-scores requires random sampling, independent observations, and known σ, but there is no requirement that n must equal exactly 30.",
     difficulty: "hard",
     topic: "Assumptions",
@@ -1440,27 +1476,27 @@ export const chapter9Questions = [
     question: "When is the t statistic used instead of a z-score?",
     options: [
       "When the sample size is greater than 100",
-      "When the population standard deviation (σ) is unknown",
-      "When the data are nominal scale",
-      "When you want a one-tailed test"
+      "When you want a one-tailed test",
+      "When the population standard deviation (\u03c3) is unknown",
+      "When the data are nominal scale"
     ],
-    correctAnswer: 1,
-    explanation: "The t statistic is used when the population standard deviation (σ) is unknown and must be estimated from the sample data.",
+    correctAnswer: 2,
+    explanation: "The t statistic is used when the population standard deviation (\u03c3) is unknown and must be estimated from the sample data using the sample standard deviation (s).",
     difficulty: "easy",
     topic: "t Statistic Basics",
     points: 10
   },
   {
     id: 2,
-    question: "The estimated standard error (sₘ) is calculated as:",
+    question: "The estimated standard error (s\u2098) is calculated as:",
     options: [
-      "σ / √n",
-      "s / √n",
-      "s × √n",
-      "σ × √n"
+      "\u03c3 / \u221an",
+      "s \u00d7 \u221an",
+      "\u03c3 \u00d7 \u221an",
+      "s / \u221an (or equivalently \u221a(s\u00b2/n))"
     ],
-    correctAnswer: 1,
-    explanation: "The estimated standard error uses the sample standard deviation: sₘ = s / √n (or equivalently √(s²/n)).",
+    correctAnswer: 3,
+    explanation: "The estimated standard error uses the sample standard deviation (or variance) because \u03c3 is unknown: s\u2098 = s / \u221an = \u221a(s\u00b2/n).",
     difficulty: "easy",
     topic: "Estimated Standard Error",
     points: 10
@@ -1469,13 +1505,13 @@ export const chapter9Questions = [
     id: 3,
     question: "For a single-sample t-test with n = 25, the degrees of freedom (df) equals:",
     options: [
-      "25",
       "24",
+      "25",
       "26",
       "12.5"
     ],
-    correctAnswer: 1,
-    explanation: "For a single-sample t-test, df = n - 1. With n = 25, df = 25 - 1 = 24.",
+    correctAnswer: 0,
+    explanation: "For a single-sample t-test, df = n \u2212 1. With n = 25, df = 25 \u2212 1 = 24.",
     difficulty: "easy",
     topic: "Degrees of Freedom",
     points: 10
@@ -1500,12 +1536,12 @@ export const chapter9Questions = [
     question: "Compared to the normal distribution, the t distribution has:",
     options: [
       "Less variability and thinner tails",
-      "More variability and thicker (heavier) tails",
       "The same shape regardless of sample size",
+      "More variability and thicker (heavier) tails",
       "No relationship to degrees of freedom"
     ],
-    correctAnswer: 1,
-    explanation: "The t distribution has more variability and heavier tails than the normal distribution, especially with small sample sizes. This accounts for the additional uncertainty from estimating σ.",
+    correctAnswer: 2,
+    explanation: "The t distribution has more variability and heavier tails than the normal distribution, especially with small sample sizes. This accounts for the additional uncertainty from estimating \u03c3 with s.",
     difficulty: "medium",
     topic: "t Distribution",
     points: 15
@@ -1514,148 +1550,148 @@ export const chapter9Questions = [
     id: 6,
     question: "The formula for a single-sample t statistic is:",
     options: [
-      "t = (M - μ) / σ",
-      "t = (M - μ) / sₘ",
-      "t = (X - M) / s",
-      "t = (σ - μ) / n"
+      "t = (M \u2212 \u03bc) / \u03c3",
+      "t = (X \u2212 M) / s",
+      "t = (\u03c3 \u2212 \u03bc) / n",
+      "t = (M \u2212 \u03bc) / s\u2098"
     ],
-    correctAnswer: 1,
-    explanation: "The single-sample t statistic is t = (M - μ) / sₘ, where sₘ is the estimated standard error (s/√n).",
+    correctAnswer: 3,
+    explanation: "The single-sample t statistic is t = (M \u2212 \u03bc) / s\u2098, where s\u2098 is the estimated standard error (s/\u221an or \u221a(s\u00b2/n)).",
     difficulty: "medium",
     topic: "t Statistic Formula",
     points: 15
   },
   {
     id: 7,
-    question: "A repeated-measures t-test (paired-samples) is used when:",
+    question: "The r\u00b2 measure of effect size tells us:",
     options: [
-      "Comparing two completely separate groups",
-      "The same participants are measured in two different conditions",
-      "The population standard deviation is known",
-      "You have more than two groups to compare"
+      "The probability of a Type I error",
+      "The percentage of variance accounted for by the treatment",
+      "The number of participants needed",
+      "Whether to use a one-tailed or two-tailed test"
     ],
     correctAnswer: 1,
-    explanation: "A repeated-measures (or paired-samples) t-test is used when the same participants are measured twice, such as before and after a treatment.",
+    explanation: "r\u00b2 = t\u00b2/(t\u00b2 + df) measures the proportion of total variability in the scores that is accounted for by the treatment effect. It tells how much of the variance is explained.",
     difficulty: "medium",
-    topic: "Types of t-tests",
+    topic: "Effect Size",
     points: 15
   },
   {
     id: 8,
-    question: "In an independent-measures t-test, pooled variance is used to:",
+    question: "If a t-test yields t = 3.00 with df = 15, the value of r\u00b2 is:",
     options: [
-      "Increase the sample size",
-      "Estimate a common population variance from two samples",
-      "Calculate degrees of freedom",
-      "Determine the direction of the effect"
-    ],
-    correctAnswer: 1,
-    explanation: "Pooled variance (s²ₚ) combines the variance estimates from two samples to get a single, better estimate of the common population variance.",
-    difficulty: "medium",
-    topic: "Pooled Variance",
-    points: 15
-  },
-  {
-    id: 9,
-    question: "The formula for pooled variance is:",
-    options: [
-      "s²ₚ = (SS₁ + SS₂) / (df₁ + df₂)",
-      "s²ₚ = (SS₁ - SS₂) / (n₁ + n₂)",
-      "s²ₚ = SS₁ × SS₂",
-      "s²ₚ = (n₁ + n₂) / (SS₁ + SS₂)"
+      "r\u00b2 = 9/24 = 0.375",
+      "r\u00b2 = 3/18 = 0.167",
+      "r\u00b2 = 15/18 = 0.833",
+      "r\u00b2 = 9/15 = 0.600"
     ],
     correctAnswer: 0,
-    explanation: "Pooled variance is calculated as s²ₚ = (SS₁ + SS₂) / (df₁ + df₂), which is a weighted average of the two sample variances.",
+    explanation: "r\u00b2 = t\u00b2/(t\u00b2 + df) = 3\u00b2/(3\u00b2 + 15) = 9/(9 + 15) = 9/24 = 0.375 or 37.5% of the variance is accounted for by the treatment.",
     difficulty: "hard",
-    topic: "Pooled Variance",
+    topic: "Effect Size",
     points: 20
   },
   {
-    id: 10,
-    question: "A 95% confidence interval for μ means:",
+    id: 9,
+    question: "A confidence interval for \u03bc is computed as:",
     options: [
-      "95% of sample means fall in this interval",
-      "We are 95% confident the interval contains the true population mean",
-      "The population mean equals 95",
-      "There is a 95% chance our sample mean is correct"
+      "\u03bc = M \u00d7 t(s\u2098)",
+      "\u03bc = M / t(s\u2098)",
+      "\u03bc = M \u00b1 t(s\u2098)",
+      "\u03bc = t \u00b1 M(s\u2098)"
     ],
-    correctAnswer: 1,
-    explanation: "A 95% confidence interval means we are 95% confident that the interval we constructed contains the true population mean μ.",
+    correctAnswer: 2,
+    explanation: "A confidence interval estimates the population mean using: \u03bc = M \u00b1 t(s\u2098), where t is the critical value for the desired confidence level and s\u2098 is the estimated standard error.",
     difficulty: "medium",
     topic: "Confidence Intervals",
+    points: 15
+  },
+  {
+    id: 10,
+    question: "In Example 9.2, a sample of n = 9 has M = 46, SS = 162, and \u03bc = 50. What is the sample variance?",
+    options: [
+      "s\u00b2 = 162/9 = 18.00",
+      "s\u00b2 = 162/8 = 20.25",
+      "s\u00b2 = 46/9 = 5.11",
+      "s\u00b2 = 162/50 = 3.24"
+    ],
+    correctAnswer: 1,
+    explanation: "Sample variance uses df in the denominator: s\u00b2 = SS/(n \u2212 1) = 162/8 = 20.25. We divide by n \u2212 1 (not n) to get an unbiased estimate.",
+    difficulty: "medium",
+    topic: "Calculations",
     points: 15
   },
   {
     id: 11,
-    question: "What happens to the width of a confidence interval as sample size increases?",
+    question: "Using the data from Example 9.2 (s\u00b2 = 20.25, n = 9), what is the estimated standard error?",
     options: [
-      "It gets wider",
-      "It gets narrower",
-      "It stays the same",
-      "It becomes negative"
+      "s\u2098 = \u221a(20.25/9) = 1.50",
+      "s\u2098 = 20.25/9 = 2.25",
+      "s\u2098 = \u221a(9/20.25) = 0.67",
+      "s\u2098 = 20.25 \u00d7 9 = 182.25"
     ],
-    correctAnswer: 1,
-    explanation: "Larger samples produce smaller standard errors, which results in narrower (more precise) confidence intervals.",
+    correctAnswer: 0,
+    explanation: "s\u2098 = \u221a(s\u00b2/n) = \u221a(20.25/9) = \u221a2.25 = 1.50. This is the typical distance between a sample mean and the population mean.",
     difficulty: "medium",
-    topic: "Confidence Intervals",
+    topic: "Calculations",
     points: 15
   },
   {
     id: 12,
-    question: "The r² statistic (coefficient of determination) measures:",
+    question: "The key difference between a z-score test and a t-test is:",
     options: [
-      "The probability of Type I error",
-      "The percentage of variance accounted for by the treatment",
-      "The degrees of freedom",
-      "The sample size needed for significance"
+      "The z-test uses sample variance; the t-test uses population variance",
+      "The z-test is always one-tailed; the t-test is always two-tailed",
+      "The z-test requires known \u03c3; the t-test estimates \u03c3 from the sample",
+      "The z-test is for large samples only; the t-test is for small samples only"
     ],
-    correctAnswer: 1,
-    explanation: "r² measures effect size as the proportion (percentage) of total variance in the dependent variable that is explained by the treatment. Formula: r² = t²/(t² + df).",
-    difficulty: "medium",
-    topic: "Effect Size",
-    points: 15
+    correctAnswer: 2,
+    explanation: "The z-test requires knowing the population standard deviation (\u03c3). The t-test is used when \u03c3 is unknown and must be estimated from the sample (s). This is the fundamental difference.",
+    difficulty: "easy",
+    topic: "t Statistic Basics",
+    points: 10
   },
   {
     id: 13,
-    question: "If t = 3.00 and df = 15, what is r²?",
+    question: "Why does the t distribution have heavier tails than the normal distribution?",
     options: [
-      "r² = 0.20",
-      "r² = 0.38",
-      "r² = 0.60",
-      "r² = 0.75"
+      "Because t-tests always use larger alpha levels",
+      "Because the population mean is unknown",
+      "Because sample variance (s\u00b2) adds extra uncertainty beyond sampling error",
+      "Because t-tests require larger sample sizes"
     ],
-    correctAnswer: 1,
-    explanation: "r² = t²/(t² + df) = 9/(9 + 15) = 9/24 = 0.375, which rounds to 0.38 or 38%.",
+    correctAnswer: 2,
+    explanation: "The t distribution has heavier tails because using s\u00b2 to estimate \u03c3\u00b2 introduces additional variability. This extra uncertainty makes extreme t values more likely than extreme z values.",
     difficulty: "hard",
-    topic: "Effect Size",
+    topic: "t Distribution",
     points: 20
   },
   {
     id: 14,
-    question: "For an independent-measures t-test with n₁ = 10 and n₂ = 12, the degrees of freedom equals:",
+    question: "A 95% confidence interval for \u03bc that ranges from 42 to 50 means:",
     options: [
-      "22",
-      "20",
-      "21",
-      "10"
+      "95% of scores fall between 42 and 50",
+      "The population mean is definitely between 42 and 50",
+      "There is a 95% probability the sample mean is between 42 and 50",
+      "We are 95% confident this interval contains the population mean"
     ],
-    correctAnswer: 1,
-    explanation: "For an independent-measures t-test, df = (n₁ - 1) + (n₂ - 1) = n₁ + n₂ - 2 = 10 + 12 - 2 = 20.",
-    difficulty: "medium",
-    topic: "Degrees of Freedom",
-    points: 15
+    correctAnswer: 3,
+    explanation: "A 95% confidence interval means that if we repeated the study many times, 95% of the computed intervals would contain the true population mean \u03bc.",
+    difficulty: "hard",
+    topic: "Confidence Intervals",
+    points: 20
   },
   {
     id: 15,
-    question: "Which of the following is an assumption of the t-test?",
+    question: "For the single-sample t-test, which of these is an assumption?",
     options: [
-      "The population must be exactly normal",
-      "The observations within each sample must be independent",
-      "The two samples must have identical variances",
-      "The sample size must be at least 100"
+      "The population must be perfectly normal",
+      "The sample must have at least 30 observations",
+      "The observations in the sample must be independent",
+      "The population variance must be known"
     ],
-    correctAnswer: 1,
-    explanation: "A key assumption is that observations must be independent. While normality and homogeneity of variance are also assumptions, the t-test is robust to violations with adequate sample sizes.",
+    correctAnswer: 2,
+    explanation: "The t-test assumes: (1) random sampling, (2) independent observations, and (3) the population is approximately normal (or n is large enough). It does NOT require \u03c3 to be known\u2014that's the whole point of using a t-test.",
     difficulty: "medium",
     topic: "Assumptions",
     points: 15
@@ -1669,11 +1705,11 @@ export const chapter10Questions = [
     question: "An independent-measures design is also known as:",
     options: [
       "A within-subjects design",
-      "A between-subjects design",
       "A repeated-measures design",
+      "A between-subjects design",
       "A matched-pairs design"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "An independent-measures design uses two separate groups of participants and is also called a between-subjects design because comparisons are made between different groups of subjects.",
     difficulty: "easy",
     topic: "Independent-Measures Design",
@@ -1698,13 +1734,13 @@ export const chapter10Questions = [
     id: 3,
     question: "The null hypothesis for an independent-measures t-test states that:",
     options: [
-      "μ₁ > μ₂",
-      "μ₁ < μ₂",
-      "μ₁ - μ₂ = 0 (or μ₁ = μ₂)",
-      "μ₁ - μ₂ ≠ 0"
+      "\u03bc\u2081 > \u03bc\u2082",
+      "\u03bc\u2081 \u2212 \u03bc\u2082 \u2260 0",
+      "\u03bc\u2081 < \u03bc\u2082",
+      "\u03bc\u2081 \u2212 \u03bc\u2082 = 0 (or \u03bc\u2081 = \u03bc\u2082)"
     ],
-    correctAnswer: 2,
-    explanation: "The null hypothesis states there is no difference between the two population means: μ₁ - μ₂ = 0, which is equivalent to saying μ₁ = μ₂.",
+    correctAnswer: 3,
+    explanation: "The null hypothesis states there is no difference between the two population means: \u03bc\u2081 \u2212 \u03bc\u2082 = 0, which is equivalent to saying \u03bc\u2081 = \u03bc\u2082.",
     difficulty: "easy",
     topic: "Hypotheses",
     points: 10
@@ -1713,27 +1749,27 @@ export const chapter10Questions = [
     id: 4,
     question: "What does Levene's test evaluate?",
     options: [
-      "Whether sample means are equal",
       "Whether population variances are equal (homogeneity of variance)",
+      "Whether sample means are equal",
       "Whether the data are normally distributed",
       "Whether the samples are independent"
     ],
-    correctAnswer: 1,
-    explanation: "Levene's test evaluates the homogeneity of variance assumption—whether the population variances of the two groups are approximately equal.",
+    correctAnswer: 0,
+    explanation: "Levene's test evaluates the homogeneity of variance assumption\u2014whether the population variances of the two groups are approximately equal.",
     difficulty: "medium",
     topic: "Levene's Test",
     points: 15
   },
   {
     id: 5,
-    question: "If Levene's test has a p-value of 0.03 (α = .05), you should:",
+    question: "If Levene's test has a p-value of 0.03 (\u03b1 = .05), you should:",
     options: [
       "Proceed with the standard independent t-test",
-      "Use Welch's adjusted t-test (equal variances not assumed)",
       "Conclude the groups have equal means",
-      "Increase your sample size"
+      "Increase your sample size",
+      "Use Welch's adjusted t-test (equal variances not assumed)"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "When Levene's test is significant (p < .05), the homogeneity of variance assumption is violated. Use Welch's adjusted t-test which does not assume equal variances.",
     difficulty: "medium",
     topic: "Levene's Test",
@@ -1741,14 +1777,14 @@ export const chapter10Questions = [
   },
   {
     id: 6,
-    question: "If Levene's test has a p-value of 0.42 (α = .05), this means:",
+    question: "If Levene's test has a p-value of 0.42 (\u03b1 = .05), this means:",
     options: [
       "The variances are significantly different",
-      "You should use Welch's t-test",
       "The homogeneity of variance assumption is met",
+      "You should use Welch's t-test",
       "The null hypothesis of the main t-test should be rejected"
     ],
-    correctAnswer: 2,
+    correctAnswer: 1,
     explanation: "When Levene's test is not significant (p > .05), we retain the assumption that variances are equal. Proceed with the standard independent-measures t-test.",
     difficulty: "medium",
     topic: "Levene's Test",
@@ -1756,15 +1792,15 @@ export const chapter10Questions = [
   },
   {
     id: 7,
-    question: "Pooled variance (s²p) is calculated as:",
+    question: "Pooled variance (s\u00b2p) is calculated as:",
     options: [
-      "(SS₁ × SS₂) / (df₁ × df₂)",
-      "(SS₁ + SS₂) / (df₁ + df₂)",
-      "(SS₁ - SS₂) / (n₁ + n₂)",
-      "(n₁ + n₂) / (SS₁ + SS₂)"
+      "(SS\u2081 \u00d7 SS\u2082) / (df\u2081 \u00d7 df\u2082)",
+      "(SS\u2081 \u2212 SS\u2082) / (n\u2081 + n\u2082)",
+      "(SS\u2081 + SS\u2082) / (df\u2081 + df\u2082)",
+      "(n\u2081 + n\u2082) / (SS\u2081 + SS\u2082)"
     ],
-    correctAnswer: 1,
-    explanation: "Pooled variance combines the sum of squares from both samples divided by the combined degrees of freedom: s²p = (SS₁ + SS₂) / (df₁ + df₂).",
+    correctAnswer: 2,
+    explanation: "Pooled variance combines the sum of squares from both samples divided by the combined degrees of freedom: s\u00b2p = (SS\u2081 + SS\u2082) / (df\u2081 + df\u2082).",
     difficulty: "medium",
     topic: "Pooled Variance",
     points: 15
@@ -1774,11 +1810,11 @@ export const chapter10Questions = [
     question: "Why is pooled variance used in the independent-measures t-test?",
     options: [
       "To increase the sample size",
-      "To provide a better estimate of the common population variance",
       "To eliminate the need for degrees of freedom",
-      "To test for normality"
+      "To test for normality",
+      "To provide a better estimate of the common population variance"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Pooled variance combines information from both samples to get a single, more accurate estimate of the population variance, assuming both populations have equal variance.",
     difficulty: "medium",
     topic: "Pooled Variance",
@@ -1786,15 +1822,15 @@ export const chapter10Questions = [
   },
   {
     id: 9,
-    question: "For an independent-measures t-test with n₁ = 15 and n₂ = 20, the degrees of freedom equals:",
+    question: "For an independent-measures t-test with n\u2081 = 15 and n\u2082 = 20, the degrees of freedom equals:",
     options: [
       "35",
-      "33",
       "34",
+      "33",
       "17"
     ],
-    correctAnswer: 1,
-    explanation: "df = (n₁ - 1) + (n₂ - 1) = n₁ + n₂ - 2 = 15 + 20 - 2 = 33.",
+    correctAnswer: 2,
+    explanation: "df = (n\u2081 \u2212 1) + (n\u2082 \u2212 1) = n\u2081 + n\u2082 \u2212 2 = 15 + 20 \u2212 2 = 33.",
     difficulty: "easy",
     topic: "Degrees of Freedom",
     points: 10
@@ -1803,13 +1839,13 @@ export const chapter10Questions = [
     id: 10,
     question: "The formula for the estimated standard error of the mean difference is:",
     options: [
-      "s(M₁-M₂) = s²p / (n₁ + n₂)",
-      "s(M₁-M₂) = √(s²p/n₁ + s²p/n₂)",
-      "s(M₁-M₂) = (s₁ + s₂) / 2",
-      "s(M₁-M₂) = √(n₁ + n₂)"
+      "s(M\u2081-M\u2082) = s\u00b2p / (n\u2081 + n\u2082)",
+      "s(M\u2081-M\u2082) = (s\u2081 + s\u2082) / 2",
+      "s(M\u2081-M\u2082) = \u221a(n\u2081 + n\u2082)",
+      "s(M\u2081-M\u2082) = \u221a(s\u00b2p/n\u2081 + s\u00b2p/n\u2082)"
     ],
-    correctAnswer: 1,
-    explanation: "The estimated standard error of the mean difference uses pooled variance: s(M₁-M₂) = √(s²p/n₁ + s²p/n₂).",
+    correctAnswer: 3,
+    explanation: "The estimated standard error of the mean difference uses pooled variance: s(M\u2081-M\u2082) = \u221a(s\u00b2p/n\u2081 + s\u00b2p/n\u2082).",
     difficulty: "hard",
     topic: "Standard Error",
     points: 20
@@ -1818,30 +1854,30 @@ export const chapter10Questions = [
     id: 11,
     question: "The independent-measures t statistic formula is:",
     options: [
-      "t = (M₁ - M₂) / s(M₁-M₂)",
-      "t = (M₁ + M₂) / s(M₁-M₂)",
-      "t = (M₁ - M₂) × s(M₁-M₂)",
-      "t = s(M₁-M₂) / (M₁ - M₂)"
+      "t = (M\u2081 - M\u2082) / s(M\u2081-M\u2082)",
+      "t = (M\u2081 + M\u2082) / s(M\u2081-M\u2082)",
+      "t = (M\u2081 - M\u2082) \u00d7 s(M\u2081-M\u2082)",
+      "t = s(M\u2081-M\u2082) / (M\u2081 - M\u2082)"
     ],
     correctAnswer: 0,
-    explanation: "The t statistic measures how many standard errors the sample mean difference is from zero: t = (M₁ - M₂) / s(M₁-M₂).",
+    explanation: "The t statistic measures how many standard errors the sample mean difference is from zero: t = (M\u2081 \u2212 M\u2082) / s(M\u2081-M\u2082), assuming H\u2080 states \u03bc\u2081 \u2212 \u03bc\u2082 = 0.",
     difficulty: "medium",
     topic: "t Statistic Formula",
     points: 15
   },
   {
     id: 12,
-    question: "Which assumption is NOT required for the independent-measures t-test?",
+    question: "In Example 10.2, with SS\u2081 = 60, SS\u2082 = 66, n\u2081 = 8, n\u2082 = 8, what is the pooled variance?",
     options: [
-      "The observations within each sample are independent",
-      "The two populations must have exactly equal variances",
-      "The populations from which the samples are drawn should be normal",
-      "The two samples are independent of each other"
+      "s\u00b2p = 126/16 = 7.875",
+      "s\u00b2p = 126/14 = 9",
+      "s\u00b2p = 60/7 = 8.57",
+      "s\u00b2p = 66/7 = 9.43"
     ],
     correctAnswer: 1,
-    explanation: "The t-test assumes approximately equal variances, not exactly equal. The test is robust to moderate violations, especially with equal sample sizes. Levene's test checks this assumption.",
+    explanation: "s\u00b2p = (SS\u2081 + SS\u2082)/(df\u2081 + df\u2082) = (60 + 66)/((8-1) + (8-1)) = 126/14 = 9.",
     difficulty: "hard",
-    topic: "Assumptions",
+    topic: "Pooled Variance",
     points: 20
   },
   {
@@ -1849,11 +1885,11 @@ export const chapter10Questions = [
     question: "When sample sizes are unequal and variances are unequal, you should:",
     options: [
       "Always use the standard independent t-test",
-      "Use Welch's t-test (equal variances not assumed)",
       "Combine the two samples into one",
+      "Use Welch's t-test (equal variances not assumed)",
       "Double the larger sample size"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Welch's t-test adjusts for unequal variances and is recommended when Levene's test indicates heterogeneity of variance, especially with unequal sample sizes.",
     difficulty: "medium",
     topic: "Levene's Test",
@@ -1861,29 +1897,29 @@ export const chapter10Questions = [
   },
   {
     id: 14,
-    question: "A 95% confidence interval for (μ₁ - μ₂) that does NOT include zero suggests:",
+    question: "A 95% confidence interval for (\u03bc\u2081 \u2212 \u03bc\u2082) that does NOT include zero suggests:",
     options: [
-      "The means are not significantly different",
       "The means are significantly different",
+      "The means are not significantly different",
       "The variances are unequal",
       "The test has low power"
     ],
-    correctAnswer: 1,
-    explanation: "If the 95% CI for the mean difference does not include zero, this indicates the difference is statistically significant at α = .05.",
+    correctAnswer: 0,
+    explanation: "If the 95% CI for the mean difference does not include zero, this indicates the difference is statistically significant at \u03b1 = .05.",
     difficulty: "medium",
     topic: "Confidence Intervals",
     points: 15
   },
   {
     id: 15,
-    question: "An advantage of the independent-measures design is:",
+    question: "An advantage of the independent-measures design over repeated-measures is:",
     options: [
-      "It requires fewer participants than repeated-measures",
+      "It requires fewer participants",
       "Each participant serves as their own control",
-      "No risk of order effects or carryover effects",
-      "It always has more statistical power"
+      "It always has more statistical power",
+      "No risk of order effects or carryover effects"
     ],
-    correctAnswer: 2,
+    correctAnswer: 3,
     explanation: "Because different participants are in each group, there are no order effects, practice effects, or carryover effects that can occur in repeated-measures designs.",
     difficulty: "medium",
     topic: "Independent-Measures Design",
