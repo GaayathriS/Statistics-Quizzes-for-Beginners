@@ -1,7 +1,7 @@
 # PSYC 2001 Study Guide App - PRD
 
 ## Original Problem Statement
-A private tutor needs a web application to help a student study for statistics exams (PSYC 2001 at LMU). The app is structured into chapters matching the textbook "Essentials of Statistics for the Behavioral Sciences, 10th Edition." The current focus is on **Exam 2** covering Chapters 8-11, scheduled for March 23rd.
+A private tutor needs a web application to help a student study for statistics exams (PSYC 2001 at LMU). The app is structured into chapters matching the textbook "Essentials of Statistics for the Behavioral Sciences, 10th Edition." The current focus is on **Exam 2** covering Chapters 8-11.
 
 ## User Persona
 - **Primary User**: Psychology student preparing for statistics exams
@@ -10,72 +10,84 @@ A private tutor needs a web application to help a student study for statistics e
 ## Core Requirements
 1. Multi-chapter quiz and study guide application
 2. Each chapter can be a quiz, study guide, or both
-3. Interactive calculators and visual explanations for key chapters
-4. Comprehensive glossary organized by chapter (terms from study guide)
-5. Consistent quiz interface with Previous/Submit/Next navigation
-6. Answer positions should be varied (not biased toward one option)
+3. NHT (Null Hypothesis Testing) example walkthroughs with step-by-step explanations
+4. Interactive calculators for key computations
+5. Comprehensive glossary organized by chapter
+6. Consistent quiz UI with Previous/Submit/Next navigation and progress bar
+7. Balanced answer distribution across A/B/C/D options
 
 ## Tech Stack
-- React.js (Frontend), Tailwind CSS, Lucide React icons, Shadcn/UI
+- React.js, Tailwind CSS, Lucide React icons, Shadcn/UI
 - FastAPI (Backend - minimal, health check only)
 - All content stored client-side in `chaptersData.js`
 
 ## What's Been Implemented
 
-### Chapters with Quizzes Only
+### Quiz-Only Chapters
 - Chapter 1: Introduction to Statistics (15 questions)
 - Chapter 2: Frequency Distributions (15 questions)
 - Chapter 3: Central Tendency (15 questions)
-- Chapter 8: Introduction to Hypothesis Testing (15 questions) - answers balanced
-- Chapter 9: Introduction to the t Statistic (15 questions) - answers balanced
-- Chapter 10 quiz: 15 questions accessible from study view - answers balanced
 
-### Study + Quiz Chapters
-- Chapter 4: Z-Scores — Interactive calculator, bell curve, normal table guide, 25 quiz questions
-- Chapter 10: The t Test for Two Independent Samples — Concepts, Levene's Test, Pooled Variance Calculator, 15 quiz questions
+### Study + Quiz Chapters (Exam 2 Focus)
+- **Chapter 4**: Z-Scores — Calculator, bell curve, normal table guide, 25 quiz questions
+- **Chapter 8**: Introduction to Hypothesis Testing — Key Concepts, **Example 8.1** (Red Shirt Study, z-test), 15 quiz questions
+- **Chapter 9**: Introduction to the t Statistic — Key Concepts (t vs z, t distribution, r², CI), **Example 9.2** (eReader Alertness, single-sample t), 15 quiz questions
+- **Chapter 10**: The t Test for Two Independent Samples — Concepts, **Example 10.2** (Lighting & Dishonesty), Levene's Test, Pooled Variance Calculator, 15 quiz questions
+- **Chapter 11**: The t Test for Two Related Samples — Concepts (repeated-measures vs independent, comparison table), **Example 11.2** (eReader repeated-measures), Repeated-Measures t Calculator, 15 quiz questions
+
+### NHT Example Walkthroughs (Feb 2026)
+Each follows the 4-step process with collapsible sections:
+| Example | Design | Key Data | Result |
+|---------|--------|----------|--------|
+| 8.1 Red Shirt | z-test | μ=16, σ=3, n=36, M=17.2 | z=+2.40, reject H₀ |
+| 9.2 eReader | Single-sample t | μ=50, n=9, M=46, SS=162 | t=−2.67, reject H₀ |
+| 10.2 Lighting | Independent t | n₁=8 M₁=8, n₂=8 M₂=12 | t=−2.67, reject H₀ |
+| 11.2 eReader RM | Repeated-measures t | n=9, M_D=4, SS=162 | t=+2.67, reject H₀ |
 
 ### Glossary (Chapters 1-11)
 - Chapters 1-7: Fully populated
-- Chapter 8: 11 terms (hypothesis testing, null/alternative hypotheses, alpha, Type I/II errors, power, etc.)
-- Chapter 9: 7 terms (estimated standard error, t statistic, df, t distribution, r², hypotheses)
-- Chapter 10: 6 terms (independent-measures design, pooled variance, estimated standard error, hypotheses)
-- Chapter 11: 6 terms (repeated-measures design, difference scores, estimated standard error, hypotheses)
+- Chapter 8: 11 terms (hypothesis testing, errors, power)
+- Chapter 9: 7 terms (estimated standard error, t stat, df, r²)
+- Chapter 10: 6 terms (independent-measures, pooled variance)
+- Chapter 11: 6 terms (repeated-measures, difference scores)
 
-### Quiz UI Features (Feb 2026)
-- Progress bar at top showing question X of Y
-- Previous button (bottom left) to review earlier questions
-- Submit button (bottom right) to answer
-- Next button to advance after feedback
-- Saved answer state when navigating back (read-only review)
+### Quiz UI Features
+- Progress bar at top, Previous/Submit/Next navigation
+- Saved answer state when navigating back
+- Balanced answer distribution across A/B/C/D
 
 ## Architecture
 ```
 /app/frontend/src/
-  App.js                              # Main router with quiz state management
-  data/chaptersData.js                # All content: chapters, glossaries, questions
+  App.js                                # Main router
+  data/chaptersData.js                  # All content
   components/
-    QuizWelcome.jsx                   # Chapter list / home screen
-    QuizQuestion.jsx                  # Quiz with Previous/Submit/Next navigation
-    QuizResults.jsx                   # Results summary
-    Chapter4ZScores.jsx               # Ch4 study view
-    Chapter10IndependentT.jsx         # Ch10 study view
-    Chapter5Glossary.jsx              # Glossary (Chapters 1-11)
+    QuizWelcome.jsx                     # Chapter list
+    QuizQuestion.jsx                    # Quiz with Previous/Submit/Next
+    QuizResults.jsx                     # Results summary
+    Chapter4ZScores.jsx                 # Ch4 study
+    Chapter8HypothesisTesting.jsx       # Ch8 study + Example 8.1
+    Chapter9TStatistic.jsx              # Ch9 study + Example 9.2
+    Chapter10IndependentT.jsx           # Ch10 study + Example 10.2
+    Chapter11RepeatedMeasures.jsx       # Ch11 study + Example 11.2 + Calculator
+    Chapter5Glossary.jsx                # Glossary (Ch 1-11)
 ```
 
 ## Prioritized Backlog
 
 ### P0 (Done)
-- [x] All chapter quizzes (1-4, 8-10)
-- [x] Chapter 4 and 10 study sections
+- [x] All chapter quizzes (1-4, 8-11)
+- [x] Study sections for Ch 4, 8, 9, 10, 11
+- [x] NHT walkthroughs for Examples 8.1, 9.2, 10.2, 11.2
 - [x] Glossary for Chapters 1-11
-- [x] Balanced answer distribution for Ch 8-10
+- [x] Balanced answer distributions
 - [x] Previous/Submit/Next quiz navigation
 
 ### P1 (Upcoming)
-- [ ] Create Chapter 11 (The t Test for Two Related Samples) - Study + Quiz
+- [ ] User feedback/additional chapters as requested
 
 ### P2 (Future)
-- [ ] Add more chapters as textbook progresses
 - [ ] Split chaptersData.js into chapter-specific files
 - [ ] Progress persistence (localStorage)
 - [ ] Timed practice mode
+- [ ] Print-friendly study guide export
