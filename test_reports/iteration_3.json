@@ -17,7 +17,7 @@
   },
   
   "passed_tests": [
-    "App loads successfully on https://quiz-master-stats.preview.emergentagent.com",
+    "App loads successfully on https://psyc-2001-prep.preview.emergentagent.com",
     "Chapter selection screen displays correctly with Chapter 1: Introduction to Statistics",
     "Quiz interface loads properly showing Question 1 of 15",
     "Answer selection works - options are clickable and highlight when selected",
