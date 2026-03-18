@@ -56,6 +56,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Root-level health check endpoints (for Kubernetes probes)
+@app.get("/")
+async def health_root():
+    return {"status": "ok"}
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
