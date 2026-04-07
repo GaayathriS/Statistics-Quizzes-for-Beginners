@@ -76,9 +76,19 @@ export const chapters = [
     color: "from-teal-600 to-cyan-500"
   },
   {
+    id: 12,
+    title: "Introduction to Analysis of Variance",
+    description: "Learn one-way ANOVA for comparing three or more treatment means. Covers the F-ratio, between- and within-treatments variability, the ANOVA summary table, effect size (η²), and post hoc tests.",
+    topics: ["ANOVA Logic", "F-Ratio", "Between vs. Within", "Effect Size (η²)", "Post Hoc Tests"],
+    questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
+    color: "from-orange-600 to-amber-500"
+  },
+  {
     id: "glossary",
     title: "Glossary",
-    subtitle: "Chapters 1-11",
+    subtitle: "Chapters 1-12",
     description: "Review key terms and definitions from all chapters. Select a chapter to view its glossary of important statistical concepts.",
     topics: ["Key Terms", "Definitions", "Quick Reference"],
     questionCount: 0,
@@ -2171,6 +2181,235 @@ export const chapter11Questions = [
   }
 ];
 
+// Chapter 12 Questions - Introduction to Analysis of Variance
+export const chapter12Questions = [
+  {
+    id: 1,
+    question: "Analysis of variance (ANOVA) is used to test for significant differences between:",
+    options: [
+      "Two population means only",
+      "A sample mean and a population mean",
+      "Two or more population means",
+      "A sample variance and a population variance"
+    ],
+    correctAnswer: 2,
+    explanation: "ANOVA is designed to compare two or more population means simultaneously. While a t-test compares only two means, ANOVA can handle three, four, or more groups in a single test.",
+    difficulty: "easy",
+    topic: "ANOVA Basics",
+    points: 10
+  },
+  {
+    id: 2,
+    question: "The null hypothesis for a one-way ANOVA states:",
+    options: [
+      "H₀: μ₁ = μ₂ = μ₃ (all population means are equal)",
+      "H₀: at least one mean is different",
+      "H₀: σ₁² = σ₂² = σ₃²",
+      "H₀: the F-ratio equals zero"
+    ],
+    correctAnswer: 0,
+    explanation: "The null hypothesis for ANOVA states that there are no differences among the population means—all treatment conditions produce the same average outcome.",
+    difficulty: "easy",
+    topic: "Hypotheses",
+    points: 10
+  },
+  {
+    id: 3,
+    question: "The F-ratio in ANOVA is calculated as:",
+    options: [
+      "SS_between / SS_within",
+      "MS_between treatments / MS_within treatments",
+      "SS_total / df_total",
+      "MS_within / MS_between"
+    ],
+    correctAnswer: 1,
+    explanation: "The F-ratio = MS_between / MS_within. It compares the variance between treatment means (which includes treatment effects + error) to the variance within treatments (error only).",
+    difficulty: "easy",
+    topic: "F-Ratio",
+    points: 10
+  },
+  {
+    id: 4,
+    question: "Between-treatments variance (MS_between) measures:",
+    options: [
+      "Only random/unsystematic differences",
+      "Only the treatment effect",
+      "The average variance within each group",
+      "Differences caused by treatment effects PLUS random error"
+    ],
+    correctAnswer: 3,
+    explanation: "MS_between measures differences between treatment means, which could be caused by actual treatment effects plus random, unsystematic differences (sampling error). MS_within measures only the random error.",
+    difficulty: "medium",
+    topic: "Variance Components",
+    points: 15
+  },
+  {
+    id: 5,
+    question: "For a one-way ANOVA with k = 4 treatment conditions and N = 20 total participants, df_between = :",
+    options: [
+      "3",
+      "16",
+      "19",
+      "4"
+    ],
+    correctAnswer: 0,
+    explanation: "df_between = k − 1 = 4 − 1 = 3. The between-treatments degrees of freedom depend on the number of treatment conditions.",
+    difficulty: "medium",
+    topic: "Degrees of Freedom",
+    points: 15
+  },
+  {
+    id: 6,
+    question: "For the same study (k = 4, N = 20), df_within = :",
+    options: [
+      "3",
+      "16",
+      "19",
+      "20"
+    ],
+    correctAnswer: 1,
+    explanation: "df_within = N − k = 20 − 4 = 16. The within-treatments degrees of freedom equal the total number of scores minus the number of groups.",
+    difficulty: "medium",
+    topic: "Degrees of Freedom",
+    points: 15
+  },
+  {
+    id: 7,
+    question: "If the treatment has NO effect, the expected value of the F-ratio is approximately:",
+    options: [
+      "0",
+      "Less than 1",
+      "1.00",
+      "Greater than 1"
+    ],
+    correctAnswer: 2,
+    explanation: "When H₀ is true (no treatment effect), both MS_between and MS_within estimate the same error variance, so F ≈ MS_between / MS_within ≈ 1.00.",
+    difficulty: "medium",
+    topic: "F-Ratio",
+    points: 15
+  },
+  {
+    id: 8,
+    question: "Eta squared (η²) in ANOVA is calculated as:",
+    options: [
+      "SS_within / SS_total",
+      "MS_between / MS_within",
+      "df_between / df_total",
+      "SS_between / SS_total"
+    ],
+    correctAnswer: 3,
+    explanation: "η² = SS_between / SS_total. It measures the proportion of total variability in the scores that is accounted for by the differences between treatments—the effect size for ANOVA.",
+    difficulty: "medium",
+    topic: "Effect Size",
+    points: 15
+  },
+  {
+    id: 9,
+    question: "In ANOVA, SS_total can be partitioned into:",
+    options: [
+      "SS_between + SS_within",
+      "MS_between + MS_within",
+      "df_between + df_within",
+      "F + η²"
+    ],
+    correctAnswer: 0,
+    explanation: "Total variability is partitioned into two components: SS_total = SS_between + SS_within. This is the fundamental partitioning of variance in ANOVA.",
+    difficulty: "easy",
+    topic: "SS Partitioning",
+    points: 10
+  },
+  {
+    id: 10,
+    question: "A post hoc test (e.g., Tukey's HSD) is needed after ANOVA when:",
+    options: [
+      "The F-ratio is less than 1",
+      "The F-ratio is significant and there are more than two treatments",
+      "The null hypothesis is not rejected",
+      "There are exactly two treatment conditions"
+    ],
+    correctAnswer: 1,
+    explanation: "A significant F tells you that at least one mean differs, but not which ones. Post hoc tests (like Tukey's HSD) make pairwise comparisons to identify exactly which means are significantly different.",
+    difficulty: "hard",
+    topic: "Post Hoc Tests",
+    points: 20
+  },
+  {
+    id: 11,
+    question: "Why is it inappropriate to use multiple t-tests instead of ANOVA when comparing three or more groups?",
+    options: [
+      "t-tests are less powerful than ANOVA",
+      "t-tests cannot compare means",
+      "Multiple t-tests inflate the overall Type I error rate beyond alpha",
+      "t-tests require larger sample sizes"
+    ],
+    correctAnswer: 2,
+    explanation: "Each t-test has a risk of Type I error (α). With 3 groups you'd need 3 separate tests, and the accumulated risk (experimentwise error rate) exceeds the nominal alpha. ANOVA keeps the overall α at the stated level.",
+    difficulty: "hard",
+    topic: "Why ANOVA?",
+    points: 20
+  },
+  {
+    id: 12,
+    question: "MS_within treatments is a measure of:",
+    options: [
+      "The treatment effect",
+      "The total variability",
+      "The difference between group means",
+      "The average variability (error) inside each treatment condition"
+    ],
+    correctAnswer: 3,
+    explanation: "MS_within measures the average variability of scores within each group. Because participants in the same group receive the same treatment, this variability reflects only random/unsystematic differences (error).",
+    difficulty: "medium",
+    topic: "Variance Components",
+    points: 15
+  },
+  {
+    id: 13,
+    question: "An ANOVA has SS_between = 40, df_between = 2, SS_within = 24, df_within = 12. What is the F-ratio?",
+    options: [
+      "F = 10.00",
+      "F = 1.67",
+      "F = 20.00",
+      "F = 0.60"
+    ],
+    correctAnswer: 0,
+    explanation: "MS_between = 40/2 = 20. MS_within = 24/12 = 2. F = MS_between / MS_within = 20 / 2 = 10.00.",
+    difficulty: "hard",
+    topic: "Calculations",
+    points: 20
+  },
+  {
+    id: 14,
+    question: "An η² value of 0.25 means:",
+    options: [
+      "The F-ratio is 0.25",
+      "25% of the total variability is accounted for by treatment differences",
+      "The probability of a Type I error is 25%",
+      "The treatment effect is not significant"
+    ],
+    correctAnswer: 1,
+    explanation: "η² = 0.25 means that 25% of the total variability in the dependent variable is explained by the differences between treatment conditions. By Cohen's guidelines, this is a large effect.",
+    difficulty: "medium",
+    topic: "Effect Size",
+    points: 15
+  },
+  {
+    id: 15,
+    question: "Which is NOT an assumption of ANOVA?",
+    options: [
+      "The observations within each sample are independent",
+      "The populations have equal variances (homogeneity of variance)",
+      "The dependent variable must be measured on a nominal scale",
+      "The populations from which samples are drawn are normally distributed"
+    ],
+    correctAnswer: 2,
+    explanation: "ANOVA assumes: (1) independent observations, (2) normal populations, and (3) homogeneity of variance. The dependent variable must be interval or ratio, NOT nominal.",
+    difficulty: "hard",
+    topic: "Assumptions",
+    points: 20
+  }
+];
+
 // Get questions by chapter
 export const getChapterQuestions = (chapterId) => {
   switch(chapterId) {
@@ -2182,6 +2421,7 @@ export const getChapterQuestions = (chapterId) => {
     case 9: return chapter9Questions;
     case 10: return chapter10Questions;
     case 11: return chapter11Questions;
+    case 12: return chapter12Questions;
     default: return [];
   }
 };

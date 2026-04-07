@@ -8,8 +8,9 @@ import { Chapter8HypothesisTesting } from './components/Chapter8HypothesisTestin
 import { Chapter9TStatistic } from './components/Chapter9TStatistic';
 import { Chapter10IndependentT } from './components/Chapter10IndependentT';
 import { Chapter11RepeatedMeasures } from './components/Chapter11RepeatedMeasures';
+import { Chapter12ANOVA } from './components/Chapter12ANOVA';
 import { Chapter5Glossary } from './components/Chapter5Glossary';
-import { getChapterQuestions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapters } from './data/chaptersData';
+import { getChapterQuestions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapter12Questions, chapters } from './data/chaptersData';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
         case 9: setAppState('chapter9'); return;
         case 10: setAppState('chapter10'); return;
         case 11: setAppState('chapter11'); return;
+        case 12: setAppState('chapter12'); return;
         default: break;
       }
     }
@@ -76,6 +78,7 @@ function App() {
   const handleStartChapter9Quiz = () => startQuiz(chapter9Questions);
   const handleStartChapter10Quiz = () => startQuiz(chapter10Questions);
   const handleStartChapter11Quiz = () => startQuiz(chapter11Questions);
+  const handleStartChapter12Quiz = () => startQuiz(chapter12Questions);
 
   const handleSubmitAnswer = (selectedAnswer, isCorrect) => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -158,6 +161,10 @@ function App() {
 
       {appState === 'chapter11' && (
         <Chapter11RepeatedMeasures onBack={handleBackToChapters} onStartQuiz={handleStartChapter11Quiz} />
+      )}
+
+      {appState === 'chapter12' && (
+        <Chapter12ANOVA onBack={handleBackToChapters} onStartQuiz={handleStartChapter12Quiz} />
       )}
 
       {appState === 'chapter5' && (
