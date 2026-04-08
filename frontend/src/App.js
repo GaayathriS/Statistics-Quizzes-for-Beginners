@@ -9,8 +9,10 @@ import { Chapter9TStatistic } from './components/Chapter9TStatistic';
 import { Chapter10IndependentT } from './components/Chapter10IndependentT';
 import { Chapter11RepeatedMeasures } from './components/Chapter11RepeatedMeasures';
 import { Chapter12ANOVA } from './components/Chapter12ANOVA';
+import { Chapter13TwoFactorANOVA } from './components/Chapter13TwoFactorANOVA';
+import { GenericChapterStudy } from './components/GenericChapterStudy';
 import { Chapter5Glossary } from './components/Chapter5Glossary';
-import { getChapterQuestions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapter12Questions, chapters } from './data/chaptersData';
+import { getChapterQuestions, chapter1Questions, chapter2Questions, chapter3Questions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapter12Questions, chapter13Questions, chapters } from './data/chaptersData';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
@@ -54,12 +56,16 @@ function App() {
     // Study chapters route to their study components
     if (chapter.isStudyChapter) {
       switch (chapter.id) {
+        case 1: setAppState('chapter1'); return;
+        case 2: setAppState('chapter2'); return;
+        case 3: setAppState('chapter3'); return;
         case 4: setAppState('chapter4'); return;
         case 8: setAppState('chapter8'); return;
         case 9: setAppState('chapter9'); return;
         case 10: setAppState('chapter10'); return;
         case 11: setAppState('chapter11'); return;
         case 12: setAppState('chapter12'); return;
+        case 13: setAppState('chapter13'); return;
         default: break;
       }
     }
@@ -73,12 +79,16 @@ function App() {
     startQuiz(questions);
   };
 
+  const handleStartChapter1Quiz = () => startQuiz(chapter1Questions);
+  const handleStartChapter2Quiz = () => startQuiz(chapter2Questions);
+  const handleStartChapter3Quiz = () => startQuiz(chapter3Questions);
   const handleStartChapter4Quiz = () => startQuiz(chapter5Questions);
   const handleStartChapter8Quiz = () => startQuiz(chapter8Questions);
   const handleStartChapter9Quiz = () => startQuiz(chapter9Questions);
   const handleStartChapter10Quiz = () => startQuiz(chapter10Questions);
   const handleStartChapter11Quiz = () => startQuiz(chapter11Questions);
   const handleStartChapter12Quiz = () => startQuiz(chapter12Questions);
+  const handleStartChapter13Quiz = () => startQuiz(chapter13Questions);
 
   const handleSubmitAnswer = (selectedAnswer, isCorrect) => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -143,6 +153,18 @@ function App() {
         <QuizWelcome onSelectChapter={handleSelectChapter} />
       )}
       
+      {appState === 'chapter1' && (
+        <GenericChapterStudy chapterId={1} onBack={handleBackToChapters} onStartQuiz={handleStartChapter1Quiz} />
+      )}
+
+      {appState === 'chapter2' && (
+        <GenericChapterStudy chapterId={2} onBack={handleBackToChapters} onStartQuiz={handleStartChapter2Quiz} />
+      )}
+
+      {appState === 'chapter3' && (
+        <GenericChapterStudy chapterId={3} onBack={handleBackToChapters} onStartQuiz={handleStartChapter3Quiz} />
+      )}
+
       {appState === 'chapter4' && (
         <Chapter4ZScores onBack={handleBackToChapters} onStartQuiz={handleStartChapter4Quiz} />
       )}
@@ -165,6 +187,10 @@ function App() {
 
       {appState === 'chapter12' && (
         <Chapter12ANOVA onBack={handleBackToChapters} onStartQuiz={handleStartChapter12Quiz} />
+      )}
+
+      {appState === 'chapter13' && (
+        <Chapter13TwoFactorANOVA onBack={handleBackToChapters} onStartQuiz={handleStartChapter13Quiz} />
       )}
 
       {appState === 'chapter5' && (

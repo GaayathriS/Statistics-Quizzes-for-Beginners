@@ -7,6 +7,8 @@ export const chapters = [
     description: "Test your knowledge of fundamental statistical concepts including populations and samples, variables and measurement scales, research methods, and statistical notation.",
     topics: ["Basic Definitions", "Research Methods", "Measurement Scales", "Statistical Notation"],
     questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
     color: "from-blue-600 to-blue-400"
   },
   {
@@ -15,6 +17,8 @@ export const chapters = [
     description: "Test your knowledge of frequency distributions including tables, grouped data, graphs (histograms, polygons, bar graphs), percentiles, percentile ranks, and stem-and-leaf displays.",
     topics: ["Frequency Distribution Basics", "Grouped Frequency Distributions", "Percentiles and Percentile Ranks", "Graphs and Charts", "Stem-and-Leaf Displays"],
     questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
     color: "from-purple-600 to-purple-400"
   },
   {
@@ -23,6 +27,8 @@ export const chapters = [
     description: "Test your knowledge of measures of central tendency including the mean, median, and mode, as well as how these measures relate to distribution shape and when to use each one.",
     topics: ["Central Tendency Basics", "The Mean", "The Median", "The Mode", "Selecting the Appropriate Measure", "Distribution Shape"],
     questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
     color: "from-emerald-600 to-emerald-400"
   },
   {
@@ -84,6 +90,16 @@ export const chapters = [
     isStudyChapter: true,
     hasQuiz: true,
     color: "from-orange-600 to-amber-500"
+  },
+  {
+    id: 13,
+    title: "Two-Factor Analysis of Variance",
+    description: "Learn two-factor (factorial) ANOVA for studying two independent variables simultaneously. Covers main effects, interactions, SS partitioning into four sources, and interpreting interaction graphs.",
+    topics: ["Factorial Design", "Main Effects", "Interactions", "Two-Factor ANOVA Table"],
+    questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
+    color: "from-red-600 to-rose-500"
   },
   {
     id: "glossary",
@@ -2410,6 +2426,235 @@ export const chapter12Questions = [
   }
 ];
 
+// Chapter 13 Questions - Two-Factor Analysis of Variance
+export const chapter13Questions = [
+  {
+    id: 1,
+    question: "A two-factor design (factorial design) studies:",
+    options: [
+      "Two dependent variables simultaneously",
+      "Two independent variables (factors) simultaneously",
+      "One independent variable with two levels",
+      "Two samples from the same population"
+    ],
+    correctAnswer: 1,
+    explanation: "A two-factor (factorial) design examines the effects of two independent variables at the same time, including their potential interaction.",
+    difficulty: "easy",
+    topic: "Factorial Design",
+    points: 10
+  },
+  {
+    id: 2,
+    question: "In a 2 x 3 factorial design, how many treatment conditions (cells) are there?",
+    options: [
+      "5",
+      "6",
+      "8",
+      "23"
+    ],
+    correctAnswer: 1,
+    explanation: "A 2 x 3 design means Factor A has 2 levels and Factor B has 3 levels. The total number of cells = 2 x 3 = 6.",
+    difficulty: "easy",
+    topic: "Factorial Notation",
+    points: 10
+  },
+  {
+    id: 3,
+    question: "A main effect in two-factor ANOVA refers to:",
+    options: [
+      "The combined effect of both factors",
+      "The mean differences among levels of one factor, averaging over the other factor",
+      "The interaction between the two factors",
+      "The total variability in the data"
+    ],
+    correctAnswer: 1,
+    explanation: "A main effect is the overall effect of one factor on the dependent variable, computed by averaging across all levels of the other factor (looking at row means or column means).",
+    difficulty: "medium",
+    topic: "Main Effects",
+    points: 15
+  },
+  {
+    id: 4,
+    question: "An interaction effect exists when:",
+    options: [
+      "Both factors have significant main effects",
+      "Neither factor has a significant main effect",
+      "The effect of one factor depends on the level of the other factor",
+      "The F-ratio is greater than 1"
+    ],
+    correctAnswer: 2,
+    explanation: "An interaction means the effect of one factor is not the same across all levels of the other factor. The two factors are not independent in their influence on the DV.",
+    difficulty: "medium",
+    topic: "Interactions",
+    points: 15
+  },
+  {
+    id: 5,
+    question: "In a graph of cell means, an interaction is suggested by:",
+    options: [
+      "Lines that are parallel",
+      "Lines that are not parallel (they cross or converge)",
+      "All points having the same value",
+      "A single straight line"
+    ],
+    correctAnswer: 1,
+    explanation: "Non-parallel lines indicate that the effect of one factor changes depending on the level of the other factor — the hallmark of an interaction.",
+    difficulty: "easy",
+    topic: "Interpreting Interactions",
+    points: 10
+  },
+  {
+    id: 6,
+    question: "Two-factor ANOVA tests how many separate hypotheses?",
+    options: [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    correctAnswer: 2,
+    explanation: "Two-factor ANOVA tests three null hypotheses: (1) no main effect of Factor A, (2) no main effect of Factor B, and (3) no A x B interaction.",
+    difficulty: "medium",
+    topic: "Hypotheses",
+    points: 15
+  },
+  {
+    id: 7,
+    question: "In two-factor ANOVA, total variability (SS_total) is partitioned into:",
+    options: [
+      "SS_between + SS_within",
+      "SS_A + SS_B + SS_within",
+      "SS_A + SS_B + SS_AxB + SS_within",
+      "SS_A + SS_AxB + SS_within"
+    ],
+    correctAnswer: 2,
+    explanation: "Total variability is split into four sources: the main effect of A (SS_A), the main effect of B (SS_B), the interaction (SS_AxB), and the within-treatments error (SS_within).",
+    difficulty: "medium",
+    topic: "SS Partitioning",
+    points: 15
+  },
+  {
+    id: 8,
+    question: "The F-ratio for the interaction effect is:",
+    options: [
+      "F = MS_A / MS_within",
+      "F = MS_B / MS_within",
+      "F = MS_AxB / MS_within",
+      "F = MS_A / MS_B"
+    ],
+    correctAnswer: 2,
+    explanation: "Each effect in two-factor ANOVA uses MS_within as the denominator (error term). The interaction F-ratio = MS_AxB / MS_within.",
+    difficulty: "medium",
+    topic: "F-Ratios",
+    points: 15
+  },
+  {
+    id: 9,
+    question: "For a 2 x 3 factorial design, df for the interaction (A x B) is:",
+    options: [
+      "1 x 2 = 2",
+      "2 x 3 = 6",
+      "(2-1) + (3-1) = 3",
+      "2 + 3 = 5"
+    ],
+    correctAnswer: 0,
+    explanation: "df_AxB = df_A x df_B = (2-1)(3-1) = 1 x 2 = 2. The interaction df equals the product of the individual factor df values.",
+    difficulty: "hard",
+    topic: "Degrees of Freedom",
+    points: 20
+  },
+  {
+    id: 10,
+    question: "If Factor A has 3 levels and Factor B has 2 levels, df_A = :",
+    options: [
+      "2",
+      "3",
+      "1",
+      "5"
+    ],
+    correctAnswer: 0,
+    explanation: "df_A = number of levels of A - 1 = 3 - 1 = 2.",
+    difficulty: "easy",
+    topic: "Degrees of Freedom",
+    points: 10
+  },
+  {
+    id: 11,
+    question: "What does it mean when there is a significant interaction but no significant main effects?",
+    options: [
+      "The results are invalid and the study should be repeated",
+      "The effect of one factor reverses direction at different levels of the other factor, canceling out the main effects",
+      "There is no treatment effect at all",
+      "The sample size was too small"
+    ],
+    correctAnswer: 1,
+    explanation: "A significant interaction without main effects can occur when the effect of one factor reverses at different levels of the other, so the average across levels (the main effect) cancels out.",
+    difficulty: "hard",
+    topic: "Interpreting Results",
+    points: 20
+  },
+  {
+    id: 12,
+    question: "The error term (denominator) for ALL three F-ratios in two-factor ANOVA is:",
+    options: [
+      "MS_A",
+      "MS_B",
+      "MS_AxB",
+      "MS_within"
+    ],
+    correctAnswer: 3,
+    explanation: "MS_within (the average variability inside each cell) serves as the error term for the main effect of A, the main effect of B, and the interaction.",
+    difficulty: "medium",
+    topic: "F-Ratios",
+    points: 15
+  },
+  {
+    id: 13,
+    question: "In a 2 x 2 design with n = 10 per cell, what is df_within?",
+    options: [
+      "36",
+      "38",
+      "39",
+      "40"
+    ],
+    correctAnswer: 0,
+    explanation: "N = 4 cells x 10 = 40 total participants. Number of cells = 2 x 2 = 4. df_within = N - (number of cells) = 40 - 4 = 36.",
+    difficulty: "hard",
+    topic: "Degrees of Freedom",
+    points: 20
+  },
+  {
+    id: 14,
+    question: "η² for the interaction effect is computed as:",
+    options: [
+      "SS_AxB / SS_within",
+      "SS_AxB / SS_total",
+      "MS_AxB / MS_within",
+      "SS_A / SS_total"
+    ],
+    correctAnswer: 1,
+    explanation: "η²_AxB = SS_AxB / SS_total. It tells us what proportion of total variability is accounted for by the interaction between the two factors.",
+    difficulty: "medium",
+    topic: "Effect Size",
+    points: 15
+  },
+  {
+    id: 15,
+    question: "Which of the following is an advantage of a factorial design over two separate single-factor experiments?",
+    options: [
+      "It requires fewer total participants to study the same effects",
+      "It eliminates the need for a control group",
+      "It can detect interactions between factors, which separate experiments cannot",
+      "It always produces significant results"
+    ],
+    correctAnswer: 2,
+    explanation: "The key advantage of factorial designs is the ability to examine how factors combine — the interaction effect. Running separate single-factor studies would miss this entirely.",
+    difficulty: "hard",
+    topic: "Advantages of Factorial Design",
+    points: 20
+  }
+];
+
 // Get questions by chapter
 export const getChapterQuestions = (chapterId) => {
   switch(chapterId) {
@@ -2422,6 +2667,7 @@ export const getChapterQuestions = (chapterId) => {
     case 10: return chapter10Questions;
     case 11: return chapter11Questions;
     case 12: return chapter12Questions;
+    case 13: return chapter13Questions;
     default: return [];
   }
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { ArrowLeft, BookOpen, FlaskConical, Play, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, BookOpen, FlaskConical, Play, ChevronDown, ChevronUp } from 'lucide-react';
 
 const NHTStep = ({ step, title, children, color }) => {
   const [open, setOpen] = useState(true);
@@ -26,7 +26,6 @@ export const Chapter9TStatistic = ({ onBack, onStartQuiz }) => {
   const tabs = [
     { id: 'concepts', label: 'Key Concepts', icon: BookOpen },
     { id: 'example', label: 'Example 9.2', icon: FlaskConical },
-    { id: 'quiz', label: 'Quiz', icon: Play },
   ];
 
   return (
@@ -60,6 +59,14 @@ export const Chapter9TStatistic = ({ onBack, onStartQuiz }) => {
               {tab.label}
             </button>
           ))}
+          <button
+            onClick={onStartQuiz}
+            data-testid="ch9-tab-quiz"
+            className="flex items-center gap-2 px-4 py-2 rounded-t-lg font-medium transition-all whitespace-nowrap text-muted-foreground hover:bg-muted"
+          >
+            <Play className="w-4 h-4" />
+            Quiz
+          </button>
         </div>
 
         {/* Concepts Tab */}
@@ -249,30 +256,6 @@ export const Chapter9TStatistic = ({ onBack, onStartQuiz }) => {
           </div>
         )}
 
-        {/* Quiz Tab */}
-        {activeTab === 'quiz' && (
-          <div className="flex flex-col items-center justify-center py-12 space-y-6 fade-in">
-            <Card className="border-2 border-primary/10 max-w-lg w-full">
-              <CardContent className="p-8 text-center space-y-6">
-                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto">
-                  <Play className="w-8 h-8 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Chapter 9 Quiz</h3>
-                  <p className="text-muted-foreground">Test your understanding of the t statistic, estimated standard error, degrees of freedom, r&#178;, and confidence intervals.</p>
-                </div>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  <Badge variant="outline">15 Questions</Badge>
-                  <Badge variant="outline">Mixed Difficulty</Badge>
-                  <Badge variant="outline">205 Points</Badge>
-                </div>
-                <Button onClick={onStartQuiz} size="lg" className="btn-glow" data-testid="ch9-start-quiz-btn">
-                  Start Quiz <ChevronRight className="w-5 h-5 ml-2" />
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        )}
       </div>
     </div>
   );
