@@ -1,7 +1,7 @@
 # PSYC 2001 Study Guide App - PRD
 
 ## Original Problem Statement
-A private tutor needs a web application to help a student study for statistics exams (PSYC 2001 at LMU). The app is structured into chapters matching the textbook "Essentials of Statistics for the Behavioral Sciences, 10th Edition." The current focus is on **Exam 3** covering Chapters 12-13.
+A private tutor needs a web application to help a student study for statistics exams (PSYC 2001 at LMU). The app is structured into chapters matching the textbook "Essentials of Statistics for the Behavioral Sciences, 10th Edition."
 
 ## Tech Stack
 - React.js, Tailwind CSS, Lucide React icons, Shadcn/UI
@@ -23,12 +23,16 @@ A private tutor needs a web application to help a student study for statistics e
 - **Chapter 13**: Two-Factor ANOVA — Concepts (factorial design, main effects, interactions, SS partitioning, F-ratios, η²), Two-Factor ANOVA Calculator, 15 quiz questions, NO NHT example
 
 ### Quiz UX
-- Quiz tab in all study chapters directly starts quiz (no intermediate landing page)
+- Back to Chapters button on quiz screen
+- Quiz tab in study chapters directly starts quiz (no intermediate landing page)
 - Progress bar, Previous/Submit/Next navigation
 - Balanced answer distributions across A/B/C/D
 
-### Glossary (Chapters 1-11)
-- Chapter 12 glossary terms pending (user deferred)
+### Glossary (Chapters 1-13)
+- All chapters 1-13 fully populated with terms
+- Ch 12: 16 ANOVA terms (F-ratio, eta squared, Tukey's HSD, etc.)
+- Ch 13: 8 Two-Factor ANOVA terms (factorial design, main effect, interaction, simple main effects, etc.)
+- Basic/cross-cutting terms (effect size) added to Ch 8
 
 ## Architecture
 ```
@@ -51,7 +55,6 @@ A private tutor needs a web application to help a student study for statistics e
 ## Prioritized Backlog
 
 ### P1 (Upcoming)
-- [ ] Glossary terms for Chapters 12 & 13
 - [ ] Practice Exam Mode (random questions from Chapters 8-13)
 - [ ] Deployment fix (restart loop issue)
 
