@@ -18,6 +18,8 @@ const glossaryChapters = [
   { id: 9, title: "Introduction to the t Statistic", color: "from-violet-600 to-violet-400" },
   { id: 10, title: "The t Test for Two Independent Samples", color: "from-pink-600 to-pink-400" },
   { id: 11, title: "The t Test for Two Related Samples", color: "from-teal-600 to-teal-400" },
+  { id: 12, title: "Introduction to Analysis of Variance", color: "from-orange-600 to-amber-500" },
+  { id: 13, title: "Two-Factor Analysis of Variance", color: "from-red-600 to-rose-500" },
 ];
 
 export const Chapter5Glossary = ({ onBack }) => {
@@ -62,7 +64,7 @@ export const Chapter5Glossary = ({ onBack }) => {
           <p className="text-muted-foreground mt-2">
             {selectedChapter 
               ? `Chapter ${selectedChapter.id}: ${selectedChapter.title}`
-              : 'Key terms and definitions from Chapters 1-11'
+              : 'Key terms and definitions from Chapters 1-13'
             }
           </p>
         </div>

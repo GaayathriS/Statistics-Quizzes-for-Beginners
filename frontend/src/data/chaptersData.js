@@ -104,7 +104,7 @@ export const chapters = [
   {
     id: "glossary",
     title: "Glossary",
-    subtitle: "Chapters 1-12",
+    subtitle: "Chapters 1-13",
     description: "Review key terms and definitions from all chapters. Select a chapter to view its glossary of important statistical concepts.",
     topics: ["Key Terms", "Definitions", "Quick Reference"],
     questionCount: 0,
@@ -215,7 +215,8 @@ export const chapterGlossaries = {
     { term: "Type II error", definition: "Occurs when a false null hypothesis is not rejected—failing to detect a real treatment effect (a false negative). The probability of a Type II error is represented by beta (β)." },
     { term: "Statistically significant", definition: "A result is statistically significant when the sample data are very unlikely under the null hypothesis—unlikely enough to fall in the critical region—leading to rejection of H₀." },
     { term: "Nondirectional (two-tailed) test", definition: "A hypothesis test in which the critical region is divided between both tails of the distribution. The alternative hypothesis does not specify the direction of the effect (H₁: μ ≠ value)." },
-    { term: "Power", definition: "The probability that a hypothesis test will correctly reject a false null hypothesis—that is, the probability of detecting a real treatment effect. Power = 1 − β. It increases with larger sample sizes, larger effects, and larger alpha levels." }
+    { term: "Power", definition: "The probability that a hypothesis test will correctly reject a false null hypothesis—that is, the probability of detecting a real treatment effect. Power = 1 − β. It increases with larger sample sizes, larger effects, and larger alpha levels." },
+    { term: "Effect size", definition: "A measure of the magnitude of a phenomenon or the strength of a relationship between variables. It quantifies how large or meaningful a treatment effect is, independent of sample size." }
   ],
   9: [
     { term: "Estimated standard error (sₘ)", definition: "An estimate of the standard error of M used when the population standard deviation (σ) is unknown. It is computed from the sample variance: sₘ = √(s²/n). It measures the typical distance between a sample mean and the population mean." },
@@ -241,6 +242,34 @@ export const chapterGlossaries = {
     { term: "Repeated-measures t statistic", definition: "The test statistic for comparing two related samples, based on difference scores: t = (M_D − μ_D) / s_MD. It is structurally identical to the single-sample t statistic but uses D values instead of raw X values." },
     { term: "Null hypothesis for repeated-measures", definition: "States there is no systematic change in scores: H₀: μ_D = 0 (the mean difference for the population is zero)." },
     { term: "Alternative hypothesis for repeated-measures", definition: "States there is a systematic change: H₁: μ_D ≠ 0 (the mean difference for the population is not zero)." }
+  ],
+  12: [
+    { term: "Analysis of variance (ANOVA)", definition: "A statistical test used to compare the means of three or more groups to determine if at least one group mean is significantly different from the others." },
+    { term: "Factor", definition: "An independent variable in an ANOVA. In a one-way ANOVA, there is one factor with two or more levels." },
+    { term: "Levels", definition: "The different categories or conditions within a factor (independent variable)." },
+    { term: "Testwise alpha level", definition: "The probability of making a Type I error for a single statistical test." },
+    { term: "Experimentwise alpha level", definition: "The probability of making at least one Type I error across all statistical tests conducted in a study. Formula: αEW = 1 − (1 − α)^c, where c = the number of comparisons." },
+    { term: "Between-treatments variance", definition: "The variance calculated from the differences between the means of the different treatment groups. It reflects both treatment effects and random error." },
+    { term: "Treatment effect", definition: "The variation in the dependent variable that is attributable to the independent variable (the differences caused by the treatments)." },
+    { term: "Within-treatments variance", definition: "The variance calculated from the variability within each treatment group. It measures only random/unsystematic differences (error)." },
+    { term: "F-ratio", definition: "The ratio of the between-treatments variance to the within-treatments variance: F = MS_between / MS_within. Used in ANOVA to determine if there is a significant difference between group means." },
+    { term: "Error term", definition: "The within-treatments variance (MS_within), representing random error or variability not accounted for by the treatment." },
+    { term: "Mean square (MS)", definition: "A measure of variance calculated by dividing the sum of squares by the degrees of freedom: MS = SS / df." },
+    { term: "ANOVA summary table", definition: "A table that presents the results of an ANOVA, including sources of variation (between, within, total), degrees of freedom, sums of squares, mean squares, F-statistic, and p-value." },
+    { term: "Eta squared (η²)", definition: "A measure of effect size in ANOVA representing the proportion of total variance in the dependent variable accounted for by the treatment: η² = SS_between / SS_total." },
+    { term: "Post hoc tests", definition: "Statistical tests conducted after a significant ANOVA result to determine which specific group means differ significantly from each other." },
+    { term: "Pairwise comparisons", definition: "Comparisons made between the means of two specific groups, typically performed as part of post hoc testing." },
+    { term: "Tukey's HSD test", definition: "A specific type of post hoc test used to make all possible pairwise comparisons between group means while controlling the experimentwise error rate." }
+  ],
+  13: [
+    { term: "Factorial design", definition: "An experimental design that includes two or more independent variables (factors), allowing the study of each factor's effect and their interactions." },
+    { term: "Two-factor design", definition: "A specific type of factorial design with exactly two independent variables. For example, a 2×3 design has Factor A with 2 levels and Factor B with 3 levels." },
+    { term: "Main effect", definition: "The effect of a single independent variable on the dependent variable, averaged across the levels of the other independent variable(s). Examined by comparing row means or column means." },
+    { term: "Interaction", definition: "A situation where the effect of one independent variable on the dependent variable depends on the level of another independent variable. Indicated by non-parallel lines in a graph of cell means." },
+    { term: "Simple main effects", definition: "The effect of one independent variable on the dependent variable at a specific level of another independent variable. Used to interpret a significant interaction." },
+    { term: "Eta squared (η²) for two-factor ANOVA", definition: "Separate η² values can be computed for each effect: η²_A = SS_A / SS_total, η²_B = SS_B / SS_total, η²_AxB = SS_AxB / SS_total." },
+    { term: "Post hoc tests (two-factor)", definition: "Statistical tests conducted after a significant F-ratio in a two-factor ANOVA to determine which specific means differ." },
+    { term: "Tukey's HSD test (two-factor)", definition: "A post hoc test used for pairwise comparisons, applied separately for significant main effects or to interpret the interaction." }
   ]
 };
 

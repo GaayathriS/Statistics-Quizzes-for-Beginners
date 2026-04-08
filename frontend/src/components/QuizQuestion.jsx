@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { CheckCircle2, XCircle, ChevronRight, ChevronLeft, Lightbulb } from 'lucide-react';
+import { CheckCircle2, XCircle, ChevronRight, ChevronLeft, Lightbulb, ArrowLeft } from 'lucide-react';
 import { Progress } from './ui/progress';
 
 export const QuizQuestion = ({ 
@@ -12,6 +12,7 @@ export const QuizQuestion = ({
   onSubmitAnswer,
   onNext,
   onPrevious,
+  onBackToChapters,
   canGoPrevious,
   savedState,
   currentScore,
@@ -90,6 +91,14 @@ export const QuizQuestion = ({
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-background to-muted">
       <div className="w-full max-w-4xl space-y-6">
+        {/* Back Button */}
+        <div className="fade-in">
+          <Button variant="ghost" size="sm" onClick={onBackToChapters} data-testid="quiz-back-btn" className="text-muted-foreground hover:text-foreground">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Chapters
+          </Button>
+        </div>
+
         {/* Progress Bar */}
         <div className="space-y-3 fade-in" data-testid="quiz-progress-section">
           <div className="flex justify-between items-center">

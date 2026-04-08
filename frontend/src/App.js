@@ -205,6 +205,7 @@ function App() {
           onSubmitAnswer={handleSubmitAnswer}
           onNext={handleNextQuestion}
           onPrevious={handlePreviousQuestion}
+          onBackToChapters={handleBackToChapters}
           canGoPrevious={currentQuestionIndex > 0}
           savedState={answeredQuestions[currentQuestionIndex] || null}
           currentScore={earnedPoints}
