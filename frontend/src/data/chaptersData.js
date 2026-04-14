@@ -110,6 +110,16 @@ export const chapters = [
     questionCount: 0,
     isGlossaryChapter: true,
     color: "from-amber-600 to-amber-400"
+  },
+  {
+    id: "practice",
+    title: "Practice Exams",
+    subtitle: "Exam 3",
+    description: "Full-length 30-question practice exams in the same format as the real exams, with SPSS output scenarios and multiple-choice questions.",
+    topics: ["SPSS Output", "ANOVA", "Two-Factor ANOVA", "30 Questions"],
+    questionCount: 30,
+    isPracticeExam: true,
+    color: "from-slate-700 to-slate-500"
   }
 ];
 

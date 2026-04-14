@@ -12,6 +12,7 @@ import { Chapter12ANOVA } from './components/Chapter12ANOVA';
 import { Chapter13TwoFactorANOVA } from './components/Chapter13TwoFactorANOVA';
 import { GenericChapterStudy } from './components/GenericChapterStudy';
 import { Chapter5Glossary } from './components/Chapter5Glossary';
+import { PracticeExam3 } from './components/PracticeExam3';
 import { getChapterQuestions, chapter1Questions, chapter2Questions, chapter3Questions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapter12Questions, chapter13Questions, chapters } from './data/chaptersData';
 import { Toaster } from './components/ui/sonner';
 
@@ -72,6 +73,11 @@ function App() {
     
     if (chapter.isGlossaryChapter) {
       setAppState('chapter5');
+      return;
+    }
+
+    if (chapter.isPracticeExam) {
+      setAppState('practiceExam3');
       return;
     }
     
@@ -195,6 +201,10 @@ function App() {
 
       {appState === 'chapter5' && (
         <Chapter5Glossary onBack={handleBackToChapters} />
+      )}
+
+      {appState === 'practiceExam3' && (
+        <PracticeExam3 onBack={handleBackToChapters} />
       )}
       
       {appState === 'quiz' && quizQuestions.length > 0 && (
