@@ -6,33 +6,38 @@ A private tutor needs a web application to help a student study for statistics e
 ## Tech Stack
 - React.js, Tailwind CSS, Lucide React icons, Shadcn/UI
 - FastAPI (Backend - minimal, health check only)
-- All content stored client-side in `chaptersData.js`
+- All content stored client-side
 
 ## What's Been Implemented
 
 ### All Chapters (Study + Quiz format)
-- **Chapter 1**: Introduction to Statistics — Key Concepts (6 cards), 15 quiz questions
-- **Chapter 2**: Frequency Distributions — Key Concepts (6 cards), 15 quiz questions
-- **Chapter 3**: Central Tendency — Key Concepts (6 cards), 15 quiz questions
-- **Chapter 4**: Z-Scores — Calculator, bell curve, normal table guide, 25 quiz questions
-- **Chapter 8**: Hypothesis Testing — Key Concepts, **Example 8.1** NHT, 15 quiz questions
-- **Chapter 9**: The t Statistic — Key Concepts, **Example 9.2** NHT, 15 quiz questions
-- **Chapter 10**: Independent t Test — Concepts, **Example 10.2** NHT, Pooled Variance Calculator, 15 quiz questions
-- **Chapter 11**: Repeated-Measures t — Concepts, **Example 11.2** NHT, Calculator, 15 quiz questions
-- **Chapter 12**: One-Way ANOVA — Concepts, **Example 12.1** NHT, ANOVA Calculator, 15 quiz questions
-- **Chapter 13**: Two-Factor ANOVA — Concepts (factorial design, main effects, interactions, SS partitioning, F-ratios, η²), Two-Factor ANOVA Calculator, 15 quiz questions, NO NHT example
+- **Ch 1**: Introduction to Statistics — Key Concepts, 15 quiz questions
+- **Ch 2**: Frequency Distributions — Key Concepts, 15 quiz questions
+- **Ch 3**: Central Tendency — Key Concepts, 15 quiz questions
+- **Ch 4**: Z-Scores — Calculator, bell curve, normal table guide, 25 quiz questions
+- **Ch 8**: Hypothesis Testing — Key Concepts, Example 8.1 NHT, 15 quiz questions
+- **Ch 9**: The t Statistic — Key Concepts, Example 9.2 NHT, 15 quiz questions
+- **Ch 10**: Independent t Test — Concepts, Example 10.2 NHT, Calculator, 15 quiz questions
+- **Ch 11**: Repeated-Measures t — Concepts, Example 11.2 NHT, Calculator, 15 quiz questions
+- **Ch 12**: One-Way ANOVA — Concepts, Example 12.1 NHT, ANOVA Calculator, 15 quiz questions
+- **Ch 13**: Two-Factor ANOVA — Concepts, Two-Factor Calculator, 15 quiz questions (no NHT)
 
-### Quiz UX
-- Back to Chapters button on quiz screen
-- Quiz tab in study chapters directly starts quiz (no intermediate landing page)
-- Progress bar, Previous/Submit/Next navigation
-- Balanced answer distributions across A/B/C/D
+### Practice Exams
+- **Practice Exam 3** (Chapters 12-13): 30 MCQ in real exam format with SPSS output scenarios
+  - Block 1 (Q01-06): One-Way ANOVA — Therapy & Stress (Descriptives + ANOVA table)
+  - Block 2 (Q07-11): One-Way ANOVA with Tukey HSD — Study Methods & Exam Scores
+  - Block 3 (Q12-19): Two-Factor 2×2 — Caffeine × Sleep Deprivation (full factorial output)
+  - Block 4 (Q20-25): Two-Factor 2×3 — Gender × Exercise (non-significant interaction)
+  - Block 5 (Q26-30): Standalone conceptual questions
 
 ### Glossary (Chapters 1-13)
-- All chapters 1-13 fully populated with terms
-- Ch 12: 16 ANOVA terms (F-ratio, eta squared, Tukey's HSD, etc.)
-- Ch 13: 8 Two-Factor ANOVA terms (factorial design, main effect, interaction, simple main effects, etc.)
-- Basic/cross-cutting terms (effect size) added to Ch 8
+- All chapters fully populated
+
+### Quiz UX
+- Back to Chapters button on all quiz/exam screens
+- Direct quiz launch from study chapter tabs
+- Progress bar, Previous/Submit/Next navigation
+- Answer shuffling, balanced distributions
 
 ## Architecture
 ```
@@ -40,27 +45,20 @@ A private tutor needs a web application to help a student study for statistics e
   App.js
   data/chaptersData.js
   components/
-    GenericChapterStudy.jsx         # Reusable for Ch 1, 2, 3
+    GenericChapterStudy.jsx
     Chapter4ZScores.jsx
-    Chapter8HypothesisTesting.jsx
-    Chapter9TStatistic.jsx
-    Chapter10IndependentT.jsx
-    Chapter11RepeatedMeasures.jsx
-    Chapter12ANOVA.jsx
-    Chapter13TwoFactorANOVA.jsx
+    Chapter8-13 study components
     Chapter5Glossary.jsx
-    QuizWelcome.jsx / QuizQuestion.jsx / QuizResults.jsx
+    PracticeExam3.jsx
+    QuizWelcome/QuizQuestion/QuizResults.jsx
 ```
 
 ## Prioritized Backlog
-
 ### P1 (Upcoming)
-- [ ] Practice Exam Mode (random questions from Chapters 8-13)
-- [ ] Deployment fix (restart loop issue)
-
+- [ ] Deployment fix (restart loop)
 ### P2 (Future)
-- [ ] Split chaptersData.js into chapter-specific files
+- [ ] Split chaptersData.js into per-chapter files
 - [ ] Progress persistence (localStorage)
+- [ ] Additional practice exams as course progresses
 - [ ] Timed practice mode
 - [ ] Print-friendly study guide export
-- [ ] Additional chapters as course progresses
