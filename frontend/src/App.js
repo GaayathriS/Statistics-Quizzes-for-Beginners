@@ -10,10 +10,11 @@ import { Chapter10IndependentT } from './components/Chapter10IndependentT';
 import { Chapter11RepeatedMeasures } from './components/Chapter11RepeatedMeasures';
 import { Chapter12ANOVA } from './components/Chapter12ANOVA';
 import { Chapter13TwoFactorANOVA } from './components/Chapter13TwoFactorANOVA';
+import { Chapter14CorrelationRegression } from './components/Chapter14CorrelationRegression';
 import { GenericChapterStudy } from './components/GenericChapterStudy';
 import { Chapter5Glossary } from './components/Chapter5Glossary';
 import { PracticeExam3 } from './components/PracticeExam3';
-import { getChapterQuestions, chapter1Questions, chapter2Questions, chapter3Questions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapter12Questions, chapter13Questions, chapters } from './data/chaptersData';
+import { getChapterQuestions, chapter1Questions, chapter2Questions, chapter3Questions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapter12Questions, chapter13Questions, chapter14Questions, chapters } from './data/chaptersData';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
         case 11: setAppState('chapter11'); return;
         case 12: setAppState('chapter12'); return;
         case 13: setAppState('chapter13'); return;
+        case 14: setAppState('chapter14'); return;
         default: break;
       }
     }
@@ -95,6 +97,7 @@ function App() {
   const handleStartChapter11Quiz = () => startQuiz(chapter11Questions);
   const handleStartChapter12Quiz = () => startQuiz(chapter12Questions);
   const handleStartChapter13Quiz = () => startQuiz(chapter13Questions);
+  const handleStartChapter14Quiz = () => startQuiz(chapter14Questions);
 
   const handleSubmitAnswer = (selectedAnswer, isCorrect) => {
     const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -197,6 +200,10 @@ function App() {
 
       {appState === 'chapter13' && (
         <Chapter13TwoFactorANOVA onBack={handleBackToChapters} onStartQuiz={handleStartChapter13Quiz} />
+      )}
+
+      {appState === 'chapter14' && (
+        <Chapter14CorrelationRegression onBack={handleBackToChapters} onStartQuiz={handleStartChapter14Quiz} />
       )}
 
       {appState === 'chapter5' && (

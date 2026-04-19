@@ -102,6 +102,16 @@ export const chapters = [
     color: "from-red-600 to-rose-500"
   },
   {
+    id: 14,
+    title: "Correlation and Regression",
+    description: "Learn the Pearson correlation coefficient (r), coefficient of determination (r²), linear regression (Ŷ = bX + a), scatter plots, and the distinction between correlation and causation.",
+    topics: ["Pearson r", "r²", "Linear Regression", "Scatter Plots", "Causation"],
+    questionCount: 15,
+    isStudyChapter: true,
+    hasQuiz: true,
+    color: "from-sky-600 to-cyan-500"
+  },
+  {
     id: "glossary",
     title: "Glossary",
     subtitle: "Chapters 1-13",
@@ -2694,6 +2704,235 @@ export const chapter13Questions = [
   }
 ];
 
+// Chapter 14 Questions - Correlation and Regression
+export const chapter14Questions = [
+  {
+    id: 1,
+    question: "The Pearson correlation coefficient (r) measures:",
+    options: [
+      "Whether X causes changes in Y",
+      "The difference between two group means",
+      "The strength and direction of the linear relationship between two variables",
+      "The slope of the regression line"
+    ],
+    correctAnswer: 2,
+    explanation: "Pearson r quantifies how strongly and in which direction two variables are linearly related, on a scale from −1 to +1.",
+    difficulty: "easy",
+    topic: "Pearson r",
+    points: 10
+  },
+  {
+    id: 2,
+    question: "The Pearson correlation coefficient (r) can range from:",
+    options: [
+      "−1.00 to +1.00",
+      "0 to +1.00",
+      "−∞ to +∞",
+      "0 to 100"
+    ],
+    correctAnswer: 0,
+    explanation: "r ranges from −1.00 (perfect negative relationship) through 0 (no relationship) to +1.00 (perfect positive relationship).",
+    difficulty: "easy",
+    topic: "Pearson r",
+    points: 10
+  },
+  {
+    id: 3,
+    question: "The coefficient of determination (r²) represents:",
+    options: [
+      "The direction of the relationship between X and Y",
+      "The proportion of variance in Y that is accounted for by its relationship with X",
+      "The slope of the regression line",
+      "The number of data points in the sample"
+    ],
+    correctAnswer: 1,
+    explanation: "r² tells you what fraction (or percentage) of the variability in Y can be predicted from the relationship with X. For example, r² = .36 means 36% of the Y variance is accounted for.",
+    difficulty: "medium",
+    topic: "r²",
+    points: 15
+  },
+  {
+    id: 4,
+    question: "A negative correlation means:",
+    options: [
+      "There is no relationship between X and Y",
+      "The correlation is weak",
+      "The data are unreliable",
+      "As X increases, Y tends to decrease"
+    ],
+    correctAnswer: 3,
+    explanation: "A negative r indicates an inverse relationship: high scores on X tend to be associated with low scores on Y, and vice versa.",
+    difficulty: "easy",
+    topic: "Correlation Direction",
+    points: 10
+  },
+  {
+    id: 5,
+    question: "The linear regression equation for prediction is:",
+    options: [
+      "Ŷ = bX + a",
+      "Ŷ = aX + b",
+      "r = SP / √(SSX · SSY)",
+      "r² = SS_between / SS_total"
+    ],
+    correctAnswer: 0,
+    explanation: "The regression equation Ŷ = bX + a gives the predicted Y value for any X, where b is the slope and a is the Y-intercept.",
+    difficulty: "easy",
+    topic: "Regression Equation",
+    points: 10
+  },
+  {
+    id: 6,
+    question: "In the regression equation, the slope (b) is calculated as:",
+    options: [
+      "SS_X / SP",
+      "SP / SS_X",
+      "SP / SS_Y",
+      "M_Y − b · M_X"
+    ],
+    correctAnswer: 1,
+    explanation: "The slope b = SP / SS_X. It tells you how much Ŷ changes for each one-unit increase in X.",
+    difficulty: "medium",
+    topic: "Regression Slope",
+    points: 15
+  },
+  {
+    id: 7,
+    question: "A Pearson r of 0 indicates:",
+    options: [
+      "A perfect negative relationship",
+      "A strong positive relationship",
+      "No linear relationship between X and Y",
+      "The regression line is vertical"
+    ],
+    correctAnswer: 2,
+    explanation: "r = 0 means there is no consistent linear pattern between X and Y. Note that a non-linear relationship could still exist.",
+    difficulty: "easy",
+    topic: "Interpreting r",
+    points: 10
+  },
+  {
+    id: 8,
+    question: "If r = .60, the coefficient of determination (r²) equals:",
+    options: [
+      ".60",
+      ".30",
+      ".40",
+      ".36"
+    ],
+    correctAnswer: 3,
+    explanation: "r² = (.60)² = .36. This means 36% of the variance in Y is accounted for by its relationship with X.",
+    difficulty: "medium",
+    topic: "r²",
+    points: 15
+  },
+  {
+    id: 9,
+    question: "SP (sum of products) measures:",
+    options: [
+      "The degree to which X and Y vary together (covariability)",
+      "The total variance of X",
+      "The total variance of Y",
+      "The difference between group means"
+    ],
+    correctAnswer: 0,
+    explanation: "SP = Σ(X − M_X)(Y − M_Y). It measures how X and Y co-vary — whether they tend to deviate from their means in the same or opposite directions.",
+    difficulty: "medium",
+    topic: "SP",
+    points: 15
+  },
+  {
+    id: 10,
+    question: "In the regression equation Ŷ = 2X + 5, if X = 3, the predicted Ŷ is:",
+    options: [
+      "Ŷ = 6",
+      "Ŷ = 11",
+      "Ŷ = 10",
+      "Ŷ = 8"
+    ],
+    correctAnswer: 1,
+    explanation: "Ŷ = 2(3) + 5 = 6 + 5 = 11. Simply substitute the X value into the equation.",
+    difficulty: "medium",
+    topic: "Regression Prediction",
+    points: 15
+  },
+  {
+    id: 11,
+    question: "In a scatter plot, a cluster of data points sloping downward from left to right indicates:",
+    options: [
+      "A positive correlation",
+      "No correlation",
+      "A negative correlation",
+      "A perfect correlation"
+    ],
+    correctAnswer: 2,
+    explanation: "A downward slope means higher X values are associated with lower Y values — a negative correlation.",
+    difficulty: "easy",
+    topic: "Scatter Plots",
+    points: 10
+  },
+  {
+    id: 12,
+    question: "The standard error of estimate measures:",
+    options: [
+      "The strength of the correlation",
+      "The slope of the regression line",
+      "The proportion of variance explained",
+      "The average distance between the actual Y values and the predicted Ŷ values"
+    ],
+    correctAnswer: 3,
+    explanation: "The standard error of estimate quantifies how much the actual Y values typically deviate from the predicted values on the regression line. Smaller values = better predictions.",
+    difficulty: "hard",
+    topic: "Standard Error of Estimate",
+    points: 20
+  },
+  {
+    id: 13,
+    question: "Correlation does NOT allow us to conclude:",
+    options: [
+      "That one variable causes changes in the other",
+      "The direction of the relationship",
+      "The strength of the linear relationship",
+      "The value of r²"
+    ],
+    correctAnswer: 0,
+    explanation: "Correlation describes the relationship between variables but cannot establish causation. A third variable might explain the relationship, or the causal direction could be reversed.",
+    difficulty: "medium",
+    topic: "Correlation vs. Causation",
+    points: 15
+  },
+  {
+    id: 14,
+    question: "If r² = .49, what percentage of Y's variance is accounted for by X?",
+    options: [
+      "7%",
+      "49%",
+      "51%",
+      ".49%"
+    ],
+    correctAnswer: 1,
+    explanation: "r² = .49 means 49% of the variability in Y is explained by its linear relationship with X. The remaining 51% is unexplained.",
+    difficulty: "medium",
+    topic: "r²",
+    points: 15
+  },
+  {
+    id: 15,
+    question: "Restricting the range of scores on X or Y tends to:",
+    options: [
+      "Increase the correlation",
+      "Have no effect on the correlation",
+      "Underestimate the true correlation",
+      "Make the correlation exactly zero"
+    ],
+    correctAnswer: 2,
+    explanation: "When the range of either variable is restricted (e.g., only sampling high scorers), the correlation tends to be smaller than the true population correlation. Full variability is needed to detect the full relationship.",
+    difficulty: "hard",
+    topic: "Restricted Range",
+    points: 20
+  }
+];
+
 // Get questions by chapter
 export const getChapterQuestions = (chapterId) => {
   switch(chapterId) {
@@ -2707,6 +2946,7 @@ export const getChapterQuestions = (chapterId) => {
     case 11: return chapter11Questions;
     case 12: return chapter12Questions;
     case 13: return chapter13Questions;
+    case 14: return chapter14Questions;
     default: return [];
   }
 };
