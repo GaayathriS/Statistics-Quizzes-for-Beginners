@@ -25,7 +25,7 @@ React.js, Tailwind CSS, Shadcn/UI, FastAPI (health check only). All content clie
 - **Practice Exam 3**: 30 MCQ with SPSS output scenarios (Ch 12-13)
 - **Practice Exam 4**: 30 MCQ with SPSS output scenarios (Ch 14 — Correlation & Regression)
 - **Practice Exam Selector**: Hub page to choose between available exams
-- **Glossary**: Chapters 1-14 with 22 terms for Ch 14 (Correlation & Regression)
+- **Glossary**: Chapters 1-14 with 17 terms for Ch 14 (from Exam 4 Study Guide, textbook definitions)
 - **Quiz UX**: Back button, direct quiz launch, progress bar, Previous/Next, answer shuffling
 
 ## Deployment

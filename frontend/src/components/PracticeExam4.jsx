@@ -73,10 +73,52 @@ const ScenarioSleep = () => (
   </Card>
 );
 
+const ScenarioScatterPlot = () => (
+  <Card className="border-2 border-amber-500/20 bg-amber-500/5 mb-4" data-testid="scenario-scatterplot">
+    <CardContent className="p-4 space-y-2">
+      <p className="text-sm font-semibold text-foreground">Use the scatter plot below to answer this question.</p>
+      <div className="flex justify-center py-2">
+        <svg viewBox="0 0 280 220" width="320" height="250" className="bg-white rounded-lg border border-border">
+          {/* Axes */}
+          <line x1="45" y1="185" x2="265" y2="185" stroke="#666" strokeWidth="1.5" />
+          <line x1="45" y1="185" x2="45" y2="15" stroke="#666" strokeWidth="1.5" />
+          {/* Axis labels */}
+          <text x="155" y="210" textAnchor="middle" fontSize="12" fill="#555" fontWeight="600">Variable X</text>
+          <text x="14" y="105" textAnchor="middle" fontSize="12" fill="#555" fontWeight="600" transform="rotate(-90, 14, 105)">Variable Y</text>
+          {/* Tick marks and grid lines */}
+          {[0,1,2,3,4].map(i => (
+            <g key={`xt${i}`}>
+              <line x1={45 + i * 55} y1="185" x2={45 + i * 55} y2="189" stroke="#666" strokeWidth="1" />
+              <line x1={45 + i * 55} y1="185" x2={45 + i * 55} y2="15" stroke="#e0e0e0" strokeWidth="0.5" strokeDasharray="3,3" />
+            </g>
+          ))}
+          {[0,1,2,3,4].map(i => (
+            <g key={`yt${i}`}>
+              <line x1="45" y1={185 - i * 42.5} x2="41" y2={185 - i * 42.5} stroke="#666" strokeWidth="1" />
+              <line x1="45" y1={185 - i * 42.5} x2="265" y2={185 - i * 42.5} stroke="#e0e0e0" strokeWidth="0.5" strokeDasharray="3,3" />
+            </g>
+          ))}
+          {/* Data points — upward trend with natural scatter */}
+          {[
+            [58,168],[65,155],[72,162],[80,148],[90,140],
+            [98,145],[105,128],[112,135],[120,118],[130,125],
+            [138,110],[148,105],[155,98],[160,115],[168,92],
+            [178,88],[185,95],[195,78],[205,72],[210,85],
+            [218,65],[228,58],[235,70],[245,48],[252,42]
+          ].map(([x,y], i) => (
+            <circle key={i} cx={x} cy={y} r="4" fill="#3b82f6" opacity="0.8" />
+          ))}
+        </svg>
+      </div>
+    </CardContent>
+  </Card>
+);
+
 const scenarioMap = {
   studyGPA: ScenarioStudyGPA,
   anxiety: ScenarioAnxiety,
   sleep: ScenarioSleep,
+  scatterUp: ScenarioScatterPlot,
 };
 
 const examQuestions = [
@@ -98,13 +140,13 @@ const examQuestions = [
   { id: 14, scenarioKey: 'anxiety', question: "14. Is anxiety a statistically significant predictor of test performance at α = .05?", options: ["No, because R = .650 is greater than .05", "Yes, because the Sig. value for Anxiety (.001) is less than .05", "No, because the constant is significant", "Yes, because t = −4.00 is negative"], correctAnswer: 1, explanation: "The Sig. (p-value) for the Anxiety predictor is .001, which is less than .05. Anxiety is a significant predictor of test performance." },
   // Block 3: Sleep & Reaction Time (Q15-Q20)
   { id: 15, scenarioKey: 'sleep', question: "15. What is the Pearson correlation between sleep hours and reaction time?", options: ["r = .038", "r = 30", "r = 1.00", "r = −.380"], correctAnswer: 3, explanation: "The Pearson Correlation at the intersection of Sleep_Hours and Reaction_Time is −.380." },
-  { id: 16, scenarioKey: 'sleep', question: "16. What is the direction of this relationship?", options: ["Positive — more sleep is associated with slower reaction time", "Zero — no relationship exists", "Negative — more sleep is associated with faster (lower) reaction time", "Cannot be determined"], correctAnswer: 2, explanation: "The negative sign (−.380) indicates that more sleep is associated with lower (faster) reaction times." },
+  { id: 16, scenarioKey: 'sleep', question: "16. What is the direction of this relationship?", options: ["Positive — as sleep hours increase, reaction time increases", "No relationship — sleep hours and reaction time are unrelated", "Negative — as sleep hours increase, reaction time decreases", "The direction cannot be determined from a correlation table"], correctAnswer: 2, explanation: "The negative sign of r = −.380 tells us the direction: as one variable increases, the other decreases. Here, more sleep is associated with lower (faster) reaction times." },
   { id: 17, scenarioKey: 'sleep', question: "17. How would you describe the strength of r = −.380?", options: ["Weak", "Moderate", "Strong", "Perfect"], correctAnswer: 1, explanation: "By convention, |r| between .30 and .50 is considered moderate. Since |−.380| = .380, this is a moderate negative correlation." },
   { id: 18, scenarioKey: 'sleep', question: "18. What is r² for this correlation?", options: [".144", ".380", ".038", ".620"], correctAnswer: 0, explanation: "r² = (−.380)² = .1444 ≈ .144. About 14.4% of the variance in reaction time is accounted for by sleep." },
   { id: 19, scenarioKey: 'sleep', question: "19. Is this correlation significant at α = .05?", options: ["No, because r is negative", "No, because .380 is less than .50", "Yes, because N = 30 is large", "Yes, because p = .038 is less than .05"], correctAnswer: 3, explanation: "The Sig. (2-tailed) value is .038, which is less than α = .05. The correlation is statistically significant at the .05 level." },
   { id: 20, scenarioKey: 'sleep', question: "20. Would this correlation be significant at α = .01?", options: ["No, because p = .038 is greater than .01", "Yes, because p = .038 is less than .01", "Yes, because the correlation is negative", "No, because r² is less than .01"], correctAnswer: 0, explanation: "At α = .01, we need p ≤ .01. Since p = .038 > .01, the correlation would NOT be significant at the stricter .01 level." },
   // Block 4: Conceptual — Scatter Plots & Interpreting r (Q21-Q25)
-  { id: 21, question: "21. A scatter plot with data points forming an upward pattern from left to right indicates:", options: ["No correlation", "A negative correlation", "A positive correlation", "A curvilinear relationship"], correctAnswer: 2, explanation: "An upward pattern (low X with low Y, high X with high Y) indicates a positive correlation." },
+  { id: 21, scenarioKey: 'scatterUp', question: "21. The scatter plot above shows data points forming a pattern from lower-left to upper-right. This indicates:", options: ["No correlation", "A negative correlation", "A positive correlation", "A curvilinear relationship"], correctAnswer: 2, explanation: "When data points trend from lower-left to upper-right (low X with low Y, high X with high Y), this upward pattern indicates a positive correlation — the two variables increase together." },
   { id: 22, question: "22. Which of the following values of r represents the STRONGEST relationship?", options: ["r = .72", "r = −.85", "r = .15", "r = −.40"], correctAnswer: 1, explanation: "Strength is determined by the absolute value of r: |−.85| = .85 is the largest, making it the strongest relationship, despite being negative." },
   { id: 23, question: "23. The null hypothesis when testing a Pearson correlation is:", options: ["H₀: r = 0", "H₀: r ≠ 0", "H₁: ρ ≠ 0", "H₀: ρ = 0"], correctAnswer: 3, explanation: "The null hypothesis states that the population correlation (ρ, rho) equals zero — there is no linear relationship in the population. Note: we use ρ (population parameter), not r (sample statistic)." },
   { id: 24, question: "24. A researcher finds r = .80 with n = 5, and another finds r = .25 with n = 200. Which correlation is more likely to be statistically significant?", options: ["r = .80 with n = 5, because .80 is larger", "Neither can be significant", "r = .25 with n = 200, because larger samples provide more power", "Both are equally likely to be significant"], correctAnswer: 2, explanation: "Statistical significance depends on both the size of r AND the sample size. With n = 200, even a modest r = .25 has high statistical power and is likely significant, while r = .80 with only n = 5 may not reach significance." },
