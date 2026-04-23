@@ -19,7 +19,7 @@ React.js, Tailwind CSS, Shadcn/UI, FastAPI (health check only). All content clie
 | 11 | Repeated-Measures t | Ex 11.2 | RM t calc | 15Q |
 | 12 | One-Way ANOVA | Ex 12.1 | ANOVA calc | 15Q |
 | 13 | Two-Factor ANOVA | - | Two-Factor calc | 15Q |
-| 14 | Correlation & Regression | - | r, r², regression | 15Q |
+| 14 | Correlation & Regression | PHQ-9 × FERT | r, r², regression | 18Q |
 
 ## Other Features
 - **Practice Exam 3**: 30 MCQ with SPSS output scenarios (Ch 12-13)
