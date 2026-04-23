@@ -23,15 +23,22 @@ React.js, Tailwind CSS, Shadcn/UI, FastAPI (health check only). All content clie
 
 ## Other Features
 - **Practice Exam 3**: 30 MCQ with SPSS output scenarios (Ch 12-13)
-- **Glossary**: Chapters 1-13 (Ch 14 deferred)
+- **Practice Exam 4**: 30 MCQ with SPSS output scenarios (Ch 14 — Correlation & Regression)
+- **Practice Exam Selector**: Hub page to choose between available exams
+- **Glossary**: Chapters 1-14 with 22 terms for Ch 14 (Correlation & Regression)
 - **Quiz UX**: Back button, direct quiz launch, progress bar, Previous/Next, answer shuffling
+
+## Deployment
+- Fixed .gitignore blocking .env files (deployment blocker)
+- Backend resilient to MongoDB connection failures (health endpoints always respond)
 
 ## Backlog
 ### P1
-- [ ] Glossary terms for Ch 14
-- [ ] Deployment fix (restart loop)
+- [ ] Add more chapters/practice exams as the course progresses
 ### P2
 - [ ] Split chaptersData.js into per-chapter files
 - [ ] Progress persistence (localStorage)
-- [ ] Additional practice exams
-- [ ] Timed practice mode
+- [ ] Timed practice mode / print-friendly study guide export
+### P3
+- [ ] Derive glossary chapter list from data source (avoid hardcoded drift)
+- [ ] Reduce App.js boilerplate with data-driven chapter routing
