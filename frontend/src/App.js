@@ -14,6 +14,8 @@ import { Chapter14CorrelationRegression } from './components/Chapter14Correlatio
 import { GenericChapterStudy } from './components/GenericChapterStudy';
 import { Chapter5Glossary } from './components/Chapter5Glossary';
 import { PracticeExam3 } from './components/PracticeExam3';
+import { PracticeExam4 } from './components/PracticeExam4';
+import { PracticeExamSelect } from './components/PracticeExamSelect';
 import { getChapterQuestions, chapter1Questions, chapter2Questions, chapter3Questions, chapter5Questions, chapter8Questions, chapter9Questions, chapter10Questions, chapter11Questions, chapter12Questions, chapter13Questions, chapter14Questions, chapters } from './data/chaptersData';
 import { Toaster } from './components/ui/sonner';
 
@@ -79,7 +81,7 @@ function App() {
     }
 
     if (chapter.isPracticeExam) {
-      setAppState('practiceExam3');
+      setAppState('practiceExamSelect');
       return;
     }
     
@@ -210,8 +212,22 @@ function App() {
         <Chapter5Glossary onBack={handleBackToChapters} />
       )}
 
+      {appState === 'practiceExamSelect' && (
+        <PracticeExamSelect 
+          onBack={handleBackToChapters} 
+          onSelectExam={(examId) => {
+            if (examId === 3) setAppState('practiceExam3');
+            else if (examId === 4) setAppState('practiceExam4');
+          }} 
+        />
+      )}
+
       {appState === 'practiceExam3' && (
-        <PracticeExam3 onBack={handleBackToChapters} />
+        <PracticeExam3 onBack={() => setAppState('practiceExamSelect')} />
+      )}
+
+      {appState === 'practiceExam4' && (
+        <PracticeExam4 onBack={() => setAppState('practiceExamSelect')} />
       )}
       
       {appState === 'quiz' && quizQuestions.length > 0 && (

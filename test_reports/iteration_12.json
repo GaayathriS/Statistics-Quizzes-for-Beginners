@@ -1,0 +1,39 @@
+{
+  "summary": "Frontend-only testing for Practice Exam 4, PracticeExamSelect hub, and Chapter 14 glossary. All 15 tested flows passed after fixing one glossary bug (missing Chapter 14 in glossary chapter selector + stale 'Chapters 1-13' subtitle).",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Chapter5Glossary", "issue": "Chapter 14 was missing from glossaryChapters list (hardcoded) so Ch14 tab never rendered in glossary selector. Subtitle also still read 'Chapters 1-13'. FIXED by testing agent.", "selector": "[data-testid=\"glossary-chapter-14\"]", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/iteration_12.json"
+  ],
+  "action_items": [
+    "None - all reported features verified working. The one bug (missing Ch14 in glossary selector) was fixed in place by testing agent in /app/frontend/src/components/Chapter5Glossary.jsx."
+  ],
+  "critical_code_review_comments": [
+    "Chapter5Glossary.jsx maintains a hardcoded glossaryChapters array duplicating data already present in chaptersData.js. Recommend deriving the list from Object.keys(chapterGlossaries) or a single source-of-truth chapters array to avoid future drift like the Ch14 bug.",
+    "App.js is 268 lines with many similar boilerplate blocks per chapter (chapter1..chapter14 handlers and render branches). Consider a data-driven approach (map over chapters) to reduce repetition.",
+    "PracticeExam4.jsx embeds 30 questions inline — consider moving to data/ module for maintainability, consistent with quizData.js pattern.",
+    "Option test IDs in PE4 are lowercase (pe4-option-a) while review spec mentioned uppercase (pe4-option-A). Minor doc/code mismatch — not a bug, but worth aligning."
+  ],
+  "updated_files": [
+    "/app/frontend/src/components/Chapter5Glossary.jsx"
+  ],
+  "success_rate": {
+    "backend": "not tested (frontend only request)",
+    "frontend": "100% (15/15 flows passing after fix)"
+  },
+  "test_credentials": "N/A - no auth in app",
+  "seed_data_creation": "None - all content is static client-side data",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Verified flows: (1) Homepage 'Practice Exams (Exams 3 & 4)' card and 'Glossary (Chapters 1-14)' subtitle present, (2) Practice Exams card -> PracticeExamSelect with both Exam 3 and Exam 4 cards, (3) pe-select-back-btn returns to homepage, (4) Exam 3 card -> PE3 start (pe3-back-btn present), (5) Exam 3 back returns to PracticeExamSelect (not homepage), (6) Exam 4 card -> PE4 start page shows title, description '30 questions'/'Chapter 14', and Start button, (7) PE4 start-page back (pe4-back-btn) returns to PracticeExamSelect, (8) Starting PE4 renders Q1 with SPSS scenario (spss-scenario-studygpa visible), (9) Selecting option (pe4-option-b) + submit reveals explanation and Next button, (10) Next -> Q2 different, (11) Previous -> Q1 (state preserved), (12) In-exam pe4-quiz-back-btn returns to PracticeExamSelect, (13) Glossary -> Chapter 14 tab now visible with terms like Pearson, Scatter, regression, correlation, coefficient (after bug fix). Note: PE4 option testids are lowercase letters (pe4-option-a..d), not uppercase.",
+  "rca of the issue": "Chapter 14 not appearing in glossary: Chapter5Glossary.jsx defines glossaryChapters as a hardcoded array of {id, title, color} objects that only went up to id=13. The chapterGlossaries data object in chaptersData.js did include key 14 with 22 terms, but the selector UI iterates glossaryChapters rather than Object.keys(chapterGlossaries), so Chapter 14 was never rendered. Additionally the empty-state subtitle text string was still 'Chapters 1-13'. Mitigation applied: added {id:14, title:'Correlation and Regression', color:'from-sky-600 to-sky-400'} to glossaryChapters and updated subtitle to 'Chapters 1-14'. Long-term mitigation: derive chapter list from a single source (chapterGlossaries keys or chapters meta array) to prevent drift."
+}

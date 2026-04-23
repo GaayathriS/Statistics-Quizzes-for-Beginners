@@ -114,7 +114,7 @@ export const chapters = [
   {
     id: "glossary",
     title: "Glossary",
-    subtitle: "Chapters 1-13",
+    subtitle: "Chapters 1-14",
     description: "Review key terms and definitions from all chapters. Select a chapter to view its glossary of important statistical concepts.",
     topics: ["Key Terms", "Definitions", "Quick Reference"],
     questionCount: 0,
@@ -124,9 +124,9 @@ export const chapters = [
   {
     id: "practice",
     title: "Practice Exams",
-    subtitle: "Exam 3",
+    subtitle: "Exams 3 & 4",
     description: "Full-length 30-question practice exams in the same format as the real exams, with SPSS output scenarios and multiple-choice questions.",
-    topics: ["SPSS Output", "ANOVA", "Two-Factor ANOVA", "30 Questions"],
+    topics: ["SPSS Output", "ANOVA", "Correlation", "Regression", "30 Questions"],
     questionCount: 30,
     isPracticeExam: true,
     color: "from-slate-700 to-slate-500"
@@ -290,6 +290,30 @@ export const chapterGlossaries = {
     { term: "Eta squared (η²) for two-factor ANOVA", definition: "Separate η² values can be computed for each effect: η²_A = SS_A / SS_total, η²_B = SS_B / SS_total, η²_AxB = SS_AxB / SS_total." },
     { term: "Post hoc tests (two-factor)", definition: "Statistical tests conducted after a significant F-ratio in a two-factor ANOVA to determine which specific means differ." },
     { term: "Tukey's HSD test (two-factor)", definition: "A post hoc test used for pairwise comparisons, applied separately for significant main effects or to interpret the interaction." }
+  ],
+  14: [
+    { term: "Correlation", definition: "A statistical technique used to measure and describe the relationship between two variables. It describes three characteristics: direction, form, and strength." },
+    { term: "Pearson correlation coefficient (r)", definition: "A measure of the degree and direction of the linear relationship between two variables. Values range from −1.00 to +1.00." },
+    { term: "Positive correlation", definition: "A relationship in which two variables tend to change in the same direction: as X increases, Y also tends to increase (and vice versa)." },
+    { term: "Negative correlation", definition: "A relationship in which two variables tend to change in opposite directions: as X increases, Y tends to decrease (and vice versa)." },
+    { term: "Perfect correlation", definition: "A correlation of exactly +1.00 or −1.00, where every data point falls precisely on a straight line." },
+    { term: "Scatter plot", definition: "A graph that displays data points for two variables, one on the X-axis and one on the Y-axis. Each point represents a pair of scores for one individual." },
+    { term: "Coefficient of determination (r²)", definition: "The squared value of the Pearson correlation. It measures the proportion of variance in one variable that is predicted or accounted for by its relationship with the other variable." },
+    { term: "Sum of Products (SP)", definition: "A measure of the co-variability of two variables, analogous to SS for one variable. SP = Σ(X − Mₓ)(Y − M_Y) or equivalently SP = ΣXY − (ΣXΣY)/n." },
+    { term: "Linear regression", definition: "A statistical technique for finding the best-fitting straight line (Ŷ = bX + a) for a set of data, used to predict Y from X." },
+    { term: "Regression equation (Ŷ = bX + a)", definition: "The equation for the best-fitting line where b is the slope and a is the Y-intercept. b = SP/SSₓ and a = M_Y − bMₓ." },
+    { term: "Slope (b)", definition: "The rate of change in the regression equation. It indicates how much Ŷ changes for each 1-unit increase in X. Computed as b = SP/SSₓ." },
+    { term: "Y-intercept (a)", definition: "The value of Ŷ when X = 0 in the regression equation. It is where the regression line crosses the Y-axis. Computed as a = M_Y − bMₓ." },
+    { term: "Residual", definition: "The difference between an observed Y value and its predicted Ŷ value (Y − Ŷ). The sum of all residuals for a least-squares line is zero." },
+    { term: "Standard error of estimate", definition: "A measure of the standard distance between the predicted Ŷ values and the actual Y values. It quantifies the accuracy of predictions made by the regression equation." },
+    { term: "Restricted range", definition: "A condition in which the range of scores for one or both variables is limited, causing the correlation to underestimate the true relationship in the full population." },
+    { term: "Correlation and causation", definition: "A fundamental principle: correlation does not imply causation. A significant correlation between X and Y does not mean X causes Y. A third variable may explain both, or the relationship may be bidirectional." },
+    { term: "Null hypothesis for correlation (H₀: ρ = 0)", definition: "The hypothesis that the population correlation (rho) is zero — there is no linear relationship between the two variables in the population." },
+    { term: "Population correlation (ρ, rho)", definition: "The Pearson correlation for the entire population. The sample r is used to estimate ρ and test whether ρ = 0." },
+    { term: "Degrees of freedom for correlation", definition: "df = n − 2 for a Pearson correlation test, where n is the number of data pairs." },
+    { term: "Point-biserial correlation", definition: "A special case of the Pearson correlation used when one variable is dichotomous (two categories) and the other is continuous." },
+    { term: "Phi coefficient (φ)", definition: "A special case of the Pearson correlation used when both variables are dichotomous (each has exactly two categories)." },
+    { term: "Spearman correlation (rₛ)", definition: "A correlation coefficient computed on ranked data. Used when data are ordinal (rankings) or when the relationship is monotonic but not linear." }
   ]
 };
 

@@ -88,6 +88,8 @@ async def hello():
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
+    if db is None:
+        return StatusCheck(client_name=input.client_name)
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
     doc = status_obj.model_dump()
@@ -97,6 +99,8 @@ async def create_status_check(input: StatusCheckCreate):
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
+    if db is None:
+        return []
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
     for check in status_checks:
         if isinstance(check['timestamp'], str):
