@@ -106,7 +106,7 @@ export const chapters = [
     title: "Correlation and Regression",
     description: "Learn the Pearson correlation coefficient (r), coefficient of determination (r²), linear regression (Ŷ = bX + a), scatter plots, and the distinction between correlation and causation.",
     topics: ["Pearson r", "r²", "Linear Regression", "Scatter Plots", "Causation"],
-    questionCount: 15,
+    questionCount: 18,
     isStudyChapter: true,
     hasQuiz: true,
     color: "from-sky-600 to-cyan-500"
@@ -2949,6 +2949,51 @@ export const chapter14Questions = [
     difficulty: "hard",
     topic: "Restricted Range",
     points: 20
+  },
+  {
+    id: 16,
+    question: "When conducting a hypothesis test for a Pearson correlation, the null hypothesis states:",
+    options: [
+      "H₀: r = 0 (the sample correlation is zero)",
+      "H₀: ρ ≠ 0 (the population correlation is not zero)",
+      "H₀: ρ = 0 (there is no linear relationship in the population)",
+      "H₀: r = ρ (the sample equals the population)"
+    ],
+    correctAnswer: 2,
+    explanation: "The null hypothesis for a Pearson correlation uses ρ (rho), the population parameter — not r (the sample statistic). H₀: ρ = 0 states there is no linear relationship between the two variables in the population.",
+    difficulty: "medium",
+    topic: "NHT for Correlation",
+    points: 15
+  },
+  {
+    id: 17,
+    question: "A researcher tests whether PHQ-9 depression scores are correlated with FERT fear scores in n = 25 patients, using α = .05. What are the degrees of freedom for this test?",
+    options: [
+      "df = 25",
+      "df = 24 (n − 1)",
+      "df = 23 (n − 2)",
+      "df = 22 (n − 3)"
+    ],
+    correctAnswer: 2,
+    explanation: "For a Pearson correlation, df = n − 2. With n = 25 participants, df = 25 − 2 = 23. This differs from a single-sample t-test (n − 1) or other tests.",
+    difficulty: "medium",
+    topic: "NHT for Correlation",
+    points: 15
+  },
+  {
+    id: 18,
+    question: "In a hypothesis test for a Pearson correlation, the test statistic that is computed and compared against the critical value is:",
+    options: [
+      "t",
+      "F",
+      "r",
+      "ρ (rho)"
+    ],
+    correctAnswer: 2,
+    explanation: "Unlike t-tests (which compute t) or ANOVA (which computes F), a Pearson correlation hypothesis test uses r itself as the test statistic. The obtained r is compared directly to the critical r from the table for the appropriate df and α.",
+    difficulty: "medium",
+    topic: "NHT for Correlation",
+    points: 15
   }
 ];
 

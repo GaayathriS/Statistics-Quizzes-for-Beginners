@@ -2,7 +2,23 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { ArrowLeft, BookOpen, Calculator, Play } from 'lucide-react';
+import { ArrowLeft, BookOpen, Calculator, Play, FlaskConical, ChevronDown, ChevronUp } from 'lucide-react';
+
+const NHTStep = ({ step, title, children, color }) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div className={`border-2 rounded-xl overflow-hidden ${color}`}>
+      <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between p-4 font-semibold text-left">
+        <span className="flex items-center gap-3">
+          <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold">{step}</span>
+          {title}
+        </span>
+        {open ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+      </button>
+      {open && <div className="px-4 pb-4 space-y-3">{children}</div>}
+    </div>
+  );
+};
 
 export const Chapter14CorrelationRegression = ({ onBack, onStartQuiz }) => {
   const [activeTab, setActiveTab] = useState('concepts');
@@ -16,6 +32,7 @@ export const Chapter14CorrelationRegression = ({ onBack, onStartQuiz }) => {
 
   const tabs = [
     { id: 'concepts', label: 'Key Concepts', icon: BookOpen },
+    { id: 'nht', label: 'NHT Example', icon: FlaskConical },
     { id: 'calculator', label: 'Calculator', icon: Calculator },
   ];
 
@@ -212,6 +229,119 @@ export const Chapter14CorrelationRegression = ({ onBack, onStartQuiz }) => {
                   <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
                     <p className="text-sm font-semibold text-blue-400">Outliers</p>
                     <p className="text-xs text-muted-foreground mt-1">Extreme scores can dramatically change the value of r, making the correlation appear stronger or weaker than it truly is.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* ---- NHT EXAMPLE TAB ---- */}
+        {activeTab === 'nht' && (
+          <div className="space-y-4 fade-in">
+            <Card className="border-2 border-primary/10">
+              <CardHeader>
+                <CardTitle className="text-xl">NHT for Pearson Correlation</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground leading-relaxed">
+                  A clinical researcher wants to know whether there is a significant linear relationship between <strong>depression</strong> (measured by PHQ-9 scores) and <strong>fear</strong> (measured by FERT scores) in a sample of <strong>n = 25</strong> therapy patients.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                    <p className="font-semibold text-blue-400 text-sm">PHQ-9 (X)</p>
+                    <p className="text-xs text-muted-foreground mt-1">Patient Health Questionnaire — measures depression severity on a 0–27 scale. Higher scores = more depressed.</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                    <p className="font-semibold text-rose-400 text-sm">FERT (Y)</p>
+                    <p className="text-xs text-muted-foreground mt-1">Facial Emotion Recognition Task — measures fear recognition accuracy. Higher scores = greater fear response.</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground">After collecting data from all 25 participants, the researcher computes the Pearson correlation and obtains <strong className="text-foreground">r = .52</strong>.</p>
+              </CardContent>
+            </Card>
+
+            <NHTStep step="1" title="State the Hypotheses" color="border-blue-500/30 bg-blue-500/5">
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="p-3 rounded bg-muted/50 space-y-1">
+                  <p><strong className="text-foreground">H₀: ρ = 0</strong> &nbsp; There is no linear relationship between PHQ-9 depression scores and FERT fear scores in the population.</p>
+                  <p><strong className="text-foreground">H₁: ρ ≠ 0</strong> &nbsp; There is a significant linear relationship between PHQ-9 and FERT scores in the population.</p>
+                </div>
+                <p>Notice that the null hypothesis uses <strong>ρ (rho)</strong>, the <em>population</em> correlation — not r, which is the sample statistic. This is a <strong>two-tailed</strong> test because the researcher has no directional prediction.</p>
+              </div>
+            </NHTStep>
+
+            <NHTStep step="2" title="Set Alpha & Locate the Critical Region" color="border-emerald-500/30 bg-emerald-500/5">
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="p-3 rounded bg-muted/50 space-y-1">
+                  <p><strong className="text-foreground">α = .05</strong></p>
+                  <p><strong className="text-foreground">df = n − 2 = 25 − 2 = 23</strong></p>
+                </div>
+                <p>For a Pearson correlation, degrees of freedom are <strong>n − 2</strong>. Using the critical values table for r with df = 23 and α = .05 (two-tailed):</p>
+                <div className="p-3 rounded bg-muted/50 text-center">
+                  <p className="text-lg font-mono font-semibold text-foreground">Critical r = ± .396</p>
+                </div>
+                <p>We reject H₀ if the obtained r falls beyond ± .396 (i.e., if |r| &gt; .396).</p>
+              </div>
+            </NHTStep>
+
+            <NHTStep step="3" title="Compute the Test Statistic (r)" color="border-amber-500/30 bg-amber-500/5">
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <p>The test statistic for a Pearson correlation is <strong>r itself</strong>. Unlike t-tests or ANOVA, we compare our obtained r directly against the critical value from the r table.</p>
+                <div className="p-3 rounded bg-muted/50 font-mono text-center space-y-1">
+                  <p className="text-muted-foreground">r = SP / √(SS<sub>X</sub> · SS<sub>Y</sub>)</p>
+                </div>
+                <p>The researcher computed the Pearson correlation from the PHQ-9 and FERT data:</p>
+                <div className="p-3 rounded bg-muted/50 text-center">
+                  <p className="text-xl font-mono font-semibold text-primary">r = .52</p>
+                </div>
+                <div className="p-3 rounded bg-blue-500/10 border border-blue-500/20 space-y-1">
+                  <p className="font-semibold text-blue-400">Interpreting the obtained r</p>
+                  <p className="text-muted-foreground"><strong>Direction:</strong> Positive (+.52) — higher depression scores are associated with higher fear scores.</p>
+                  <p className="text-muted-foreground"><strong>Strength:</strong> |.52| &gt; .50 → Strong relationship.</p>
+                </div>
+              </div>
+            </NHTStep>
+
+            <NHTStep step="4" title="Make a Decision" color="border-violet-500/30 bg-violet-500/5">
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div className="p-3 rounded bg-muted/50 space-y-1 font-mono text-center">
+                  <p>Obtained r = <strong className="text-primary">.52</strong></p>
+                  <p>Critical r = ± <strong className="text-foreground">.396</strong></p>
+                  <p className="text-foreground">|.52| = .52 &gt; .396</p>
+                </div>
+                <div className="p-3 rounded bg-emerald-500/10 border border-emerald-500/20">
+                  <p className="font-semibold text-emerald-400">REJECT H₀</p>
+                  <p className="mt-1">The obtained r = .52 exceeds the critical boundary of ± .396.</p>
+                </div>
+                <p><strong className="text-foreground">Conclusion:</strong> There is a statistically significant positive correlation between PHQ-9 depression scores and FERT fear scores, r(23) = .52, p &lt; .05.</p>
+                <div className="p-3 rounded bg-muted/50 space-y-1">
+                  <p className="font-semibold text-foreground">Effect size:</p>
+                  <p className="font-mono text-foreground">r² = (.52)² = <strong>.2704</strong></p>
+                  <p>Approximately <strong>27%</strong> of the variance in fear scores (FERT) is accounted for by its relationship with depression scores (PHQ-9).</p>
+                </div>
+              </div>
+            </NHTStep>
+
+            <Card className="border-2 border-primary/10">
+              <CardContent className="p-4 space-y-3">
+                <h4 className="font-semibold text-foreground">Key Takeaways for Correlation NHT</h4>
+                <div className="grid gap-2 text-sm text-muted-foreground">
+                  <div className="p-3 rounded-lg bg-muted/50 flex items-start gap-2">
+                    <span className="text-primary font-bold">1</span>
+                    <p>The null hypothesis is always <strong>H₀: ρ = 0</strong> — use the population symbol ρ (rho), not the sample r.</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-muted/50 flex items-start gap-2">
+                    <span className="text-primary font-bold">2</span>
+                    <p>Degrees of freedom for Pearson r are <strong>df = n − 2</strong>.</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-muted/50 flex items-start gap-2">
+                    <span className="text-primary font-bold">3</span>
+                    <p>The test statistic is <strong>r itself</strong> — you compare it directly to the critical r value from the table.</p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-muted/50 flex items-start gap-2">
+                    <span className="text-primary font-bold">4</span>
+                    <p>A significant correlation does <strong>not</strong> mean causation — depression may not <em>cause</em> fear (or vice versa). A third variable could explain both.</p>
                   </div>
                 </div>
               </CardContent>

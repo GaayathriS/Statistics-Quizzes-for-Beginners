@@ -1,0 +1,33 @@
+{
+  "summary": "Frontend-only testing for Chapter 14 NHT walkthrough tab, 3 new NHT quiz questions (Q16-Q18), and regression verification of Ch14 glossary (17 terms) + PE4 Q21 SVG scatter plot. All 13 requested features passed.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/iteration_13.json"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Chapter14CorrelationRegression.jsx: The Quiz 'tab' is actually a button that calls onStartQuiz and navigates away (not a true tab that changes activeTab). This works but is inconsistent with the other 3 tabs. Minor UX note only — doesn't affect functionality.",
+    "NHTStep component keeps each step's open state local (useState). This means there's no 'expand/collapse all' control and toggling one doesn't affect siblings — acceptable behaviour and matches the review requirement of being independently collapsible.",
+    "chaptersData.js is now ~3090 lines and contains all chapter questions inline. Recommend splitting per-chapter question arrays into /data/questions/chapterXX.js files to reduce cognitive load and merge conflicts.",
+    "Glossary items use text-based headings rather than data-testid='glossary-term-*' — adding per-term testids would help future automated testing of glossary content (currently only the '17 terms' badge is reliably targetable)."
+  ],
+  "updated_files": [],
+  "success_rate": {
+    "backend": "not tested (frontend only request)",
+    "frontend": "100% (13/13 requested features verified)"
+  },
+  "test_credentials": "N/A - no auth in app",
+  "seed_data_creation": "None - all content is client-side static data",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Verified for iteration 13: (1) Chapter 14 card on homepage shows '18 Questions' and navigates correctly. (2) Chapter 14 study page renders 4 tab controls: ch14-tab-concepts, ch14-tab-nht, ch14-tab-calculator, ch14-tab-quiz (the last is implemented as a button that triggers onStartQuiz rather than a true tab-state switch). (3) NHT Example tab contains PHQ-9, FERT, n = 25 scenario card plus 4 NHTStep components with all expected values: H₀: ρ = 0, H₁: ρ ≠ 0, α = .05, df = 23, critical r = ± .396, obtained r = .52, REJECT H₀, r² = .2704. (4) NHTStep collapse toggle confirmed working (content hides/shows on click). (5) Quiz navigation: clicking ch14-tab-quiz opens QuizQuestion showing 'Question 1 of 18' — confirms Ch14 now has 18 questions. (6) Q16 text 'When conducting a hypothesis test for a Pearson correlation, the null hypothesis states:' with correct option C 'H₀: ρ = 0 (there is no linear relationship in the population)' — selecting option C returned 'Correct!' feedback. (7) Q17 text mentions PHQ-9 x FERT, n = 25, α = .05, correct option C 'df = 23 (n − 2)' — verified correct. (8) Q18 text 'In a hypothesis test for a Pearson correlation, the test statistic... is:' correct option C 'r' — verified correct, progress showed 'Question 18 of 18'. (9) Chapter 14 Glossary: badge reads '17 terms' and all 17 textbook terms visible (Correlation, Scatterplot, Positive correlation, Negative correlation, Perfect correlation, Pearson correlation, Pearson correlation coefficient (r), Rho (ρ), Linear relationship, Coefficient of determination (r²), Simple linear regression, Linear equation, Slope (b), Y-intercept (a), Regression equation for Y, Y-hat, Standard error of estimate). (10) Practice Exam 4 Q21: progress 'Question 21 of 30', scenario card data-testid='scenario-scatterplot' renders an SVG with 25 circles trending lower-left to upper-right, followed by Q21 text 'The scatter plot above shows data points forming a pattern from lower-left to upper-right. This indicates:' with options including 'A positive correlation'. Key testids for PE4 quiz: pe4-option-a..d, pe4-submit-btn, pe4-next-btn, pe4-prev-btn (NOT pe4-quiz-submit-btn/pe4-quiz-next-btn). Key testids for Ch14 quiz: quiz-option-0..3, quiz-submit-btn, quiz-next-btn, quiz-previous-btn, quiz-feedback, quiz-question-text.",
+  "rca of the issue": "No issues found in this iteration."
+}
